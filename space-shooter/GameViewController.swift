@@ -8,6 +8,7 @@
 
 import UIKit
 import SpriteKit
+import AVFoundation
 
 extension SKNode {
     class func unarchiveFromFile(file : String) -> SKNode? {
@@ -26,24 +27,35 @@ extension SKNode {
 }
 
 class GameViewController: UIViewController {
-
+    
+    
+    var backgroundMusicPlayer: AVAudioPlayer = AVAudioPlayer()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if let scene = GameScene.unarchiveFromFile("GameScene") as? GameScene {
-            // Configure the view.
-            let skView = self.view as! SKView
-            skView.showsFPS = true
-            skView.showsNodeCount = true
-            
-            /* Sprite Kit applies additional optimizations to improve rendering performance */
-            skView.ignoresSiblingOrder = true
-            
-            /* Set the scale mode to scale to fit the window */
-            scene.scaleMode = .AspectFill
-            
-            skView.presentScene(scene)
-        }
+//        if let scene = GameScene.unarchiveFromFile("GameScene") as? GameScene {
+//            // Configure the view.
+//            let skView = self.view as! SKView
+//            skView.showsFPS = true
+//            skView.showsNodeCount = true
+//            
+//            /* Sprite Kit applies additional optimizations to improve rendering performance */
+//            skView.ignoresSiblingOrder = true
+//            
+//            /* Set the scale mode to scale to fit the window */
+//            scene.scaleMode = .AspectFill
+//            
+//            skView.presentScene(scene)
+//        }
+    }
+    
+    override func viewDidLayoutSubviews() {
+        var backgroundMusicURL: NSURL = NSBundle.mainBundle().URLForResource("bgmusic", withExtension: "mp3")!
+        backgroundMusicPlayer = AVAudioPlayer(contentsOfURL: backgroundMusicURL, error:nil)
+        backgroundMusicPlayer.numberOfLoops = -1
+        backgroundMusicPlayer.prepareToPlay()
+        backgroundMusicPlayer.play()
     }
 
     override func shouldAutorotate() -> Bool {
