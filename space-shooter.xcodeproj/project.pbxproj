@@ -93,13 +93,13 @@
 			children = (
 				968E0FE01CE7E98A001DA997 /* AppDelegate.swift */,
 				968E0FE21CE7E98B001DA997 /* GameScene.sks */,
-				968E10051CE80AA9001DA997 /* sounds */,
-				968E10041CE80A9F001DA997 /* sprites.atlas */,
 				968E0FE41CE7E98B001DA997 /* GameScene.swift */,
 				968E0FE61CE7E98B001DA997 /* GameViewController.swift */,
 				968E0FE81CE7E98B001DA997 /* Main.storyboard */,
 				968E0FEB1CE7E98B001DA997 /* Images.xcassets */,
 				968E0FED1CE7E98B001DA997 /* LaunchScreen.xib */,
+				968E10041CE80A9F001DA997 /* sprites.atlas */,
+				968E10051CE80AA9001DA997 /* sounds */,
 				968E0FDE1CE7E98A001DA997 /* Supporting Files */,
 			);
 			path = "space-shooter";

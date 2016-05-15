@@ -10,16 +10,37 @@ import SpriteKit
 
 class GameScene: SKScene {
     
-    
+    var player: SKSpriteNode = SKSpriteNode()
+    var lastYieldTimeInterval:NSTimeInterval = NSTimeInterval()
+    var lastUpdateTimerInterval:NSTimeInterval = NSTimeInterval()
+    var aliensDestroyed:Int = 0
     
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
-        let myLabel = SKLabelNode(fontNamed:"Chalkduster")
-        myLabel.text = "Hello, World!";
-        myLabel.fontSize = 65;
-        myLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame));
+//        let myLabel = SKLabelNode(fontNamed:"Chalkduster")
+//        myLabel.text = "Hello, World!";
+//        myLabel.fontSize = 65;
+//        myLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame));
+//        
+//        self.addChild(myLabel)
+    }
+    
+    override init(size: CGSize) {
+        super.init(size: size)
+        self.backgroundColor = SKColor.blackColor()
+        player = SKSpriteNode(imageNamed: "Spaceship")
+        player.position = CGPointMake(self.frame.size.width/2, scene!.frame.size.height/6)
+        player.xScale = 0.3
+        player.yScale = 0.3
         
-        self.addChild(myLabel)
+        
+        self.addChild(player)
+        self.physicsWorld.gravity = CGVectorMake(0, 0)
+//        self.physicsWorld.contactDelegate = self
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
