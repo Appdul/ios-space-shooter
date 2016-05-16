@@ -97,24 +97,51 @@ class GameScene: SKScene {
         
     }
     
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
-        /* Called when a touch begins */
-        
-        for touch in (touches as! Set<UITouch>) {
-            let location = touch.locationInNode(self)
-            
-            let sprite = SKSpriteNode(imageNamed:"Spaceship")
-            
-            sprite.xScale = 0.5
-            sprite.yScale = 0.5
-            sprite.position = location
-            
-            let action = SKAction.rotateByAngle(CGFloat(M_PI), duration:1)
-            
-            sprite.runAction(SKAction.repeatActionForever(action))
-            
-            self.addChild(sprite)
-        }
+//    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+//        /* Called when a touch begins */
+//        
+////        for touch in (touches as! Set<UITouch>) {
+////            let location = touch.locationInNode(self)
+////            
+////            let sprite = SKSpriteNode(imageNamed:"Spaceship")
+////            
+////            sprite.xScale = 0.5
+////            sprite.yScale = 0.5
+////            sprite.position = location
+////            
+////            let action = SKAction.rotateByAngle(CGFloat(M_PI), duration:1)
+////            
+////            sprite.runAction(SKAction.repeatActionForever(action))
+////            
+////            self.addChild(sprite)
+////        }
+//    }
+    
+    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+        self.runAction(SKAction.playSoundFileNamed("torpedo.mp3", waitForCompletion: false))
+        var touch:UITouch = touches as UITouch
+        var location:CGPoint = touch.locationInNode(self)
+        var torpedo:SKSpriteNode = SKSpriteNode(imageNamed: "torpedo")
+    }
+    
+    func addVectors(a:CGPoint,b:CGPoint) -> CGPoint{
+        return CGPoint(x: a.x + b.x, y: a.y + b.y)
+    }
+    
+    func subtractVectors(a: CGPoint, b:CGPoint) -> CGPoint{
+        return CGPoint(x: a.x - b.x, y: a.y - b.y)
+    }
+    
+    func vectorByScalarMultiplication (a: CGPoint, k: CGFloat) ->CGPoint {
+        return CGPoint(x: a.x * k, y: a.y * k)
+    }
+    
+    func vectorLength(a: CGPoint) -> CGFloat {
+        return CGFloat(sqrt(CGFloat(a.x * a.x) + CGFloat(a.y * a.y)))
+    }
+    func normalizeVector(a: CGPoint) -> CGPoint {
+        var length: CGFloat = vectorLength(a)
+        return CGPointMake(a.x / length, a.y/length)
     }
 //   
 //    override func update(currentTime: CFTimeInterval) {
