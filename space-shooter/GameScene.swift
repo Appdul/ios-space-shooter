@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var player: SKSpriteNode = SKSpriteNode()
     var lastYieldTimeInterval:NSTimeInterval = NSTimeInterval()
@@ -32,13 +32,13 @@ class GameScene: SKScene {
         self.backgroundColor = SKColor.blackColor()
         player = SKSpriteNode(imageNamed: "Spaceship")
         player.position = CGPointMake(self.frame.size.width/2, scene!.frame.size.height/6)
-        player.xScale = 0.3
-        player.yScale = 0.3
+        player.xScale = 0.25
+        player.yScale = 0.25
         
         
         self.addChild(player)
         self.physicsWorld.gravity = CGVectorMake(0, 0)
-//        self.physicsWorld.contactDelegate = self
+        self.physicsWorld.contactDelegate = self
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -119,9 +119,77 @@ class GameScene: SKScene {
     
     override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
         self.runAction(SKAction.playSoundFileNamed("torpedo.mp3", waitForCompletion: false))
-        var touch:UITouch = touches as UITouch
+        var touch:UITouch = touches.first as! UITouch
         var location:CGPoint = touch.locationInNode(self)
         var torpedo:SKSpriteNode = SKSpriteNode(imageNamed: "torpedo")
+        torpedo.position = player.position
+        torpedo.physicsBody = SKPhysicsBody(circleOfRadius: torpedo.size.width/2)
+        torpedo.physicsBody!.dynamic = true
+        
+        torpedo.physicsBody!.categoryBitMask = photonTorpedoCategory
+        torpedo.physicsBody!.contactTestBitMask = alienCategory
+        torpedo.physicsBody!.collisionBitMask = 0
+        torpedo.physicsBody!.usesPreciseCollisionDetection = true
+        
+        var offSet:CGPoint = subtractVectors(location, b: torpedo.position)
+        
+        
+        // dont allow users to shoot backwards
+        if (offSet.y < 0){
+            return
+        }
+        
+        self.addChild(torpedo)
+        
+        // Whre to shoot?
+        var direction:CGPoint = normalizeVector(offSet)
+        
+        // Shoot off screen
+        var shotLength:CGPoint = vectorByScalarMultiplication(direction, k: 3000)
+        
+        // Add Length to current position
+        var finalDestination:CGPoint = addVectors(shotLength, b: torpedo.position)
+        
+        // create action
+        let velocity = 570/1
+        let moveDuration:Float = Float(self.size.width) / Float(velocity)
+        
+        var actionArray:NSMutableArray = NSMutableArray()
+        actionArray.addObject(SKAction.moveTo(finalDestination, duration: NSTimeInterval(moveDuration)))
+        actionArray.addObject(SKAction.removeFromParent())
+        
+        torpedo.runAction(SKAction.sequence(actionArray as [AnyObject]))
+
+        
+    }
+    
+    func torpedoDidCollideWithAlien(torped:SKSpriteNode, alien:SKSpriteNode){
+        //Print("Hit")
+        torped.removeFromParent()
+        alien.removeFromParent()
+        
+        aliensDestroyed++
+        
+        if (aliensDestroyed > 10) {
+            //transition to game over or success
+        }
+    }
+    
+    func didBeginContact(contact: SKPhysicsContact) {
+        // Body1 and 2 depend on the categoryBitMask << 0 und << 1
+        var firstBody:SKPhysicsBody
+        var secondBody:SKPhysicsBody
+        
+        if (contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask){
+            firstBody = contact.bodyA
+            secondBody = contact.bodyB
+        }else{
+            firstBody = contact.bodyB
+            secondBody = contact.bodyA
+        }
+        
+        torpedoDidCollideWithAlien(contact.bodyA.node as! SKSpriteNode, alien: contact.bodyB.node as! SKSpriteNode)
+        
     }
     
     func addVectors(a:CGPoint,b:CGPoint) -> CGPoint{
