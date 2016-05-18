@@ -39,6 +39,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(player)
         self.physicsWorld.gravity = CGVectorMake(0, 0)
         self.physicsWorld.contactDelegate = self
+        
+
+
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -47,7 +50,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func addAlien() {
         
-        var alien:SKSpriteNode = SKSpriteNode(imageNamed: "alien")
+        var alien:SKSpriteNode = SKSpriteNode(imageNamed: "1")
+        alien.xScale = 0.7
+        alien.yScale = 0.7
         alien.physicsBody = SKPhysicsBody(rectangleOfSize: alien.size)
         alien.physicsBody?.dynamic = true
         alien.physicsBody?.categoryBitMask = alienCategory
@@ -73,7 +78,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         alien.runAction(SKAction.sequence(actionArray as [AnyObject]))
         
-        
+        let action = SKAction.rotateByAngle(CGFloat(M_PI), duration:1)
+        alien.runAction(SKAction.repeatActionForever(action))
     
     }
     
@@ -97,83 +103,76 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
     }
     
-//    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
-//        /* Called when a touch begins */
-//        
-////        for touch in (touches as! Set<UITouch>) {
-////            let location = touch.locationInNode(self)
-////            
-////            let sprite = SKSpriteNode(imageNamed:"Spaceship")
-////            
-////            sprite.xScale = 0.5
-////            sprite.yScale = 0.5
-////            sprite.position = location
-////            
-////            let action = SKAction.rotateByAngle(CGFloat(M_PI), duration:1)
-////            
-////            sprite.runAction(SKAction.repeatActionForever(action))
-////            
-////            self.addChild(sprite)
-////        }
-//    }
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+        /* Called when a touch begins */
+        
+        for touch in (touches as! Set<UITouch>) {
+            let newLocation = touch.locationInNode(self)
+            //self.player.position = newLocation
+            
+            let moveTo = SKAction.moveTo(newLocation, duration: 0.2)
+            self.player.runAction(moveTo)
+
+        }
+    }
     
     override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
-        self.runAction(SKAction.playSoundFileNamed("torpedo.mp3", waitForCompletion: false))
-        var touch:UITouch = touches.first as! UITouch
-        var location:CGPoint = touch.locationInNode(self)
-        var torpedo:SKSpriteNode = SKSpriteNode(imageNamed: "torpedo")
-        torpedo.position = player.position
-        torpedo.physicsBody = SKPhysicsBody(circleOfRadius: torpedo.size.width/2)
-        torpedo.physicsBody!.dynamic = true
-        
-        torpedo.physicsBody!.categoryBitMask = photonTorpedoCategory
-        torpedo.physicsBody!.contactTestBitMask = alienCategory
-        torpedo.physicsBody!.collisionBitMask = 0
-        torpedo.physicsBody!.usesPreciseCollisionDetection = true
-        
-        var offSet:CGPoint = subtractVectors(location, b: torpedo.position)
+        //self.runAction(SKAction.playSoundFileNamed("torpedo.mp3", waitForCompletion: false))
+//        var touch:UITouch = touches.first as! UITouch
+//        var location:CGPoint = touch.locationInNode(self)
+//        var torpedo:SKSpriteNode = SKSpriteNode(imageNamed: "torpedo")
+//        torpedo.position = player.position
+//        torpedo.physicsBody = SKPhysicsBody(circleOfRadius: torpedo.size.width/2)
+//        torpedo.physicsBody!.dynamic = true
+//        
+//        torpedo.physicsBody!.categoryBitMask = photonTorpedoCategory
+//        torpedo.physicsBody!.contactTestBitMask = alienCategory
+//        torpedo.physicsBody!.collisionBitMask = 0
+//        torpedo.physicsBody!.usesPreciseCollisionDetection = true
+//        
+//        var offSet:CGPoint = subtractVectors(location, b: torpedo.position)
         
         
         // dont allow users to shoot backwards
-        if (offSet.y < 0){
-            return
-        }
-        
-        self.addChild(torpedo)
-        
-        // Whre to shoot?
-        var direction:CGPoint = normalizeVector(offSet)
-        
-        // Shoot off screen
-        var shotLength:CGPoint = vectorByScalarMultiplication(direction, k: 3000)
-        
-        // Add Length to current position
-        var finalDestination:CGPoint = addVectors(shotLength, b: torpedo.position)
-        
-        // create action
-        let velocity = 570/1
-        let moveDuration:Float = Float(self.size.width) / Float(velocity)
-        
-        var actionArray:NSMutableArray = NSMutableArray()
-        actionArray.addObject(SKAction.moveTo(finalDestination, duration: NSTimeInterval(moveDuration)))
-        actionArray.addObject(SKAction.removeFromParent())
-        
-        torpedo.runAction(SKAction.sequence(actionArray as [AnyObject]))
+//        if (offSet.y < 0){
+//            return
+//        }
+//        
+//        self.addChild(torpedo)
+//        
+//        // Whre to shoot?
+//        var direction:CGPoint = normalizeVector(offSet)
+//        
+//        // Shoot off screen
+//        var shotLength:CGPoint = vectorByScalarMultiplication(direction, k: 3000)
+//        
+//        // Add Length to current position
+//        var finalDestination:CGPoint = addVectors(shotLength, b: torpedo.position)
+//        
+//        // create action
+//        let velocity = 570/1
+//        let moveDuration:Float = Float(self.size.width) / Float(velocity)
+//        
+//        var actionArray:NSMutableArray = NSMutableArray()
+//        actionArray.addObject(SKAction.moveTo(finalDestination, duration: NSTimeInterval(moveDuration)))
+//        actionArray.addObject(SKAction.removeFromParent())
+//        
+        //torpedo.runAction(SKAction.sequence(actionArray as [AnyObject]))
 
         
     }
     
-    func torpedoDidCollideWithAlien(torped:SKSpriteNode, alien:SKSpriteNode){
-        //Print("Hit")
-        torped.removeFromParent()
-        alien.removeFromParent()
-        
-        aliensDestroyed++
-        
-        if (aliensDestroyed > 10) {
-            //transition to game over or success
-        }
-    }
+//    func torpedoDidCollideWithAlien(torped:SKSpriteNode, alien:SKSpriteNode){
+//        //Print("Hit")
+//        torped.removeFromParent()
+//        alien.removeFromParent()
+//        
+//        aliensDestroyed++
+//        
+//        if (aliensDestroyed > 10) {
+//            //transition to game over or success
+//        }
+//    }
     
     func didBeginContact(contact: SKPhysicsContact) {
         // Body1 and 2 depend on the categoryBitMask << 0 und << 1
@@ -188,7 +187,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             secondBody = contact.bodyA
         }
         
-        torpedoDidCollideWithAlien(contact.bodyA.node as! SKSpriteNode, alien: contact.bodyB.node as! SKSpriteNode)
+        //(contact.bodyA.node as! SKSpriteNode, alien: contact.bodyB.node as! SKSpriteNode)
         
     }
     

@@ -20,6 +20,10 @@
 		968E100B1CE80B41001DA997 /* torpedo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 968E10081CE80B41001DA997 /* torpedo@2x.png */; };
 		968E100E1CE80B52001DA997 /* bgmusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 968E100C1CE80B52001DA997 /* bgmusic.mp3 */; };
 		968E100F1CE80B52001DA997 /* torpedo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 968E100D1CE80B52001DA997 /* torpedo.mp3 */; };
+		969AE0831CEBF56900C813EA /* space-meteors in Resources */ = {isa = PBXBuildFile; fileRef = 969AE0821CEBF56900C813EA /* space-meteors */; };
+		969AE08D1CEBF65100C813EA /* 1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 969AE08A1CEBF65100C813EA /* 1@2x.png */; };
+		969AE08E1CEBF65100C813EA /* 2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 969AE08B1CEBF65100C813EA /* 2@2x.png */; };
+		969AE08F1CEBF65100C813EA /* 3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 969AE08C1CEBF65100C813EA /* 3@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +54,10 @@
 		968E10081CE80B41001DA997 /* torpedo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "torpedo@2x.png"; sourceTree = "<group>"; };
 		968E100C1CE80B52001DA997 /* bgmusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bgmusic.mp3; sourceTree = "<group>"; };
 		968E100D1CE80B52001DA997 /* torpedo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = torpedo.mp3; sourceTree = "<group>"; };
+		969AE0821CEBF56900C813EA /* space-meteors */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "space-meteors"; sourceTree = "<group>"; };
+		969AE08A1CEBF65100C813EA /* 1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1@2x.png"; sourceTree = "<group>"; };
+		969AE08B1CEBF65100C813EA /* 2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "2@2x.png"; sourceTree = "<group>"; };
+		969AE08C1CEBF65100C813EA /* 3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "3@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +99,7 @@
 		968E0FDD1CE7E98A001DA997 /* space-shooter */ = {
 			isa = PBXGroup;
 			children = (
+				969AE0821CEBF56900C813EA /* space-meteors */,
 				968E0FE01CE7E98A001DA997 /* AppDelegate.swift */,
 				968E0FE21CE7E98B001DA997 /* GameScene.sks */,
 				968E0FE41CE7E98B001DA997 /* GameScene.swift */,
@@ -133,6 +142,9 @@
 		968E10041CE80A9F001DA997 /* sprites.atlas */ = {
 			isa = PBXGroup;
 			children = (
+				969AE08A1CEBF65100C813EA /* 1@2x.png */,
+				969AE08B1CEBF65100C813EA /* 2@2x.png */,
+				969AE08C1CEBF65100C813EA /* 3@2x.png */,
 				968E10061CE80B41001DA997 /* alien@2x.png */,
 				968E10071CE80B41001DA997 /* shuttle@2x.png */,
 				968E10081CE80B41001DA997 /* torpedo@2x.png */,
@@ -229,13 +241,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				969AE08D1CEBF65100C813EA /* 1@2x.png in Resources */,
+				969AE08F1CEBF65100C813EA /* 3@2x.png in Resources */,
 				968E100A1CE80B41001DA997 /* shuttle@2x.png in Resources */,
 				968E10091CE80B41001DA997 /* alien@2x.png in Resources */,
+				969AE08E1CEBF65100C813EA /* 2@2x.png in Resources */,
 				968E0FEF1CE7E98B001DA997 /* LaunchScreen.xib in Resources */,
 				968E100E1CE80B52001DA997 /* bgmusic.mp3 in Resources */,
 				968E100B1CE80B41001DA997 /* torpedo@2x.png in Resources */,
 				968E0FEC1CE7E98B001DA997 /* Images.xcassets in Resources */,
 				968E0FE31CE7E98B001DA997 /* GameScene.sks in Resources */,
+				969AE0831CEBF56900C813EA /* space-meteors in Resources */,
 				968E100F1CE80B52001DA997 /* torpedo.mp3 in Resources */,
 				968E0FEA1CE7E98B001DA997 /* Main.storyboard in Resources */,
 			);
@@ -455,6 +471,7 @@
 				968E10001CE7E98B001DA997 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		968E10011CE7E98B001DA997 /* Build configuration list for PBXNativeTarget "space-shooterTests" */ = {
 			isa = XCConfigurationList;
@@ -463,6 +480,7 @@
 				968E10031CE7E98B001DA997 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
