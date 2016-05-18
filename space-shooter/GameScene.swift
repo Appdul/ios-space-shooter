@@ -76,7 +76,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         actionArray.addObject(SKAction.moveTo(CGPointMake(position, -alien.size.height), duration: NSTimeInterval(duration)))
         actionArray.addObject(SKAction.removeFromParent())
         
-        alien.runAction(SKAction.sequence(actionArray as [AnyObject]))
+        alien.runAction(SKAction.sequence(actionArray as! [SKAction]))
         
         let action = SKAction.rotateByAngle(CGFloat(M_PI), duration:1)
         alien.runAction(SKAction.repeatActionForever(action))
@@ -103,20 +103,29 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
     }
     
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         /* Called when a touch begins */
         
-        for touch in (touches as! Set<UITouch>) {
+        for touch in (touches ) {
             let newLocation = touch.locationInNode(self)
             //self.player.position = newLocation
             
             let moveTo = SKAction.moveTo(newLocation, duration: 0.2)
             self.player.runAction(moveTo)
+          player.physicsBody = SKPhysicsBody(circleOfRadius: player.size.width/2)
+          player.physicsBody!.dynamic = true
+          player.physicsBody!.categoryBitMask = photonTorpedoCategory
+          player.physicsBody!.contactTestBitMask = alienCategory
+          player.physicsBody!.collisionBitMask = 0
+          player.physicsBody!.usesPreciseCollisionDetection = true
+
+          player.physicsBody!.contactTestBitMask = alienCategory
+          player.physicsBody!.collisionBitMask = 0
 
         }
     }
     
-    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         //self.runAction(SKAction.playSoundFileNamed("torpedo.mp3", waitForCompletion: false))
 //        var touch:UITouch = touches.first as! UITouch
 //        var location:CGPoint = touch.locationInNode(self)
@@ -125,11 +134,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //        torpedo.physicsBody = SKPhysicsBody(circleOfRadius: torpedo.size.width/2)
 //        torpedo.physicsBody!.dynamic = true
 //        
-//        torpedo.physicsBody!.categoryBitMask = photonTorpedoCategory
-//        torpedo.physicsBody!.contactTestBitMask = alienCategory
-//        torpedo.physicsBody!.collisionBitMask = 0
-//        torpedo.physicsBody!.usesPreciseCollisionDetection = true
-//        
+//
 //        var offSet:CGPoint = subtractVectors(location, b: torpedo.position)
         
         
@@ -162,18 +167,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
     }
     
-//    func torpedoDidCollideWithAlien(torped:SKSpriteNode, alien:SKSpriteNode){
-//        //Print("Hit")
-//        torped.removeFromParent()
-//        alien.removeFromParent()
-//        
-//        aliensDestroyed++
-//        
-//        if (aliensDestroyed > 10) {
-//            //transition to game over or success
-//        }
-//    }
-    
+    func torpedoDidCollideWithAlien(torped:SKSpriteNode, alien:SKSpriteNode){
+        //Print("Hit")
+        player.removeFromParent()
+        alien.removeFromParent()
+        
+        aliensDestroyed++
+        
+        if (aliensDestroyed > 10) {
+            //transition to game over or success
+        }
+    }
+  
     func didBeginContact(contact: SKPhysicsContact) {
         // Body1 and 2 depend on the categoryBitMask << 0 und << 1
         var firstBody:SKPhysicsBody
@@ -187,7 +192,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             secondBody = contact.bodyA
         }
         
-        //(contact.bodyA.node as! SKSpriteNode, alien: contact.bodyB.node as! SKSpriteNode)
+        torpedoDidCollideWithAlien(contact.bodyA.node as! SKSpriteNode, alien: contact.bodyB.node as! SKSpriteNode)
         
     }
     
@@ -207,7 +212,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         return CGFloat(sqrt(CGFloat(a.x * a.x) + CGFloat(a.y * a.y)))
     }
     func normalizeVector(a: CGPoint) -> CGPoint {
-        var length: CGFloat = vectorLength(a)
+        let length: CGFloat = vectorLength(a)
         return CGPointMake(a.x / length, a.y/length)
     }
 //   
