@@ -47,11 +47,11 @@ class GameViewController: UIViewController {
     }
     
     override func viewDidLayoutSubviews() {
-        var backgroundMusicURL: NSURL = NSBundle.mainBundle().URLForResource("bgmusic", withExtension: "mp3")!
-        backgroundMusicPlayer = AVAudioPlayer(contentsOfURL: backgroundMusicURL, error:nil)
-        backgroundMusicPlayer.numberOfLoops = -1
-        backgroundMusicPlayer.prepareToPlay()
-        backgroundMusicPlayer.play()
+//        var backgroundMusicURL: NSURL = NSBundle.mainBundle().URLForResource("bgmusic", withExtension: "mp3")!
+//        backgroundMusicPlayer = AVAudioPlayer(contentsOfURL: backgroundMusicURL, error:nil)
+//        backgroundMusicPlayer.numberOfLoops = -1
+//        backgroundMusicPlayer.prepareToPlay()
+//        backgroundMusicPlayer.play()
         
         
         //Configure the view

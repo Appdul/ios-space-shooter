@@ -14,8 +14,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var lastYieldTimeInterval:NSTimeInterval = NSTimeInterval()
     var lastUpdateTimerInterval:NSTimeInterval = NSTimeInterval()
     var aliensDestroyed:Int = 0
-    var alienCategory:UInt32 = 0x1 << 1
-    var photonTorpedoCategory:UInt32 = 0x1 << 0
+    var meteorCategory:UInt32 = 0x1 << 1
+    var playerCategory:UInt32 = 0x1 << 0
     
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
@@ -50,22 +50,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func addAlien() {
         
-        var alien:SKSpriteNode = SKSpriteNode(imageNamed: "1")
-        alien.xScale = 0.7
-        alien.yScale = 0.7
-        alien.physicsBody = SKPhysicsBody(rectangleOfSize: alien.size)
-        alien.physicsBody?.dynamic = true
-        alien.physicsBody?.categoryBitMask = alienCategory
-        alien.physicsBody?.contactTestBitMask  = photonTorpedoCategory
-        alien.physicsBody?.collisionBitMask = 0
+        var meteor:SKSpriteNode = SKSpriteNode(imageNamed: "1")
+        meteor.xScale = 0.7
+        meteor.yScale = 0.7
+        meteor.physicsBody = SKPhysicsBody(circleOfRadius: meteor.size.width/2)
+        meteor.physicsBody?.dynamic = true
+        meteor.physicsBody?.categoryBitMask = meteorCategory
+        meteor.physicsBody?.contactTestBitMask  = playerCategory
+        meteor.physicsBody?.collisionBitMask = 0
         
-        let minX = alien.size.width/2
-        let maxX = self.frame.size.width - alien.size.width/2
+        let minX = meteor.size.width/2
+        let maxX = self.frame.size.width - meteor.size.width/2
         let rangeX = maxX - minX
         let position:CGFloat = CGFloat(arc4random()) % CGFloat(maxX)
         
-        alien.position = CGPointMake(position, self.frame.size.height + alien.size.height)
-        self.addChild(alien)
+        meteor.position = CGPointMake(position, self.frame.size.height + meteor.size.height)
+        self.addChild(meteor)
         
         let minDuration = 2
         let maxDuration = 4
@@ -73,13 +73,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let duration = Int(arc4random()) % Int(rangeDuratiion) + Int(minDuration)
         
         var actionArray:NSMutableArray = NSMutableArray()
-        actionArray.addObject(SKAction.moveTo(CGPointMake(position, -alien.size.height), duration: NSTimeInterval(duration)))
+        actionArray.addObject(SKAction.moveTo(CGPointMake(position, -meteor.size.height), duration: NSTimeInterval(duration)))
         actionArray.addObject(SKAction.removeFromParent())
         
-        alien.runAction(SKAction.sequence(actionArray as [AnyObject]))
+        meteor.runAction(SKAction.sequence(actionArray as [AnyObject]))
         
         let action = SKAction.rotateByAngle(CGFloat(M_PI), duration:1)
-        alien.runAction(SKAction.repeatActionForever(action))
+        meteor.runAction(SKAction.repeatActionForever(action))
     
     }
     
@@ -109,25 +109,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         for touch in (touches as! Set<UITouch>) {
             let newLocation = touch.locationInNode(self)
             //self.player.position = newLocation
-            let velocity = 10
+            let velocity = 570
             let currentLocationOfShip:CGPoint = player.position
             let displacmentVector:CGPoint = subtractVectors(newLocation, b: currentLocationOfShip)
             let displacment = vectorLength(displacmentVector)
-            let time = displacment / 10
-            //SKAction.
-            let moveTo = SKAction.moveTo(newLocation, duration: 0.3)
-            //let moveTo = SKAction
+            let time:NSTimeInterval = NSTimeInterval(displacment / CGFloat(velocity))
+            let moveTo = SKAction.moveTo(newLocation, duration: time)
             self.player.runAction(moveTo)
-            player.physicsBody = SKPhysicsBody(circleOfRadius: player.size.width/2)
+            player.physicsBody = SKPhysicsBody(circleOfRadius: player.size.width/12)
             player.physicsBody!.dynamic = true
-            player.physicsBody!.categoryBitMask = photonTorpedoCategory
-            player.physicsBody!.contactTestBitMask = alienCategory
+            player.physicsBody!.categoryBitMask = playerCategory
+            player.physicsBody!.contactTestBitMask = meteorCategory
             player.physicsBody!.collisionBitMask = 0
             player.physicsBody!.usesPreciseCollisionDetection = true
             
-            player.physicsBody!.contactTestBitMask = alienCategory
+            player.physicsBody!.contactTestBitMask = meteorCategory
             player.physicsBody!.collisionBitMask = 0
-
+    
         }
     }
     
@@ -177,16 +175,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
     }
     
-    func playerDidCollide(torped:SKSpriteNode, alien:SKSpriteNode){
+    func playerDidCollide(player:SKSpriteNode, meteor:SKSpriteNode){
         //Print("Hit")
         player.removeFromParent()
-        alien.removeFromParent()
+        meteor.removeFromParent()
         
-        aliensDestroyed++
-        
-        if (aliensDestroyed > 10) {
-            //transition to game over or success
-        }
     }
     
     func didBeginContact(contact: SKPhysicsContact) {
@@ -202,7 +195,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             secondBody = contact.bodyA
         }
         
-        playerDidCollide(contact.bodyA.node as! SKSpriteNode, alien: contact.bodyB.node as! SKSpriteNode)
+        playerDidCollide(contact.bodyA.node as! SKSpriteNode, meteor: contact.bodyB.node as! SKSpriteNode)
         
     }
     
