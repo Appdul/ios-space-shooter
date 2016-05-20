@@ -28,7 +28,6 @@ extension SKNode {
 
 class GameViewController: UIViewController {
     
-    
     var backgroundMusicPlayer: AVAudioPlayer = AVAudioPlayer()
     
     override func viewDidLoad() {
@@ -44,7 +43,11 @@ class GameViewController: UIViewController {
 //            
 //            skView.presentScene(scene)
 //        }
+        //score.text = GameScene.
+        
     }
+    
+   
     
     override func viewDidLayoutSubviews() {
 //        var backgroundMusicURL: NSURL = NSBundle.mainBundle().URLForResource("bgmusic", withExtension: "mp3")!
@@ -63,9 +66,10 @@ class GameViewController: UIViewController {
         var scene: SKScene = GameScene(size: skView.bounds.size)
         scene.scaleMode = SKSceneScaleMode.AspectFill
         skView.presentScene(scene)
-
+        
+        
     }
-
+    
     override func shouldAutorotate() -> Bool {
         return true
     }

@@ -13,9 +13,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var player: SKSpriteNode = SKSpriteNode()
     var lastYieldTimeInterval:NSTimeInterval = NSTimeInterval()
     var lastUpdateTimerInterval:NSTimeInterval = NSTimeInterval()
-    var aliensDestroyed:Int = 0
+    var meteorsMissed:Int = 0
     var meteorCategory:UInt32 = 0x1 << 1
     var playerCategory:UInt32 = 0x1 << 0
+    var scoreLabel = SKLabelNode()
+    let scoreLabelName = "scoreLabel"
     
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
@@ -48,7 +50,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func addAlien() {
+    func addMeteor() {
         
         var meteor:SKSpriteNode = SKSpriteNode(imageNamed: "1")
         meteor.xScale = 0.7
@@ -75,19 +77,34 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         var actionArray:NSMutableArray = NSMutableArray()
         actionArray.addObject(SKAction.moveTo(CGPointMake(position, -meteor.size.height), duration: NSTimeInterval(duration)))
         actionArray.addObject(SKAction.removeFromParent())
+        meteorsMissed++
+        print(meteorsMissed)
+        
+        
+        //Update the score
+        scoreLabel = SKLabelNode(fontNamed: "ScoreLabel")
+        scoreLabel.name = scoreLabelName
+        scoreLabel.fontSize = 45
+        scoreLabel.fontColor = SKColor.whiteColor()
+        scoreLabel.text = "\(meteorsMissed)"
+        //scoreLabel.position = CGPointMake(frame.size.width / 2, frame.size.height / 14)
+        scoreLabel.position = CGPointMake(60, self.frame.size.height - 60)
+        self.addChild(scoreLabel)
         
         meteor.runAction(SKAction.sequence(actionArray as [AnyObject]))
         
         let action = SKAction.rotateByAngle(CGFloat(M_PI), duration:1)
         meteor.runAction(SKAction.repeatActionForever(action))
+        
     
     }
+    
     
     func updateWithTimeSinceLastUpdate(timeSinceLastUpdate:CFTimeInterval){
         lastYieldTimeInterval += timeSinceLastUpdate
         if (lastYieldTimeInterval > 1) {
             lastYieldTimeInterval = 0
-            addAlien()
+            addMeteor()
         }
     }
     
@@ -196,6 +213,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         playerDidCollide(contact.bodyA.node as! SKSpriteNode, meteor: contact.bodyB.node as! SKSpriteNode)
+        
+    }
+    func score(meteorsDestroyed: Int) {
         
     }
     
