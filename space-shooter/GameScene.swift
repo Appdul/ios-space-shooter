@@ -118,6 +118,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let moveTo = SKAction.moveTo(newLocation, duration: 0.3)
             //let moveTo = SKAction
             self.player.runAction(moveTo)
+            player.physicsBody = SKPhysicsBody(circleOfRadius: player.size.width/2)
+            player.physicsBody!.dynamic = true
+            player.physicsBody!.categoryBitMask = photonTorpedoCategory
+            player.physicsBody!.contactTestBitMask = alienCategory
+            player.physicsBody!.collisionBitMask = 0
+            player.physicsBody!.usesPreciseCollisionDetection = true
+            
+            player.physicsBody!.contactTestBitMask = alienCategory
+            player.physicsBody!.collisionBitMask = 0
 
         }
     }
@@ -168,17 +177,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
     }
     
-//    func torpedoDidCollideWithAlien(torped:SKSpriteNode, alien:SKSpriteNode){
-//        //Print("Hit")
-//        torped.removeFromParent()
-//        alien.removeFromParent()
-//        
-//        aliensDestroyed++
-//        
-//        if (aliensDestroyed > 10) {
-//            //transition to game over or success
-//        }
-//    }
+    func playerDidCollide(torped:SKSpriteNode, alien:SKSpriteNode){
+        //Print("Hit")
+        player.removeFromParent()
+        alien.removeFromParent()
+        
+        aliensDestroyed++
+        
+        if (aliensDestroyed > 10) {
+            //transition to game over or success
+        }
+    }
     
     func didBeginContact(contact: SKPhysicsContact) {
         // Body1 and 2 depend on the categoryBitMask << 0 und << 1
@@ -193,7 +202,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             secondBody = contact.bodyA
         }
         
-        //(contact.bodyA.node as! SKSpriteNode, alien: contact.bodyB.node as! SKSpriteNode)
+        playerDidCollide(contact.bodyA.node as! SKSpriteNode, alien: contact.bodyB.node as! SKSpriteNode)
         
     }
     
