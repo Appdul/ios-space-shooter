@@ -109,8 +109,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         for touch in (touches as! Set<UITouch>) {
             let newLocation = touch.locationInNode(self)
             //self.player.position = newLocation
-            
-            let moveTo = SKAction.moveTo(newLocation, duration: 0.2)
+            let velocity = 10
+            let currentLocationOfShip:CGPoint = player.position
+            let displacmentVector:CGPoint = subtractVectors(newLocation, b: currentLocationOfShip)
+            let displacment = vectorLength(displacmentVector)
+            let time = displacment / 10
+            //SKAction.
+            let moveTo = SKAction.moveTo(newLocation, duration: 0.3)
+            //let moveTo = SKAction
             self.player.runAction(moveTo)
 
         }
