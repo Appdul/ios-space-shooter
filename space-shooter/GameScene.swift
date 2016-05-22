@@ -7,6 +7,7 @@
 //
 
 import SpriteKit
+import Foundation
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
@@ -38,11 +39,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         player.xScale = 0.25
         player.yScale = 0.25
         
-        
+        var orbSpawnTime:NSTimeInterval = 2
         self.addChild(player)
         self.physicsWorld.gravity = CGVectorMake(0, 0)
         self.physicsWorld.contactDelegate = self
-        
+        var orbTimer = NSTimer.scheduledTimerWithTimeInterval(orbSpawnTime, target: self, selector: Selector("delayedSpawn"), userInfo: nil, repeats: true)
 
 
     }
@@ -104,18 +105,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func addOrb(){
         var orb:SKSpriteNode = SKSpriteNode(imageNamed: "litOrb")
-        orb.xScale = 0.7
-        orb.yScale = 0.7
+        orb.xScale = 0.6
+        orb.yScale = 0.6
         orb.physicsBody = SKPhysicsBody(circleOfRadius: orb.size.width/2)
         orb.physicsBody?.dynamic = true
         orb.physicsBody?.categoryBitMask = orbCategory //2
-        let maxX = self.frame.size.width - orb.size.width/2
-        let orbPositionInX:CGFloat = CGFloat(arc4random()) % CGFloat(maxX)
+        let minX = orb.size.width * 2
+        let maxX = self.frame.size.width - orb.size.width * 2
+        let xRange = maxX - minX
+        let orbPositionInX:CGFloat = CGFloat(arc4random()) % CGFloat(xRange)
         orb.position = CGPointMake(orbPositionInX, self.frame.size.height + orb.size.height)
         self.addChild(orb)
         
-        let minDuration = 2
-        let maxDuration = 4
+        let minDuration = 5
+        let maxDuration = 8
         let rangeDuration = maxDuration -  minDuration
         let duration = Int(arc4random()) % Int(rangeDuration) + Int(minDuration)
         
@@ -133,10 +136,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if (lastYieldTimeInterval > 1) {
             lastYieldTimeInterval = 0
             spawnFallingItems()
-            addOrb()
         }
     }
     
+    func delayedSpawn() {
+        addOrb()
+    }
     override func update(currentTime:CFTimeInterval) {
         var timeSinceLastUpdate = currentTime - lastUpdateTimerInterval
         lastUpdateTimerInterval = currentTime
