@@ -54,16 +54,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func spawnFallingItems() {
         
         var meteor:SKSpriteNode = SKSpriteNode(imageNamed: "1")
-        var orb:SKSpriteNode = SKSpriteNode(imageNamed: "litOrb")
-        orb.xScale = 0.7
-        orb.yScale = 0.7
         meteor.xScale = 0.7
         meteor.yScale = 0.7
-        orb.physicsBody = SKPhysicsBody(circleOfRadius: orb.size.width/2)
         meteor.physicsBody = SKPhysicsBody(circleOfRadius: meteor.size.width/4)
-        orb.physicsBody?.dynamic = true
         meteor.physicsBody?.dynamic = true
-        orb.physicsBody?.categoryBitMask = orbCategory //2
         meteor.physicsBody?.categoryBitMask = meteorCategory
         meteor.physicsBody?.contactTestBitMask  = playerCategory
         meteor.physicsBody?.collisionBitMask = 0
@@ -72,15 +66,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let minX = meteor.size.width/2
         let maxX = self.frame.size.width - meteor.size.width/2
         let rangeX = maxX - minX
-        let randomNumber1 = arc4random()
-        let randomNumber2 = arc4random()
-        let meteorPositionInX:CGFloat = CGFloat(randomNumber1) % CGFloat(maxX)
-        let orbPositionInX:CGFloat = CGFloat(randomNumber2) % CGFloat(maxX)
+        let meteorPositionInX:CGFloat = CGFloat(arc4random()) % CGFloat(maxX)
+        
         
         meteor.position = CGPointMake(meteorPositionInX, self.frame.size.height + meteor.size.height)
-        orb.position = CGPointMake(orbPositionInX, self.frame.size.height + orb.size.height)
+        
         self.addChild(meteor)
-        self.addChild(orb)
         
         let minDuration = 2
         let maxDuration = 4
@@ -105,14 +96,36 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         meteor.runAction(SKAction.sequence(actionArray as [AnyObject]))
         
-        let action = SKAction.rotateByAngle(CGFloat(M_PI), duration:1)
-        meteor.runAction(SKAction.repeatActionForever(action))
+        let rotateAction = SKAction.rotateByAngle(CGFloat(M_PI), duration:1)
+        meteor.runAction(SKAction.repeatActionForever(rotateAction))
         
     
     }
     
     func addOrb(){
+        var orb:SKSpriteNode = SKSpriteNode(imageNamed: "litOrb")
+        orb.xScale = 0.7
+        orb.yScale = 0.7
+        orb.physicsBody = SKPhysicsBody(circleOfRadius: orb.size.width/2)
+        orb.physicsBody?.dynamic = true
+        orb.physicsBody?.categoryBitMask = orbCategory //2
+        let maxX = self.frame.size.width - orb.size.width/2
+        let orbPositionInX:CGFloat = CGFloat(arc4random()) % CGFloat(maxX)
+        orb.position = CGPointMake(orbPositionInX, self.frame.size.height + orb.size.height)
+        self.addChild(orb)
         
+        let minDuration = 2
+        let maxDuration = 4
+        let rangeDuration = maxDuration -  minDuration
+        let duration = Int(arc4random()) % Int(rangeDuration) + Int(minDuration)
+        
+        var orbActionArray:NSMutableArray = NSMutableArray()
+        orbActionArray.addObject(SKAction.moveTo(CGPointMake(orbPositionInX, -orb.size.height), duration: NSTimeInterval(duration)))
+        orbActionArray.addObject(SKAction.removeFromParent())
+        
+        orb.runAction(SKAction.sequence(orbActionArray as [AnyObject]))
+
+
     }
     
     func updateWithTimeSinceLastUpdate(timeSinceLastUpdate:CFTimeInterval){
@@ -120,6 +133,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if (lastYieldTimeInterval > 1) {
             lastYieldTimeInterval = 0
             spawnFallingItems()
+            addOrb()
         }
     }
     
@@ -148,7 +162,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let time:NSTimeInterval = NSTimeInterval(displacment / CGFloat(velocity))
             let moveTo = SKAction.moveTo(newLocation, duration: time)
             self.player.runAction(moveTo)
-            player.physicsBody = SKPhysicsBody(circleOfRadius: player.size.width/12)
+            player.physicsBody = SKPhysicsBody(circleOfRadius: player.size.width/3)
             player.physicsBody!.dynamic = true
             player.physicsBody!.categoryBitMask = playerCategory
             player.physicsBody!.contactTestBitMask = meteorCategory
