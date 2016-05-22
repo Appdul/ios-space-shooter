@@ -43,7 +43,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(player)
         self.physicsWorld.gravity = CGVectorMake(0, 0)
         self.physicsWorld.contactDelegate = self
-        var orbTimer = NSTimer.scheduledTimerWithTimeInterval(orbSpawnTime, target: self, selector: Selector("delayedSpawn"), userInfo: nil, repeats: true)
+        var orbTimer = NSTimer.scheduledTimerWithTimeInterval(orbSpawnTime, target: self, selector: Selector("addOrb"), userInfo: nil, repeats: true)
 
 
     }
@@ -108,7 +108,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         orb.xScale = 0.6
         orb.yScale = 0.6
         orb.physicsBody = SKPhysicsBody(circleOfRadius: orb.size.width/2)
-        orb.physicsBody?.dynamic = true
+        orb.physicsBody?.dynamic = false
         orb.physicsBody?.categoryBitMask = orbCategory //2
         let minX = orb.size.width * 2
         let maxX = self.frame.size.width - orb.size.width * 2
@@ -139,9 +139,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-    func delayedSpawn() {
-        addOrb()
-    }
     override func update(currentTime:CFTimeInterval) {
         var timeSinceLastUpdate = currentTime - lastUpdateTimerInterval
         lastUpdateTimerInterval = currentTime
