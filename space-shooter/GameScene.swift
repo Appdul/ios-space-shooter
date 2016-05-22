@@ -113,7 +113,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let minX = orb.size.width * 2
         let maxX = self.frame.size.width - orb.size.width * 2
         let xRange = maxX - minX
-        let orbPositionInX:CGFloat = CGFloat(arc4random()) % CGFloat(xRange)
+        let orbPositionInX:CGFloat = minX + CGFloat(arc4random()) % CGFloat(xRange)
         orb.position = CGPointMake(orbPositionInX, self.frame.size.height + orb.size.height)
         self.addChild(orb)
         
