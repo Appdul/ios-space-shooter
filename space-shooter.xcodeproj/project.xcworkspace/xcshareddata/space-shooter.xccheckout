@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>8C91A326-9288-425A-AA8D-F724FB6D712B</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>space-shooter</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>FA49D000AFDF52141FE498785091211E3DAF1C7A</key>
 		<string>github.com:Appdul/ios-space-shooter.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>space-shooter.xcodeproj/project.xcworkspace</string>
+	<string>space-shooter.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>FA49D000AFDF52141FE498785091211E3DAF1C7A</key>

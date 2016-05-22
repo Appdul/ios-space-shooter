@@ -13,9 +13,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var player: SKSpriteNode = SKSpriteNode()
     var lastYieldTimeInterval:NSTimeInterval = NSTimeInterval()
     var lastUpdateTimerInterval:NSTimeInterval = NSTimeInterval()
-    var meteorsMissed:Int = 0
+    //var meteorsMissed:Int = 0
     var meteorCategory:UInt32 = 0x1 << 1
     var playerCategory:UInt32 = 0x1 << 0
+    var orbCategory:UInt32 = 0x1 << 2
     var scoreLabel = SKLabelNode()
     let scoreLabelName = "scoreLabel"
     
@@ -50,24 +51,36 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func addMeteor() {
+    func spawnFallingItems() {
         
         var meteor:SKSpriteNode = SKSpriteNode(imageNamed: "1")
+        var orb:SKSpriteNode = SKSpriteNode(imageNamed: "litOrb")
+        orb.xScale = 0.7
+        orb.yScale = 0.7
         meteor.xScale = 0.7
         meteor.yScale = 0.7
-        meteor.physicsBody = SKPhysicsBody(circleOfRadius: meteor.size.width/2)
+        orb.physicsBody = SKPhysicsBody(circleOfRadius: orb.size.width/2)
+        meteor.physicsBody = SKPhysicsBody(circleOfRadius: meteor.size.width/4)
+        orb.physicsBody?.dynamic = true
         meteor.physicsBody?.dynamic = true
+        orb.physicsBody?.categoryBitMask = orbCategory //2
         meteor.physicsBody?.categoryBitMask = meteorCategory
         meteor.physicsBody?.contactTestBitMask  = playerCategory
         meteor.physicsBody?.collisionBitMask = 0
+        //orb.physicsBody?.collisionBitMask = todo figure out a number bit mask
         
         let minX = meteor.size.width/2
         let maxX = self.frame.size.width - meteor.size.width/2
         let rangeX = maxX - minX
-        let position:CGFloat = CGFloat(arc4random()) % CGFloat(maxX)
+        let randomNumber1 = arc4random()
+        let randomNumber2 = arc4random()
+        let meteorPositionInX:CGFloat = CGFloat(randomNumber1) % CGFloat(maxX)
+        let orbPositionInX:CGFloat = CGFloat(randomNumber2) % CGFloat(maxX)
         
-        meteor.position = CGPointMake(position, self.frame.size.height + meteor.size.height)
+        meteor.position = CGPointMake(meteorPositionInX, self.frame.size.height + meteor.size.height)
+        orb.position = CGPointMake(orbPositionInX, self.frame.size.height + orb.size.height)
         self.addChild(meteor)
+        self.addChild(orb)
         
         let minDuration = 2
         let maxDuration = 4
@@ -75,21 +88,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let duration = Int(arc4random()) % Int(rangeDuratiion) + Int(minDuration)
         
         var actionArray:NSMutableArray = NSMutableArray()
-        actionArray.addObject(SKAction.moveTo(CGPointMake(position, -meteor.size.height), duration: NSTimeInterval(duration)))
+        actionArray.addObject(SKAction.moveTo(CGPointMake(meteorPositionInX, -meteor.size.height), duration: NSTimeInterval(duration)))
         actionArray.addObject(SKAction.removeFromParent())
-        meteorsMissed++
-        print(meteorsMissed)
+        //meteorsMissed++
         
         
         //Update the score
-        scoreLabel = SKLabelNode(fontNamed: "ScoreLabel")
-        scoreLabel.name = scoreLabelName
-        scoreLabel.fontSize = 45
-        scoreLabel.fontColor = SKColor.whiteColor()
-        scoreLabel.text = "\(meteorsMissed)"
-        //scoreLabel.position = CGPointMake(frame.size.width / 2, frame.size.height / 14)
-        scoreLabel.position = CGPointMake(60, self.frame.size.height - 60)
-        self.addChild(scoreLabel)
+//        scoreLabel = SKLabelNode(fontNamed: "ScoreLabel")
+//        scoreLabel.name = scoreLabelName
+//        scoreLabel.fontSize = 45
+//        scoreLabel.fontColor = SKColor.whiteColor()
+//        scoreLabel.text = "\(meteorsMissed)"
+//        //scoreLabel.position = CGPointMake(frame.size.width / 2, frame.size.height / 14)
+//        scoreLabel.position = CGPointMake(60, self.frame.size.height - 60)
+//        self.addChild(scoreLabel)
         
         meteor.runAction(SKAction.sequence(actionArray as [AnyObject]))
         
@@ -99,12 +111,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     }
     
+    func addOrb(){
+        
+    }
     
     func updateWithTimeSinceLastUpdate(timeSinceLastUpdate:CFTimeInterval){
         lastYieldTimeInterval += timeSinceLastUpdate
         if (lastYieldTimeInterval > 1) {
             lastYieldTimeInterval = 0
-            addMeteor()
+            spawnFallingItems()
         }
     }
     
@@ -191,6 +206,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
         
     }
+    
     
     func playerDidCollide(player:SKSpriteNode, meteor:SKSpriteNode){
         //Print("Hit")
