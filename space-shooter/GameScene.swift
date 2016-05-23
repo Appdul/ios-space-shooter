@@ -15,11 +15,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var lastYieldTimeInterval:NSTimeInterval = NSTimeInterval()
     var lastUpdateTimerInterval:NSTimeInterval = NSTimeInterval()
     //var meteorsMissed:Int = 0
-    var meteorCategory:UInt32 = 0x1 << 1
-    var playerCategory:UInt32 = 0x1 << 0
-    var orbCategory:UInt32 = 0x1 << 2
+    var meteorCategory:UInt32 = 0x1 << 1 // 2
+    var playerCategory:UInt32 = 0x1 << 0 // 1
+    var orbCategory:UInt32 = 0x1 << 2 // 3
     var scoreLabel = SKLabelNode()
     let scoreLabelName = "scoreLabel"
+    var score:Int = 0
     
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
@@ -62,7 +63,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         meteor.physicsBody?.categoryBitMask = meteorCategory
         meteor.physicsBody?.contactTestBitMask  = playerCategory
         meteor.physicsBody?.collisionBitMask = 0
-        //orb.physicsBody?.collisionBitMask = todo figure out a number bit mask
         
         let minX = meteor.size.width/2
         let maxX = self.frame.size.width - meteor.size.width/2
@@ -82,19 +82,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         var actionArray:NSMutableArray = NSMutableArray()
         actionArray.addObject(SKAction.moveTo(CGPointMake(meteorPositionInX, -meteor.size.height), duration: NSTimeInterval(duration)))
         actionArray.addObject(SKAction.removeFromParent())
-        //meteorsMissed++
-        
-        
-        //Update the score
-//        scoreLabel = SKLabelNode(fontNamed: "ScoreLabel")
-//        scoreLabel.name = scoreLabelName
-//        scoreLabel.fontSize = 45
-//        scoreLabel.fontColor = SKColor.whiteColor()
-//        scoreLabel.text = "\(meteorsMissed)"
-//        //scoreLabel.position = CGPointMake(frame.size.width / 2, frame.size.height / 14)
-//        scoreLabel.position = CGPointMake(60, self.frame.size.height - 60)
-//        self.addChild(scoreLabel)
-        
         meteor.runAction(SKAction.sequence(actionArray as [AnyObject]))
         
         let rotateAction = SKAction.rotateByAngle(CGFloat(M_PI), duration:1)
@@ -108,8 +95,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         orb.xScale = 0.6
         orb.yScale = 0.6
         orb.physicsBody = SKPhysicsBody(circleOfRadius: orb.size.width/2)
-        orb.physicsBody?.dynamic = false
-        orb.physicsBody?.categoryBitMask = orbCategory //2
+        orb.physicsBody?.dynamic = true
+        orb.physicsBody?.categoryBitMask = orbCategory //3
+        orb.physicsBody?.contactTestBitMask = playerCategory
+        orb.physicsBody!.collisionBitMask = 0
         let minX = orb.size.width * 2
         let maxX = self.frame.size.width - orb.size.width * 2
         let xRange = maxX - minX
@@ -224,31 +213,29 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     
-    func playerDidCollide(player:SKSpriteNode, meteor:SKSpriteNode){
-        //Print("Hit")
-        player.removeFromParent()
-        meteor.removeFromParent()
-        
-    }
-    
     func didBeginContact(contact: SKPhysicsContact) {
-        // Body1 and 2 depend on the categoryBitMask << 0 und << 1
-        var firstBody:SKPhysicsBody
-        var secondBody:SKPhysicsBody
         
-        if (contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask){
-            firstBody = contact.bodyA
-            secondBody = contact.bodyB
-        }else{
-            firstBody = contact.bodyB
-            secondBody = contact.bodyA
+        let player = contact.bodyA.categoryBitMask == 1 ? contact.bodyA : contact.bodyB
+        let otherObject = player == contact.bodyA ? contact.bodyB : contact.bodyA
+        
+         if otherObject.categoryBitMask == orbCategory { //player collided with an orb
+            collidedWithAnOrb(otherObject.node as! SKSpriteNode)
         }
         
-        playerDidCollide(contact.bodyA.node as! SKSpriteNode, meteor: contact.bodyB.node as! SKSpriteNode)
+         else { //player must have collided with a meteor
+            collidedWithAMeteor(otherObject.node as! SKSpriteNode)
+        }
         
+    
+        //print("collision")
     }
-    func score(meteorsDestroyed: Int) {
-        
+    func collidedWithAnOrb(orb: SKSpriteNode) {
+        orb.removeFromParent()
+        score++
+    }
+    
+    func collidedWithAMeteor(meteor: SKSpriteNode){
+        meteor.removeFromParent()
     }
     
     func addVectors(a:CGPoint,b:CGPoint) -> CGPoint{
