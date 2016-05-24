@@ -25,6 +25,7 @@
 		969AE08D1CEBF65100C813EA /* 1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 969AE08A1CEBF65100C813EA /* 1@2x.png */; };
 		969AE08E1CEBF65100C813EA /* 2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 969AE08B1CEBF65100C813EA /* 2@2x.png */; };
 		969AE08F1CEBF65100C813EA /* 3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 969AE08C1CEBF65100C813EA /* 3@2x.png */; };
+		96E2C0841CF3DDBD009BDBC5 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E2C0831CF3DDBD009BDBC5 /* GameOverScene.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		969AE08A1CEBF65100C813EA /* 1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1@2x.png"; sourceTree = "<group>"; };
 		969AE08B1CEBF65100C813EA /* 2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "2@2x.png"; sourceTree = "<group>"; };
 		969AE08C1CEBF65100C813EA /* 3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "3@2x.png"; sourceTree = "<group>"; };
+		96E2C0831CF3DDBD009BDBC5 /* GameOverScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 				969AE0821CEBF56900C813EA /* space-meteors */,
 				968E0FE01CE7E98A001DA997 /* AppDelegate.swift */,
 				968E0FE21CE7E98B001DA997 /* GameScene.sks */,
+				96E2C0831CF3DDBD009BDBC5 /* GameOverScene.swift */,
 				968E0FE41CE7E98B001DA997 /* GameScene.swift */,
 				968E0FE61CE7E98B001DA997 /* GameViewController.swift */,
 				968E0FE81CE7E98B001DA997 /* Main.storyboard */,
@@ -277,6 +280,7 @@
 			files = (
 				968E0FE51CE7E98B001DA997 /* GameScene.swift in Sources */,
 				968E0FE71CE7E98B001DA997 /* GameViewController.swift in Sources */,
+				96E2C0841CF3DDBD009BDBC5 /* GameOverScene.swift in Sources */,
 				968E0FE11CE7E98A001DA997 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
