@@ -236,7 +236,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func collidedWithAMeteor(meteor: SKSpriteNode){
-        meteor.removeFromParent()
+        var transition:SKTransition = SKTransition.flipHorizontalWithDuration(0.5)
+        var gameOverScene:SKScene = GameOverScene(size: self.size, score: score)
+        self.view?.presentScene(gameOverScene, transition: transition)
     }
     
     func addVectors(a:CGPoint,b:CGPoint) -> CGPoint{

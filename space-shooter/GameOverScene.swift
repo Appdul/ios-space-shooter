@@ -16,7 +16,7 @@ class GameOverScene: SKScene {
         self.backgroundColor = SKColor.blackColor()
         
         var label:SKLabelNode = SKLabelNode(fontNamed: "Optima-ExtraBlack")
-        label.text = String(score)
+        label.text = "Score: " + String(score)
         label.fontColor = SKColor.whiteColor()
         label.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame))
         self.addChild(label)
