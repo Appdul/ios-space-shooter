@@ -24,12 +24,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
-//        let myLabel = SKLabelNode(fontNamed:"Chalkduster")
-//        myLabel.text = "Hello, World!";
-//        myLabel.fontSize = 65;
-//        myLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame));
-//        
-//        self.addChild(myLabel)
+        scoreLabel.text = String(score)
+        scoreLabel.fontSize = 30
+        scoreLabel.position = CGPoint(x: 30, y:CGRectGetHeight(self.frame) - 50);
+        
+        self.addChild(scoreLabel)
     }
     
     override init(size: CGSize) {
@@ -89,6 +88,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
     
     }
+    
     
     func addOrb(){
         var orb:SKSpriteNode = SKSpriteNode(imageNamed: "litOrb")
@@ -232,6 +232,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func collidedWithAnOrb(orb: SKSpriteNode) {
         orb.removeFromParent()
         score++
+        scoreLabel.text = String(score)
     }
     
     func collidedWithAMeteor(meteor: SKSpriteNode){
