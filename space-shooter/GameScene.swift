@@ -39,30 +39,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override init(size: CGSize) {
         super.init(size: size)
         
-        //setup background image
-        var bgTexture = SKTexture(imageNamed: "6.jpg") //TODO: Optimize textures using imageoptim
+        animateBackground()
         
-        var movebg = SKAction.moveByX(0, y: -bgTexture.size().height, duration: 9)
-        var replacebg = SKAction.moveByX(0, y: bgTexture.size().height, duration: 0)
-        var movebgForever = SKAction.repeatActionForever(SKAction.sequence([movebg, replacebg]))
-        
-        for var i:CGFloat=0; i<3; i++ {
-            
-            var bg = SKSpriteNode(texture: bgTexture)
-            bg.position = CGPoint(x: CGRectGetMidX(self.frame), y: bgTexture.size().height/2 + bgTexture.size().height * i)
-            bg.size.height = self.frame.height
-            
-            
-            bg.runAction(movebgForever)
-            
-            
-            self.addChild(bg)
-            
-            
-        }
-        
-        
-        //self.backgroundColor = SKColor.blackColor()
         player = SKSpriteNode(imageNamed: "Spaceship")
         player.position = CGPointMake(self.frame.size.width/2, scene!.frame.size.height/6)
         player.xScale = 0.25
@@ -289,7 +267,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         var length: CGFloat = vectorLength(a)
         return CGPointMake(a.x / length, a.y/length)
     }
-//   
+    
+    func animateBackground() {
+        var bgTexture = SKTexture(imageNamed: "6.jpg") //TODO: Optimize textures using imageoptim
+        
+        var movebg = SKAction.moveByX(0, y: -bgTexture.size().height, duration: 9)
+        var replacebg = SKAction.moveByX(0, y: bgTexture.size().height, duration: 0)
+        var movebgForever = SKAction.repeatActionForever(SKAction.sequence([movebg, replacebg]))
+        
+        for var i:CGFloat=0; i<3; i++ {
+            var bg = SKSpriteNode(texture: bgTexture)
+            bg.position = CGPoint(x: CGRectGetMidX(self.frame), y: bgTexture.size().height/2 + bgTexture.size().height * i)
+            bg.size.height = self.frame.height
+            bg.runAction(movebgForever)
+            self.addChild(bg)
+        }
+        
+    }
+//
 //    override func update(currentTime: CFTimeInterval) {
 //        /* Called before each frame is rendered */
 //    }
