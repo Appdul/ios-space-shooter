@@ -15,38 +15,11 @@
                     <view key="view" contentMode="scaleToFill" id="3se-qz-xqx" customClass="SKView">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6ec-aC-zGs">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Meteor Escape" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f9C-oj-E6T">
-                                        <rect key="frame" x="212" y="41" width="176.5" height="24"/>
-                                        <fontDescription key="fontDescription" name="STHeitiTC-Medium" family="Heiti TC" pointSize="24"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="centerX" secondItem="f9C-oj-E6T" secondAttribute="centerX" id="O5I-hr-vq0"/>
-                                    <constraint firstItem="f9C-oj-E6T" firstAttribute="top" secondItem="6ec-aC-zGs" secondAttribute="top" constant="41" id="xqN-vL-PeB"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="6ec-aC-zGs" secondAttribute="trailing" id="1t1-2k-Sfw"/>
-                            <constraint firstItem="6ec-aC-zGs" firstAttribute="top" secondItem="3se-qz-xqx" secondAttribute="top" id="Eo5-Er-F2F"/>
-                            <constraint firstItem="6ec-aC-zGs" firstAttribute="leading" secondItem="3se-qz-xqx" secondAttribute="leading" id="MpX-oo-qJz"/>
-                            <constraint firstItem="khH-OB-KpY" firstAttribute="top" secondItem="6ec-aC-zGs" secondAttribute="bottom" id="Tje-7N-nnj"/>
-                            <constraint firstAttribute="centerX" secondItem="6ec-aC-zGs" secondAttribute="centerX" id="qAR-bT-9tS"/>
-                            <constraint firstAttribute="centerY" secondItem="6ec-aC-zGs" secondAttribute="centerY" id="xIE-Ps-JNh"/>
-                        </constraints>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="488" y="287"/>
         </scene>
     </scenes>
 </document>
