@@ -46,7 +46,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         player.xScale = 0.25
         player.yScale = 0.25
         
-        var orbSpawnTime:NSTimeInterval = 2
+        let orbSpawnTime:NSTimeInterval = 2
         self.addChild(player)
         self.physicsWorld.gravity = CGVectorMake(0, 0)
         self.physicsWorld.contactDelegate = self
@@ -88,7 +88,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         var actionArray:NSMutableArray = NSMutableArray()
         actionArray.addObject(SKAction.moveTo(CGPointMake(meteorPositionInX, -meteor.size.height), duration: NSTimeInterval(duration)))
         actionArray.addObject(SKAction.removeFromParent())
-        meteor.runAction(SKAction.sequence(actionArray as [AnyObject]))
+        meteor.runAction(SKAction.sequence(actionArray as [AnyObject] as! [SKAction]))
         
         let rotateAction = SKAction.rotateByAngle(CGFloat(M_PI), duration:1)
         meteor.runAction(SKAction.repeatActionForever(rotateAction))
@@ -122,7 +122,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         orbActionArray.addObject(SKAction.moveTo(CGPointMake(orbPositionInX, -orb.size.height), duration: NSTimeInterval(duration)))
         orbActionArray.addObject(SKAction.removeFromParent())
         
-        orb.runAction(SKAction.sequence(orbActionArray as [AnyObject]))
+        orb.runAction(SKAction.sequence(orbActionArray as [AnyObject] as! [SKAction]))
 
 
     }
@@ -147,10 +147,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
     }
     
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         /* Called when a touch begins */
         
-        for touch in (touches as! Set<UITouch>) {
+        for touch in (touches ) {
             let newLocation = touch.locationInNode(self)
             //self.player.position = newLocation
             let velocity = 570
@@ -173,7 +173,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         //self.runAction(SKAction.playSoundFileNamed("torpedo.mp3", waitForCompletion: false))
 //        var touch:UITouch = touches.first as! UITouch
 //        var location:CGPoint = touch.locationInNode(self)
@@ -243,8 +243,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func collidedWithAMeteor(meteor: SKSpriteNode){
-        var transition:SKTransition = SKTransition.flipHorizontalWithDuration(0.5)
-        var gameOverScene:SKScene = GameOverScene(size: self.size, score: score)
+        let transition:SKTransition = SKTransition.flipHorizontalWithDuration(0.5)
+        let gameOverScene:SKScene = GameOverScene(size: self.size, score: score)
         self.view?.presentScene(gameOverScene, transition: transition)
     }
     
@@ -264,19 +264,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         return CGFloat(sqrt(CGFloat(a.x * a.x) + CGFloat(a.y * a.y)))
     }
     func normalizeVector(a: CGPoint) -> CGPoint {
-        var length: CGFloat = vectorLength(a)
+        let length: CGFloat = vectorLength(a)
         return CGPointMake(a.x / length, a.y/length)
     }
     
     func animateBackground() {
-        var bgTexture = SKTexture(imageNamed: "6.jpg") //TODO: Optimize textures using imageoptim
+        let bgTexture = SKTexture(imageNamed: "6.jpg") //TODO: Optimize textures using imageoptim
         
-        var movebg = SKAction.moveByX(0, y: -bgTexture.size().height, duration: 9)
-        var replacebg = SKAction.moveByX(0, y: bgTexture.size().height, duration: 0)
-        var movebgForever = SKAction.repeatActionForever(SKAction.sequence([movebg, replacebg]))
+        let movebg = SKAction.moveByX(0, y: -bgTexture.size().height, duration: 9)
+        let replacebg = SKAction.moveByX(0, y: bgTexture.size().height, duration: 0)
+        let movebgForever = SKAction.repeatActionForever(SKAction.sequence([movebg, replacebg]))
         
         for var i:CGFloat=0; i<3; i++ {
-            var bg = SKSpriteNode(texture: bgTexture)
+            let bg = SKSpriteNode(texture: bgTexture)
             bg.position = CGPoint(x: CGRectGetMidX(self.frame), y: bgTexture.size().height/2 + bgTexture.size().height * i)
             bg.size.height = self.frame.height
             bg.runAction(movebgForever)
