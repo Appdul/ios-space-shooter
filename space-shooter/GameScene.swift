@@ -22,17 +22,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var scoreLabel = SKLabelNode()
     let scoreLabelName = "scoreLabel"
     var score:Int = 0
-    
+    var pauseButton = SKLabelNode()
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
         
-        
-
+        pauseButton.text = "Pause"
+        pauseButton.fontSize = 25
+        pauseButton.position = CGPoint(x: CGRectGetWidth(self.frame) - 50, y:CGRectGetHeight(self.frame) - 50);
+        self.addChild(pauseButton)
         
         
         scoreLabel.text = String(score)
         scoreLabel.fontSize = 30
-        scoreLabel.position = CGPoint(x: 30, y:CGRectGetHeight(self.frame) - 50);
+        scoreLabel.position = CGPoint(x: 30, y:CGRectGetHeight(self.frame) - 50)
         
         self.addChild(scoreLabel)
     }
@@ -170,6 +172,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             player.physicsBody!.contactTestBitMask = meteorCategory
             player.physicsBody!.collisionBitMask = 0
+            
     
         }
     }
@@ -244,7 +247,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreLabel.text = String(score)
     }
     
-    func collidedWithAMeteor(meteor: SKSpriteNode){        
+    func collidedWithAMeteor(meteor: SKSpriteNode){
         let transition:SKTransition = SKTransition.flipHorizontalWithDuration(0.5)
         let gameOverScene:SKScene = GameOverScene(size: self.size, score: score)
         self.view?.presentScene(gameOverScene, transition: transition)
