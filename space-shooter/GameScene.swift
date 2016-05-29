@@ -8,6 +8,7 @@
 
 import SpriteKit
 import Foundation
+import AVFoundation
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
@@ -232,17 +233,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
          else { //player must have collided with a meteor
             collidedWithAMeteor(otherObject.node as! SKSpriteNode)
         }
-        
-    
-        //print("collision")
+
     }
     func collidedWithAnOrb(orb: SKSpriteNode) {
+        
+        self.runAction(SKAction.playSoundFileNamed("orb.mp3", waitForCompletion: false))
+        
         orb.removeFromParent()
         score++
         scoreLabel.text = String(score)
     }
     
-    func collidedWithAMeteor(meteor: SKSpriteNode){
+    func collidedWithAMeteor(meteor: SKSpriteNode){        
         let transition:SKTransition = SKTransition.flipHorizontalWithDuration(0.5)
         let gameOverScene:SKScene = GameOverScene(size: self.size, score: score)
         self.view?.presentScene(gameOverScene, transition: transition)

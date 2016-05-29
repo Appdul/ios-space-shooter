@@ -33,6 +33,8 @@
 		969AE08D1CEBF65100C813EA /* 1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 969AE08A1CEBF65100C813EA /* 1@2x.png */; };
 		969AE08E1CEBF65100C813EA /* 2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 969AE08B1CEBF65100C813EA /* 2@2x.png */; };
 		969AE08F1CEBF65100C813EA /* 3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 969AE08C1CEBF65100C813EA /* 3@2x.png */; };
+		96AE74EE1CFB8C48002F5C6C /* lose.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96AE74EC1CFB8C48002F5C6C /* lose.mp3 */; };
+		96AE74EF1CFB8C48002F5C6C /* orb.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96AE74ED1CFB8C48002F5C6C /* orb.mp3 */; };
 		96E2C0841CF3DDBD009BDBC5 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E2C0831CF3DDBD009BDBC5 /* GameOverScene.swift */; };
 /* End PBXBuildFile section */
 
@@ -77,6 +79,8 @@
 		969AE08A1CEBF65100C813EA /* 1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1@2x.png"; sourceTree = "<group>"; };
 		969AE08B1CEBF65100C813EA /* 2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "2@2x.png"; sourceTree = "<group>"; };
 		969AE08C1CEBF65100C813EA /* 3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "3@2x.png"; sourceTree = "<group>"; };
+		96AE74EC1CFB8C48002F5C6C /* lose.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = lose.mp3; sourceTree = "<group>"; };
+		96AE74ED1CFB8C48002F5C6C /* orb.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = orb.mp3; sourceTree = "<group>"; };
 		96E2C0831CF3DDBD009BDBC5 /* GameOverScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -185,6 +189,8 @@
 		968E10051CE80AA9001DA997 /* sounds */ = {
 			isa = PBXGroup;
 			children = (
+				96AE74EC1CFB8C48002F5C6C /* lose.mp3 */,
+				96AE74ED1CFB8C48002F5C6C /* orb.mp3 */,
 				968E100C1CE80B52001DA997 /* bgmusic.mp3 */,
 				968E100D1CE80B52001DA997 /* torpedo.mp3 */,
 			);
@@ -274,6 +280,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96AE74EF1CFB8C48002F5C6C /* orb.mp3 in Resources */,
 				963590181CF81C9C00853AD8 /* 8.jpg in Resources */,
 				96011CD01CF12B1B000971F7 /* litOrb@2x.png in Resources */,
 				969AE08D1CEBF65100C813EA /* 1@2x.png in Resources */,
@@ -287,6 +294,7 @@
 				963590121CF81C9C00853AD8 /* 2.jpg in Resources */,
 				968E0FEF1CE7E98B001DA997 /* LaunchScreen.xib in Resources */,
 				968E100E1CE80B52001DA997 /* bgmusic.mp3 in Resources */,
+				96AE74EE1CFB8C48002F5C6C /* lose.mp3 in Resources */,
 				968E100B1CE80B41001DA997 /* torpedo@2x.png in Resources */,
 				963590111CF81C9C00853AD8 /* 1@2x.jpg in Resources */,
 				968E0FEC1CE7E98B001DA997 /* Images.xcassets in Resources */,
