@@ -9,6 +9,7 @@
 import SpriteKit
 import Foundation
 import AVFoundation
+import CoreData
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
@@ -289,6 +290,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
     }
+    
+//    func storeHighScore() {
+//        
+//    }
 //
 //    override func update(currentTime: CFTimeInterval) {
 //        /* Called before each frame is rendered */

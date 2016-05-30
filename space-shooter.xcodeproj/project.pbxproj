@@ -35,6 +35,10 @@
 		969AE08F1CEBF65100C813EA /* 3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 969AE08C1CEBF65100C813EA /* 3@2x.png */; };
 		96AE74EE1CFB8C48002F5C6C /* lose.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96AE74EC1CFB8C48002F5C6C /* lose.mp3 */; };
 		96AE74EF1CFB8C48002F5C6C /* orb.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96AE74ED1CFB8C48002F5C6C /* orb.mp3 */; };
+		96AE74F51CFBB9A7002F5C6C /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96AE74F41CFBB9A7002F5C6C /* CoreData.framework */; };
+		96AE74F81CFBBC28002F5C6C /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 96AE74F61CFBBC28002F5C6C /* DataModel.xcdatamodeld */; };
+		96AE74FA1CFBBC71002F5C6C /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AE74F91CFBBC71002F5C6C /* DataController.swift */; };
+		96AE74FE1CFBBDE7002F5C6C /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AE74FC1CFBBDE7002F5C6C /* Score.swift */; };
 		96E2C0841CF3DDBD009BDBC5 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E2C0831CF3DDBD009BDBC5 /* GameOverScene.swift */; };
 /* End PBXBuildFile section */
 
@@ -81,6 +85,10 @@
 		969AE08C1CEBF65100C813EA /* 3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "3@2x.png"; sourceTree = "<group>"; };
 		96AE74EC1CFB8C48002F5C6C /* lose.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = lose.mp3; sourceTree = "<group>"; };
 		96AE74ED1CFB8C48002F5C6C /* orb.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = orb.mp3; sourceTree = "<group>"; };
+		96AE74F41CFBB9A7002F5C6C /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		96AE74F71CFBBC28002F5C6C /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		96AE74F91CFBBC71002F5C6C /* DataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		96AE74FC1CFBBDE7002F5C6C /* Score.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
 		96E2C0831CF3DDBD009BDBC5 /* GameOverScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -89,6 +97,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96AE74F51CFBB9A7002F5C6C /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -105,6 +114,8 @@
 		968E0FD21CE7E98A001DA997 = {
 			isa = PBXGroup;
 			children = (
+				96AE74FC1CFBBDE7002F5C6C /* Score.swift */,
+				96AE74F41CFBB9A7002F5C6C /* CoreData.framework */,
 				968E0FDD1CE7E98A001DA997 /* space-shooter */,
 				968E0FF71CE7E98B001DA997 /* space-shooterTests */,
 				968E0FDC1CE7E98A001DA997 /* Products */,
@@ -132,6 +143,8 @@
 				968E0FE81CE7E98B001DA997 /* Main.storyboard */,
 				968E0FEB1CE7E98B001DA997 /* Images.xcassets */,
 				968E0FED1CE7E98B001DA997 /* LaunchScreen.xib */,
+				96AE74F61CFBBC28002F5C6C /* DataModel.xcdatamodeld */,
+				96AE74F91CFBBC71002F5C6C /* DataController.swift */,
 				968E10041CE80A9F001DA997 /* sprites.atlas */,
 				968E10051CE80AA9001DA997 /* sounds */,
 				968E0FDE1CE7E98A001DA997 /* Supporting Files */,
@@ -322,6 +335,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				968E0FE51CE7E98B001DA997 /* GameScene.swift in Sources */,
+				96AE74FE1CFBBDE7002F5C6C /* Score.swift in Sources */,
+				96AE74FA1CFBBC71002F5C6C /* DataController.swift in Sources */,
+				96AE74F81CFBBC28002F5C6C /* DataModel.xcdatamodeld in Sources */,
 				968E0FE71CE7E98B001DA997 /* GameViewController.swift in Sources */,
 				96E2C0841CF3DDBD009BDBC5 /* GameOverScene.swift in Sources */,
 				968E0FE11CE7E98A001DA997 /* AppDelegate.swift in Sources */,
@@ -544,6 +560,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		96AE74F61CFBBC28002F5C6C /* DataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				96AE74F71CFBBC28002F5C6C /* DataModel.xcdatamodel */,
+			);
+			currentVersion = 96AE74F71CFBBC28002F5C6C /* DataModel.xcdatamodel */;
+			path = DataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 968E0FD31CE7E98A001DA997 /* Project object */;
 }
