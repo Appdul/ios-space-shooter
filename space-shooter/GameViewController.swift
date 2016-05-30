@@ -32,6 +32,8 @@ class GameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //GameScene.seedScore(self)
 
 //        if let scene = GameScene.unarchiveFromFile("GameScene") as? GameScene {
 //

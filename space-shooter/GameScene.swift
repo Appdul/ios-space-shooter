@@ -24,9 +24,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let scoreLabelName = "scoreLabel"
     var score:Int = 0
     var pauseButton = SKLabelNode()
+    var highscore = 0
+    
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
-        
+        fetch()
         pauseButton.text = "Pause"
         pauseButton.fontSize = 25
         pauseButton.position = CGPoint(x: CGRectGetWidth(self.frame) - 50, y:CGRectGetHeight(self.frame) - 50);
@@ -249,6 +251,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func collidedWithAMeteor(meteor: SKSpriteNode){
+        
+        if score > highscore { seedScore() }
+        
         let transition:SKTransition = SKTransition.flipHorizontalWithDuration(0.5)
         let gameOverScene:SKScene = GameOverScene(size: self.size, score: score)
         self.view?.presentScene(gameOverScene, transition: transition)
@@ -290,6 +295,42 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
     }
+    
+    func seedScore() {
+        
+        // create an instance of our managedObjectContext
+        let moc = DataController().managedObjectContext
+        
+        // we set up our entity by selecting the entity and context that we're targeting
+        let entity = NSEntityDescription.insertNewObjectForEntityForName("Person", inManagedObjectContext: moc) as! Score
+        
+        // add our data
+        entity.setValue(score, forKey: "highScore")
+        
+        // we save our entity
+        do {
+            try moc.save()
+        } catch {
+            fatalError("Failure to save context: \(error)")
+        }
+    }
+    
+    func fetch() {
+        let moc = DataController().managedObjectContext
+        let highScoreFetch = NSFetchRequest(entityName: "Score")
+        
+        do {
+            let fetchedHighScore = try moc.executeFetchRequest(highScoreFetch) as! [Score]
+            print(fetchedHighScore.first!.highScore!)
+            highscore = fetchedHighScore.first!.highScore! as Int
+            
+        } catch {
+            fatalError("Failed to fetch person: \(error)")
+        }
+        
+        
+    }
+    
     
 //    func storeHighScore() {
 //        
