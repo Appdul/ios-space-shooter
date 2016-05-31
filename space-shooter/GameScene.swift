@@ -25,12 +25,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let scoreLabelName = "scoreLabel"
     var score:Int = 0
     var pauseButton = SKLabelNode()
-    var highscore = 0
-    var highScoreValueHasBeenSet = false
+    lazy var highscore = Int()
+    lazy var highScoreValueHasBeenSet = Bool()
+    
     
     override func didMoveToView(view: SKView) {
-        /* Setup your scene here */
-        fetch()
+        
+        if highScoreValueHasBeenSet == true{
+            highscore = fetch()
+            print(highscore)
+            print ("fetched!")
+        }
+        
 
         pauseButton.text = "Pause"
         pauseButton.fontSize = 25
@@ -259,6 +265,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func collidedWithAMeteor(meteor: SKSpriteNode){
         
         if score > highscore {
+            print("before I seed... score is \(score) and highScore was \(highscore)")
             seedScore(score)
             //print("new highscore set from \(highscore) to \(score) ")
         }
@@ -315,7 +322,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // add our data
         entity.setValue(value, forKey: "highScore")
-        highscore = score
+        //highscore = score
         
         // we save our entity
         do {
@@ -329,20 +336,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
     
-    func fetch() {
+    func fetch() -> Int {
         let moc = DataController().managedObjectContext
         let highScoreFetch = NSFetchRequest(entityName: "ScoreEntity")
         
         do {
             let fetchedHighScore = try moc.executeFetchRequest(highScoreFetch) as! [Score]
-                //print(fetchedHighScore.first!.highScore!)
-                highscore = Int(fetchedHighScore.first!.highScore!)
-                print("we fetched and the highscore is \(highscore)")
+                print(fetchedHighScore.first!)//.highScore!)
+                //highscore = Int(fetchedHighScore.first!.highScore!)
+                //print("we fetched and the highscore is \(highscore)")
+            let userHighScore = Int(fetchedHighScore.first!.highScore!)
+            return userHighScore
+            print("fetched \(userHighScore)")
+            
             
         } catch {
             fatalError("Failed to fetch score: \(error)")
         }
-        
+
+
         
     }
     
