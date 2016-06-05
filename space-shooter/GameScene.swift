@@ -68,8 +68,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         player = SKSpriteNode(texture: redFighterTexture )
         player.position = CGPointMake(self.frame.size.width/2, scene!.frame.size.height/6)
-        player.xScale = 0.3
-        player.yScale = 0.3
+        let playerScale = scene!.frame.size.width/1200
+        player.xScale = playerScale
+        player.yScale = playerScale
         
         let orbSpawnTime:NSTimeInterval = 2
         self.addChild(player)
@@ -98,17 +99,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let minX = meteor.size.width/2
         let maxX = self.frame.size.width - meteor.size.width/2
         let rangeX = maxX - minX
-        let meteorPositionInX:CGFloat = CGFloat(arc4random()) % CGFloat(maxX)
+        let meteorPositionInX:CGFloat = CGFloat(arc4random_uniform(UInt32(maxX))) + minX
         
         
         meteor.position = CGPointMake(meteorPositionInX, self.frame.size.height + meteor.size.height)
         
         self.addChild(meteor)
-        
-        let minDuration = 2
-        let maxDuration = 4
-        let rangeDuratiion = maxDuration -  minDuration
-        let duration = Int(arc4random()) % Int(rangeDuratiion) + Int(minDuration)
+
+        let maxDuration = 3
+        let duration = arc4random_uniform(UInt32(maxDuration)) + 2
         
         var actionArray:NSMutableArray = NSMutableArray()
         actionArray.addObject(SKAction.moveTo(CGPointMake(meteorPositionInX, -meteor.size.height), duration: NSTimeInterval(duration)))
@@ -134,14 +133,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let minX = orb.size.width * 2
         let maxX = self.frame.size.width - orb.size.width * 2
         let xRange = maxX - minX
-        let orbPositionInX:CGFloat = minX + CGFloat(arc4random()) % CGFloat(xRange)
+        let orbPositionInX:CGFloat = minX + CGFloat(arc4random_uniform(200)) % CGFloat(xRange)
         orb.position = CGPointMake(orbPositionInX, self.frame.size.height + orb.size.height)
         self.addChild(orb)
         
         let minDuration = 5
         let maxDuration = 8
         let rangeDuration = maxDuration -  minDuration
-        let duration = Int(arc4random()) % Int(rangeDuration) + Int(minDuration)
+        let duration =  arc4random_uniform(UInt32(rangeDuration)) + 1
         
         var orbActionArray:NSMutableArray = NSMutableArray()
         orbActionArray.addObject(SKAction.moveTo(CGPointMake(orbPositionInX, -orb.size.height), duration: NSTimeInterval(duration)))
