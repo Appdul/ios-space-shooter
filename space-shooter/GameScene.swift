@@ -26,6 +26,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var pauseButton = SKLabelNode()
     var highscore: Int?
     let userDefaults = NSUserDefaults.standardUserDefaults()
+    let redFighterTexture = SKTexture(imageNamed: "redfighter")
+    let moveRightTexture1 = SKTexture(imageNamed: "redfighter0006")
+    let moveRightTexture2 = SKTexture(imageNamed: "redfighter0007")
+    let moveRightTexture3 = SKTexture(imageNamed: "redfighter0008")
+    let moveRightTexture4 = SKTexture(imageNamed: "redfighter0009")
+    let moveLeftTexture1 = SKTexture(imageNamed: "redfighter0004")
+    let moveLeftTexture2 = SKTexture(imageNamed: "redfighter0003")
+    let moveLeftTexture3 = SKTexture(imageNamed: "redfighter0002")
+    let moveLeftTexture4 = SKTexture(imageNamed: "redfighter0001")
 
     
     
@@ -56,7 +65,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         animateBackground()
         
-        let redFighterTexture = SKTexture(imageNamed: "redfighter.png")
+        
         player = SKSpriteNode(texture: redFighterTexture )
         player.position = CGPointMake(self.frame.size.width/2, scene!.frame.size.height/6)
         player.xScale = 0.3
@@ -173,9 +182,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let currentLocationOfShip:CGPoint = player.position
             let displacmentVector:CGPoint = subtractVectors(newLocation, b: currentLocationOfShip)
             let displacment = vectorLength(displacmentVector)
+            print(normalizeVector(displacmentVector))
             let time:NSTimeInterval = NSTimeInterval(displacment / CGFloat(velocity))
             let moveTo = SKAction.moveTo(newLocation, duration: time)
-            self.player.runAction(moveTo)
+            //print(displacmentVector)
+            //ship is moving to the right
+            if newLocation.x > currentLocationOfShip.x {
+                let moveRightAnimation = SKAction.animateWithTextures([moveRightTexture1,moveRightTexture2,moveRightTexture3,moveRightTexture4,redFighterTexture], timePerFrame: 0.08)
+                self.player.runAction(moveRightAnimation)
+                self.player.runAction(moveTo)
+            }
+            //ship is moving to the left
+            else if newLocation.x < currentLocationOfShip.x {
+                let moveLeftAnimation = SKAction.animateWithTextures([moveLeftTexture1,moveLeftTexture2,moveLeftTexture3,moveLeftTexture4,redFighterTexture], timePerFrame: 0.08)
+                self.player.runAction(moveLeftAnimation)
+                self.player.runAction(moveTo)
+            }
+            //Ship is moving straight
+            else if displacmentVector.x <= 10 && displacmentVector.x >= -10 {
+                self.player.runAction(moveTo)
+            }
+            
             player.physicsBody = SKPhysicsBody(circleOfRadius: player.size.width/3)
             player.physicsBody!.dynamic = true
             player.physicsBody!.categoryBitMask = playerCategory

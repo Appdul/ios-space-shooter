@@ -9,6 +9,14 @@
 /* Begin PBXBuildFile section */
 		96011CD01CF12B1B000971F7 /* litOrb@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96011CCF1CF12B1B000971F7 /* litOrb@2x.png */; };
 		9632B1A51D04B21300A62724 /* redfighter.png in Resources */ = {isa = PBXBuildFile; fileRef = 9632B1A41D04B21300A62724 /* redfighter.png */; };
+		9632B1AE1D04BE8100A62724 /* redfighter0001.png in Resources */ = {isa = PBXBuildFile; fileRef = 9632B1A61D04BE8100A62724 /* redfighter0001.png */; };
+		9632B1AF1D04BE8100A62724 /* redfighter0002.png in Resources */ = {isa = PBXBuildFile; fileRef = 9632B1A71D04BE8100A62724 /* redfighter0002.png */; };
+		9632B1B01D04BE8100A62724 /* redfighter0003.png in Resources */ = {isa = PBXBuildFile; fileRef = 9632B1A81D04BE8100A62724 /* redfighter0003.png */; };
+		9632B1B11D04BE8100A62724 /* redfighter0004.png in Resources */ = {isa = PBXBuildFile; fileRef = 9632B1A91D04BE8100A62724 /* redfighter0004.png */; };
+		9632B1B21D04BE8100A62724 /* redfighter0006.png in Resources */ = {isa = PBXBuildFile; fileRef = 9632B1AA1D04BE8100A62724 /* redfighter0006.png */; };
+		9632B1B31D04BE8100A62724 /* redfighter0007.png in Resources */ = {isa = PBXBuildFile; fileRef = 9632B1AB1D04BE8100A62724 /* redfighter0007.png */; };
+		9632B1B41D04BE8100A62724 /* redfighter0008.png in Resources */ = {isa = PBXBuildFile; fileRef = 9632B1AC1D04BE8100A62724 /* redfighter0008.png */; };
+		9632B1B51D04BE8100A62724 /* redfighter0009.png in Resources */ = {isa = PBXBuildFile; fileRef = 9632B1AD1D04BE8100A62724 /* redfighter0009.png */; };
 		963590111CF81C9C00853AD8 /* 1@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 963590091CF81C9C00853AD8 /* 1@2x.jpg */; };
 		963590121CF81C9C00853AD8 /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9635900A1CF81C9C00853AD8 /* 2.jpg */; };
 		963590131CF81C9C00853AD8 /* 3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9635900B1CF81C9C00853AD8 /* 3.jpg */; };
@@ -53,6 +61,14 @@
 /* Begin PBXFileReference section */
 		96011CCF1CF12B1B000971F7 /* litOrb@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "litOrb@2x.png"; sourceTree = "<group>"; };
 		9632B1A41D04B21300A62724 /* redfighter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redfighter.png; sourceTree = "<group>"; };
+		9632B1A61D04BE8100A62724 /* redfighter0001.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redfighter0001.png; sourceTree = "<group>"; };
+		9632B1A71D04BE8100A62724 /* redfighter0002.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redfighter0002.png; sourceTree = "<group>"; };
+		9632B1A81D04BE8100A62724 /* redfighter0003.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redfighter0003.png; sourceTree = "<group>"; };
+		9632B1A91D04BE8100A62724 /* redfighter0004.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redfighter0004.png; sourceTree = "<group>"; };
+		9632B1AA1D04BE8100A62724 /* redfighter0006.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redfighter0006.png; sourceTree = "<group>"; };
+		9632B1AB1D04BE8100A62724 /* redfighter0007.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redfighter0007.png; sourceTree = "<group>"; };
+		9632B1AC1D04BE8100A62724 /* redfighter0008.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redfighter0008.png; sourceTree = "<group>"; };
+		9632B1AD1D04BE8100A62724 /* redfighter0009.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redfighter0009.png; sourceTree = "<group>"; };
 		963590091CF81C9C00853AD8 /* 1@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "1@2x.jpg"; sourceTree = "<group>"; };
 		9635900A1CF81C9C00853AD8 /* 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2.jpg; sourceTree = "<group>"; };
 		9635900B1CF81C9C00853AD8 /* 3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 3.jpg; sourceTree = "<group>"; };
@@ -172,6 +188,14 @@
 		968E10041CE80A9F001DA997 /* sprites.atlas */ = {
 			isa = PBXGroup;
 			children = (
+				9632B1A61D04BE8100A62724 /* redfighter0001.png */,
+				9632B1A71D04BE8100A62724 /* redfighter0002.png */,
+				9632B1A81D04BE8100A62724 /* redfighter0003.png */,
+				9632B1A91D04BE8100A62724 /* redfighter0004.png */,
+				9632B1AA1D04BE8100A62724 /* redfighter0006.png */,
+				9632B1AB1D04BE8100A62724 /* redfighter0007.png */,
+				9632B1AC1D04BE8100A62724 /* redfighter0008.png */,
+				9632B1AD1D04BE8100A62724 /* redfighter0009.png */,
 				9632B1A41D04B21300A62724 /* redfighter.png */,
 				963590091CF81C9C00853AD8 /* 1@2x.jpg */,
 				9635900A1CF81C9C00853AD8 /* 2.jpg */,
@@ -287,6 +311,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				96AE74EF1CFB8C48002F5C6C /* orb.mp3 in Resources */,
+				9632B1B51D04BE8100A62724 /* redfighter0009.png in Resources */,
+				9632B1B31D04BE8100A62724 /* redfighter0007.png in Resources */,
 				963590181CF81C9C00853AD8 /* 8.jpg in Resources */,
 				96011CD01CF12B1B000971F7 /* litOrb@2x.png in Resources */,
 				969AE08D1CEBF65100C813EA /* 1@2x.png in Resources */,
@@ -295,19 +321,25 @@
 				963590171CF81C9C00853AD8 /* 7.jpg in Resources */,
 				968E100A1CE80B41001DA997 /* shuttle@2x.png in Resources */,
 				968E10091CE80B41001DA997 /* alien@2x.png in Resources */,
+				9632B1B11D04BE8100A62724 /* redfighter0004.png in Resources */,
 				969AE08E1CEBF65100C813EA /* 2@2x.png in Resources */,
+				9632B1AE1D04BE8100A62724 /* redfighter0001.png in Resources */,
+				9632B1AF1D04BE8100A62724 /* redfighter0002.png in Resources */,
 				963590141CF81C9C00853AD8 /* 4.jpg in Resources */,
 				963590131CF81C9C00853AD8 /* 3.jpg in Resources */,
 				963590121CF81C9C00853AD8 /* 2.jpg in Resources */,
+				9632B1B41D04BE8100A62724 /* redfighter0008.png in Resources */,
 				968E0FEF1CE7E98B001DA997 /* LaunchScreen.xib in Resources */,
 				968E100E1CE80B52001DA997 /* bgmusic.mp3 in Resources */,
 				96AE74EE1CFB8C48002F5C6C /* lose.mp3 in Resources */,
+				9632B1B21D04BE8100A62724 /* redfighter0006.png in Resources */,
 				968E100B1CE80B41001DA997 /* torpedo@2x.png in Resources */,
 				963590111CF81C9C00853AD8 /* 1@2x.jpg in Resources */,
 				968E0FEC1CE7E98B001DA997 /* Images.xcassets in Resources */,
 				963590161CF81C9C00853AD8 /* 6@2x.jpg in Resources */,
 				963590151CF81C9C00853AD8 /* 5.jpg in Resources */,
 				968E0FE31CE7E98B001DA997 /* GameScene.sks in Resources */,
+				9632B1B01D04BE8100A62724 /* redfighter0003.png in Resources */,
 				969AE0831CEBF56900C813EA /* space-meteors in Resources */,
 				968E100F1CE80B52001DA997 /* torpedo.mp3 in Resources */,
 				968E0FEA1CE7E98B001DA997 /* Main.storyboard in Resources */,
