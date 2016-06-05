@@ -38,13 +38,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         else {
             // no highscore exists
             highscore = 0
-            print("its 0")
         }
-        
-        pauseButton.text = "Pause"
-        pauseButton.fontSize = 25
-        pauseButton.position = CGPoint(x: CGRectGetWidth(self.frame) - 50, y:CGRectGetHeight(self.frame) - 50);
-        self.addChild(pauseButton)
         
         
         scoreLabel.text = String(score)
@@ -52,7 +46,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreLabel.position = CGPoint(x: 30, y:CGRectGetHeight(self.frame) - 50)
         highScoreLabel.text = String(highscore!)
         highScoreLabel.fontSize = 30
-        highScoreLabel.position = CGPoint(x: 30, y:CGRectGetHeight(self.frame) - 100)
+        highScoreLabel.position = CGPoint(x: CGRectGetWidth(self.frame) - 30, y:CGRectGetHeight(self.frame) - 50)
         self.addChild(scoreLabel)
         self.addChild(highScoreLabel)
     }
@@ -62,10 +56,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         animateBackground()
         
-        player = SKSpriteNode(imageNamed: "redfighter")
+        let redFighterTexture = SKTexture(imageNamed: "redfighter.png")
+        player = SKSpriteNode(texture: redFighterTexture )
         player.position = CGPointMake(self.frame.size.width/2, scene!.frame.size.height/6)
-        player.xScale = 0.25
-        player.yScale = 0.25
+        player.xScale = 0.3
+        player.yScale = 0.3
         
         let orbSpawnTime:NSTimeInterval = 2
         self.addChild(player)
