@@ -62,7 +62,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         animateBackground()
         
-        player = SKSpriteNode(imageNamed: "Spaceship")
+        player = SKSpriteNode(imageNamed: "redfighter")
         player.position = CGPointMake(self.frame.size.width/2, scene!.frame.size.height/6)
         player.xScale = 0.25
         player.yScale = 0.25

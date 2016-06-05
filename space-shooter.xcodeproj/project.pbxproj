@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		96011CD01CF12B1B000971F7 /* litOrb@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96011CCF1CF12B1B000971F7 /* litOrb@2x.png */; };
+		9632B1A51D04B21300A62724 /* redfighter.png in Resources */ = {isa = PBXBuildFile; fileRef = 9632B1A41D04B21300A62724 /* redfighter.png */; };
 		963590111CF81C9C00853AD8 /* 1@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 963590091CF81C9C00853AD8 /* 1@2x.jpg */; };
 		963590121CF81C9C00853AD8 /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9635900A1CF81C9C00853AD8 /* 2.jpg */; };
 		963590131CF81C9C00853AD8 /* 3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9635900B1CF81C9C00853AD8 /* 3.jpg */; };
@@ -51,6 +52,7 @@
 
 /* Begin PBXFileReference section */
 		96011CCF1CF12B1B000971F7 /* litOrb@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "litOrb@2x.png"; sourceTree = "<group>"; };
+		9632B1A41D04B21300A62724 /* redfighter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redfighter.png; sourceTree = "<group>"; };
 		963590091CF81C9C00853AD8 /* 1@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "1@2x.jpg"; sourceTree = "<group>"; };
 		9635900A1CF81C9C00853AD8 /* 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2.jpg; sourceTree = "<group>"; };
 		9635900B1CF81C9C00853AD8 /* 3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 3.jpg; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 		968E10041CE80A9F001DA997 /* sprites.atlas */ = {
 			isa = PBXGroup;
 			children = (
+				9632B1A41D04B21300A62724 /* redfighter.png */,
 				963590091CF81C9C00853AD8 /* 1@2x.jpg */,
 				9635900A1CF81C9C00853AD8 /* 2.jpg */,
 				9635900B1CF81C9C00853AD8 /* 3.jpg */,
@@ -288,6 +291,7 @@
 				96011CD01CF12B1B000971F7 /* litOrb@2x.png in Resources */,
 				969AE08D1CEBF65100C813EA /* 1@2x.png in Resources */,
 				969AE08F1CEBF65100C813EA /* 3@2x.png in Resources */,
+				9632B1A51D04B21300A62724 /* redfighter.png in Resources */,
 				963590171CF81C9C00853AD8 /* 7.jpg in Resources */,
 				968E100A1CE80B41001DA997 /* shuttle@2x.png in Resources */,
 				968E10091CE80B41001DA997 /* alien@2x.png in Resources */,
