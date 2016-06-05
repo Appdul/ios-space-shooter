@@ -186,8 +186,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let time:NSTimeInterval = NSTimeInterval(displacment / CGFloat(velocity))
             let moveTo = SKAction.moveTo(newLocation, duration: time)
             //print(displacmentVector)
+            
+            //Ship is moving straight
+            if displacmentVector.x <= 10 && displacmentVector.x >= -10 {
+                self.player.runAction(moveTo)
+            }
             //ship is moving to the right
-            if newLocation.x > currentLocationOfShip.x {
+            else if newLocation.x > currentLocationOfShip.x {
                 let moveRightAnimation = SKAction.animateWithTextures([moveRightTexture1,moveRightTexture2,moveRightTexture3,moveRightTexture4,redFighterTexture], timePerFrame: 0.08)
                 self.player.runAction(moveRightAnimation)
                 self.player.runAction(moveTo)
@@ -196,10 +201,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             else if newLocation.x < currentLocationOfShip.x {
                 let moveLeftAnimation = SKAction.animateWithTextures([moveLeftTexture1,moveLeftTexture2,moveLeftTexture3,moveLeftTexture4,redFighterTexture], timePerFrame: 0.08)
                 self.player.runAction(moveLeftAnimation)
-                self.player.runAction(moveTo)
-            }
-            //Ship is moving straight
-            else if displacmentVector.x <= 10 && displacmentVector.x >= -10 {
                 self.player.runAction(moveTo)
             }
             
