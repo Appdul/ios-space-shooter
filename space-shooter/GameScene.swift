@@ -16,7 +16,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var player: SKSpriteNode = SKSpriteNode()
     var lastYieldTimeInterval:NSTimeInterval = NSTimeInterval()
     var lastUpdateTimerInterval:NSTimeInterval = NSTimeInterval()
-    //var meteorsMissed:Int = 0
     var meteorCategory:UInt32 = 0x1 << 1 // 2
     var playerCategory:UInt32 = 0x1 << 0 // 1
     var orbCategory:UInt32 = 0x1 << 2 // 3
@@ -25,19 +24,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let scoreLabelName = "scoreLabel"
     var score:Int = 0
     var pauseButton = SKLabelNode()
-    lazy var highscore = Int()
-    lazy var highScoreValueHasBeenSet = Bool()
+    var highscore: Int?
+    let userDefaults = NSUserDefaults.standardUserDefaults()
+
     
     
     override func didMoveToView(view: SKView) {
         
-        if highScoreValueHasBeenSet == true{
-            highscore = fetch()
+        if userDefaults.valueForKey("highscore") != nil {
+            highscore = userDefaults.valueForKey("highscore") as? Int
             print(highscore)
-            print ("fetched!")
+        }
+        else {
+            // no highscore exists
+            highscore = 0
+            print("its 0")
         }
         
-
         pauseButton.text = "Pause"
         pauseButton.fontSize = 25
         pauseButton.position = CGPoint(x: CGRectGetWidth(self.frame) - 50, y:CGRectGetHeight(self.frame) - 50);
@@ -47,7 +50,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreLabel.text = String(score)
         scoreLabel.fontSize = 30
         scoreLabel.position = CGPoint(x: 30, y:CGRectGetHeight(self.frame) - 50)
-        highScoreLabel.text = String(highscore)
+        highScoreLabel.text = String(highscore!)
         highScoreLabel.fontSize = 30
         highScoreLabel.position = CGPoint(x: 30, y:CGRectGetHeight(self.frame) - 100)
         self.addChild(scoreLabel)
@@ -193,48 +196,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        //self.runAction(SKAction.playSoundFileNamed("torpedo.mp3", waitForCompletion: false))
-//        var touch:UITouch = touches.first as! UITouch
-//        var location:CGPoint = touch.locationInNode(self)
-//        var torpedo:SKSpriteNode = SKSpriteNode(imageNamed: "torpedo")
-//        torpedo.position = player.position
-//        torpedo.physicsBody = SKPhysicsBody(circleOfRadius: torpedo.size.width/2)
-//        torpedo.physicsBody!.dynamic = true
-//        
-//        torpedo.physicsBody!.categoryBitMask = photonTorpedoCategory
-//        torpedo.physicsBody!.contactTestBitMask = alienCategory
-//        torpedo.physicsBody!.collisionBitMask = 0
-//        torpedo.physicsBody!.usesPreciseCollisionDetection = true
-//        
-//        var offSet:CGPoint = subtractVectors(location, b: torpedo.position)
-        
-        
-        // dont allow users to shoot backwards
-//        if (offSet.y < 0){
-//            return
-//        }
-//        
-//        self.addChild(torpedo)
-//        
-//        // Whre to shoot?
-//        var direction:CGPoint = normalizeVector(offSet)
-//        
-//        // Shoot off screen
-//        var shotLength:CGPoint = vectorByScalarMultiplication(direction, k: 3000)
-//        
-//        // Add Length to current position
-//        var finalDestination:CGPoint = addVectors(shotLength, b: torpedo.position)
-//        
-//        // create action
-//        let velocity = 570/1
-//        let moveDuration:Float = Float(self.size.width) / Float(velocity)
-//        
-//        var actionArray:NSMutableArray = NSMutableArray()
-//        actionArray.addObject(SKAction.moveTo(finalDestination, duration: NSTimeInterval(moveDuration)))
-//        actionArray.addObject(SKAction.removeFromParent())
-//        
-        //torpedo.runAction(SKAction.sequence(actionArray as [AnyObject]))
-
         
     }
     
@@ -265,9 +226,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func collidedWithAMeteor(meteor: SKSpriteNode){
         
         if score > highscore {
-            print("before I seed... score is \(score) and highScore was \(highscore)")
-            seedScore(score)
-            //print("new highscore set from \(highscore) to \(score) ")
+            userDefaults.setValue(score, forKey: "highscore")
+            userDefaults.synchronize()
+            print("collided: score > highscore so new highscore is \(score)")
         }
         
         let transition:SKTransition = SKTransition.flipHorizontalWithDuration(0.5)
@@ -312,56 +273,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
     }
     
-    func seedScore(value: Int) {
-        
-        // create an instance of our managedObjectContext
-        let moc = DataController().managedObjectContext
-        
-        // we set up our entity by selecting the entity and context that we're targeting
-        let entity = NSEntityDescription.insertNewObjectForEntityForName("ScoreEntity", inManagedObjectContext: moc) as! Score
-        
-        // add our data
-        entity.setValue(value, forKey: "highScore")
-        //highscore = score
-        
-        // we save our entity
-        do {
-            try moc.save()
-            highScoreValueHasBeenSet = true
-            print("seeded new highscore as \(value)")
-        } catch {
-            fatalError("Failure to save context: \(error)")
-        }
-    }
-    
-    
-    
-    func fetch() -> Int {
-        let moc = DataController().managedObjectContext
-        let highScoreFetch = NSFetchRequest(entityName: "ScoreEntity")
-        
-        do {
-            let fetchedHighScore = try moc.executeFetchRequest(highScoreFetch) as! [Score]
-                print(fetchedHighScore.first!)//.highScore!)
-                //highscore = Int(fetchedHighScore.first!.highScore!)
-                //print("we fetched and the highscore is \(highscore)")
-            let userHighScore = Int(fetchedHighScore.first!.highScore!)
-            return userHighScore
-            print("fetched \(userHighScore)")
-            
-            
-        } catch {
-            fatalError("Failed to fetch score: \(error)")
-        }
-
-
-        
-    }
-    
-    
-//    func storeHighScore() {
-//        
-//    }
 //
 //    override func update(currentTime: CFTimeInterval) {
 //        /* Called before each frame is rendered */
