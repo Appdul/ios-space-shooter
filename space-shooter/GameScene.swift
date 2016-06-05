@@ -109,7 +109,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let maxDuration = 3
         let duration = arc4random_uniform(UInt32(maxDuration)) + 2
         
-        var actionArray:NSMutableArray = NSMutableArray()
+        let actionArray:NSMutableArray = NSMutableArray()
         actionArray.addObject(SKAction.moveTo(CGPointMake(meteorPositionInX, -meteor.size.height), duration: NSTimeInterval(duration)))
         actionArray.addObject(SKAction.removeFromParent())
         meteor.runAction(SKAction.sequence(actionArray as [AnyObject] as! [SKAction]))
@@ -122,7 +122,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
     func addOrb(){
-        var orb:SKSpriteNode = SKSpriteNode(imageNamed: "litOrb")
+        let orb:SKSpriteNode = SKSpriteNode(imageNamed: "litOrb")
         orb.xScale = 0.6
         orb.yScale = 0.6
         orb.physicsBody = SKPhysicsBody(circleOfRadius: orb.size.width/2)
@@ -137,17 +137,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         orb.position = CGPointMake(orbPositionInX, self.frame.size.height + orb.size.height)
         self.addChild(orb)
         
-        let minDuration = 5
-        let maxDuration = 8
-        let rangeDuration = maxDuration -  minDuration
-        let duration =  arc4random_uniform(UInt32(rangeDuration)) + 1
+        let maxDuration = 5
+        let duration =  arc4random_uniform(UInt32(maxDuration)) + 2
         
         var orbActionArray:NSMutableArray = NSMutableArray()
         orbActionArray.addObject(SKAction.moveTo(CGPointMake(orbPositionInX, -orb.size.height), duration: NSTimeInterval(duration)))
         orbActionArray.addObject(SKAction.removeFromParent())
         
         orb.runAction(SKAction.sequence(orbActionArray as [AnyObject] as! [SKAction]))
-
+        
+        let rotateAction = SKAction.rotateByAngle(CGFloat(M_PI), duration:1.2)
+        orb.runAction(SKAction.repeatActionForever(rotateAction))
 
     }
     
