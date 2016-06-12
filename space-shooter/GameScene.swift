@@ -279,7 +279,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func animateBackground() {
-        let bgTexture = SKTexture(imageNamed: "6.jpg") //TODO: Optimize textures using imageoptim
+        let randomBackgroundNumber = 6//arc4random_uniform(8) + 1
+        let bgTexture = SKTexture(imageNamed: "bg\(randomBackgroundNumber).jpg") //TODO: Optimize textures using imageoptim
         
         let movebg = SKAction.moveByX(0, y: -bgTexture.size().height, duration: 9)
         let replacebg = SKAction.moveByX(0, y: bgTexture.size().height, duration: 0)
