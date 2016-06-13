@@ -42,6 +42,9 @@
 		96AE74EE1CFB8C48002F5C6C /* lose.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96AE74EC1CFB8C48002F5C6C /* lose.mp3 */; };
 		96AE74EF1CFB8C48002F5C6C /* orb.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96AE74ED1CFB8C48002F5C6C /* orb.mp3 */; };
 		96AE74FA1CFBBC71002F5C6C /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AE74F91CFBBC71002F5C6C /* DataController.swift */; };
+		96B86E711D0F4347007BAB53 /* MenuScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 96B86E701D0F4347007BAB53 /* MenuScene.sks */; };
+		96B86E751D0F441A007BAB53 /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B86E741D0F441A007BAB53 /* MenuScene.swift */; };
+		96B86E771D0F4B1B007BAB53 /* play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96B86E761D0F4B1B007BAB53 /* play@2x.png */; };
 		96E2C0841CF3DDBD009BDBC5 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E2C0831CF3DDBD009BDBC5 /* GameOverScene.swift */; };
 /* End PBXBuildFile section */
 
@@ -95,6 +98,9 @@
 		96AE74EC1CFB8C48002F5C6C /* lose.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = lose.mp3; sourceTree = "<group>"; };
 		96AE74ED1CFB8C48002F5C6C /* orb.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = orb.mp3; sourceTree = "<group>"; };
 		96AE74F91CFBBC71002F5C6C /* DataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		96B86E701D0F4347007BAB53 /* MenuScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MenuScene.sks; sourceTree = "<group>"; };
+		96B86E741D0F441A007BAB53 /* MenuScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuScene.swift; sourceTree = "<group>"; };
+		96B86E761D0F4B1B007BAB53 /* play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "play@2x.png"; sourceTree = "<group>"; };
 		96E2C0831CF3DDBD009BDBC5 /* GameOverScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -154,8 +160,10 @@
 			children = (
 				969AE0821CEBF56900C813EA /* space-meteors */,
 				968E0FE01CE7E98A001DA997 /* AppDelegate.swift */,
+				96B86E701D0F4347007BAB53 /* MenuScene.sks */,
 				968E0FE21CE7E98B001DA997 /* GameScene.sks */,
 				96E2C0831CF3DDBD009BDBC5 /* GameOverScene.swift */,
+				96B86E741D0F441A007BAB53 /* MenuScene.swift */,
 				968E0FE41CE7E98B001DA997 /* GameScene.swift */,
 				968E0FE61CE7E98B001DA997 /* GameViewController.swift */,
 				968E0FE81CE7E98B001DA997 /* Main.storyboard */,
@@ -197,6 +205,7 @@
 		968E10041CE80A9F001DA997 /* sprites.atlas */ = {
 			isa = PBXGroup;
 			children = (
+				96B86E761D0F4B1B007BAB53 /* play@2x.png */,
 				964DBDDB1D04E2E2008CA0AA /* backgrounds */,
 				9632B1A61D04BE8100A62724 /* redfighter0001.png */,
 				9632B1A71D04BE8100A62724 /* redfighter0002.png */,
@@ -332,12 +341,14 @@
 				9632B1B21D04BE8100A62724 /* redfighter0006.png in Resources */,
 				963590111CF81C9C00853AD8 /* bg1@2x.jpg in Resources */,
 				968E0FEC1CE7E98B001DA997 /* Images.xcassets in Resources */,
+				96B86E711D0F4347007BAB53 /* MenuScene.sks in Resources */,
 				963590161CF81C9C00853AD8 /* bg6@2x.jpg in Resources */,
 				963590151CF81C9C00853AD8 /* bg5@2x.jpg in Resources */,
 				968E0FE31CE7E98B001DA997 /* GameScene.sks in Resources */,
 				9632B1B01D04BE8100A62724 /* redfighter0003.png in Resources */,
 				969AE0831CEBF56900C813EA /* space-meteors in Resources */,
 				968E100F1CE80B52001DA997 /* torpedo.mp3 in Resources */,
+				96B86E771D0F4B1B007BAB53 /* play@2x.png in Resources */,
 				968E0FEA1CE7E98B001DA997 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -359,6 +370,7 @@
 				968E0FE51CE7E98B001DA997 /* GameScene.swift in Sources */,
 				96AE74FA1CFBBC71002F5C6C /* DataController.swift in Sources */,
 				968E0FE71CE7E98B001DA997 /* GameViewController.swift in Sources */,
+				96B86E751D0F441A007BAB53 /* MenuScene.swift in Sources */,
 				96E2C0841CF3DDBD009BDBC5 /* GameOverScene.swift in Sources */,
 				968E0FE11CE7E98A001DA997 /* AppDelegate.swift in Sources */,
 			);
