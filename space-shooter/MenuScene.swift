@@ -45,8 +45,8 @@ class MenuScene: SKScene {
     }
     
     func animateBackground() {
-        let randomBackgroundNumber = 6//arc4random_uniform(8) + 1
-        let bgTexture = SKTexture(imageNamed: "bg\(randomBackgroundNumber).jpg") //TODO: Optimize textures using imageoptim
+        let randomBackground = "dark"
+        let bgTexture = SKTexture(imageNamed: "bg\(randomBackground).jpg")
         
         let movebg = SKAction.moveByX(0, y: -bgTexture.size().height, duration: 9)
         let replacebg = SKAction.moveByX(0, y: bgTexture.size().height, duration: 0)
