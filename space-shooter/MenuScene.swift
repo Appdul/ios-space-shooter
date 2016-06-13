@@ -20,10 +20,10 @@ class MenuScene: SKScene {
     }
     
     override func didMoveToView(view: SKView) {
+        animateBackground()
         playButton = SKSpriteNode(texture: playButtonTexture)
         playButton.position = CGPointMake(self.frame.midX, self.frame.midY)
         self.addChild(playButton)
-
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -42,6 +42,24 @@ class MenuScene: SKScene {
         }
         
 
+    }
+    
+    func animateBackground() {
+        let randomBackgroundNumber = 6//arc4random_uniform(8) + 1
+        let bgTexture = SKTexture(imageNamed: "bg\(randomBackgroundNumber).jpg") //TODO: Optimize textures using imageoptim
+        
+        let movebg = SKAction.moveByX(0, y: -bgTexture.size().height, duration: 9)
+        let replacebg = SKAction.moveByX(0, y: bgTexture.size().height, duration: 0)
+        let movebgForever = SKAction.repeatActionForever(SKAction.sequence([movebg, replacebg]))
+        
+        for var i:CGFloat=0; i<3; i++ {
+            let bg = SKSpriteNode(texture: bgTexture)
+            bg.position = CGPoint(x: CGRectGetMidX(self.frame), y: bgTexture.size().height/2 + bgTexture.size().height * i)
+            bg.size.height = self.frame.height
+            bg.runAction(movebgForever)
+            self.addChild(bg)
+        }
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
