@@ -13,6 +13,10 @@ class MenuScene: SKScene {
     
     var playButton = SKSpriteNode()
     let playButtonTexture = SKTexture(imageNamed: "play")
+    var creditsButton = SKSpriteNode()
+    let creditsButtonTexture = SKTexture(imageNamed: "credits")
+    var exitButton = SKSpriteNode()
+    let exitButtonTexture = SKTexture(imageNamed: "exit")
     
     
     override init(size: CGSize) {
@@ -24,6 +28,12 @@ class MenuScene: SKScene {
         playButton = SKSpriteNode(texture: playButtonTexture)
         playButton.position = CGPointMake(self.frame.midX, self.frame.midY)
         self.addChild(playButton)
+        creditsButton = SKSpriteNode(texture: creditsButtonTexture)
+        creditsButton.position = CGPointMake(self.frame.midX, playButton.position.y - 100)
+        self.addChild(creditsButton)
+        exitButton = SKSpriteNode(texture: exitButtonTexture)
+        exitButton.position = CGPointMake(self.frame.midX, creditsButton.position.y - 100)
+        self.addChild(exitButton)
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
