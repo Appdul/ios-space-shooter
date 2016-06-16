@@ -251,11 +251,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if score > highscore {
             userDefaults.setValue(score, forKey: "highscore")
             userDefaults.synchronize()
-            print("collided: score > highscore so new highscore is \(score)")
+            //print("collided: score > highscore so new highscore is \(score)")
         }
         
         let transition:SKTransition = SKTransition.flipHorizontalWithDuration(0.5)
-        let gameOverScene:SKScene = GameOverScene(size: self.size, score: score)
+        let gameOverScene:SKScene = GameOverScene(size: self.size, score: score, highScore: highscore!)
         self.view?.presentScene(gameOverScene, transition: transition)
     }
     

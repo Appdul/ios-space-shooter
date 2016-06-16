@@ -9,15 +9,15 @@
 import Foundation
 import SpriteKit
 
+public var playButton = SKSpriteNode()
+public let playButtonTexture = SKTexture(imageNamed: "play")
+public var creditsButton = SKSpriteNode()
+public let creditsButtonTexture = SKTexture(imageNamed: "credits")
+public var exitButton = SKSpriteNode()
+public let exitButtonTexture = SKTexture(imageNamed: "exit")
+public let highScoreLabel = SKLabelNode(fontNamed: "TimeBurner")
+
 class MenuScene: SKScene {
-    
-    var playButton = SKSpriteNode()
-    let playButtonTexture = SKTexture(imageNamed: "play")
-    var creditsButton = SKSpriteNode()
-    let creditsButtonTexture = SKTexture(imageNamed: "credits")
-    var exitButton = SKSpriteNode()
-    let exitButtonTexture = SKTexture(imageNamed: "exit")
-    
     
     override init(size: CGSize) {
         super.init(size: size)
@@ -25,6 +25,7 @@ class MenuScene: SKScene {
     
     override func didMoveToView(view: SKView) {
         animateBackground()
+        let highscore = 0
         playButton = SKSpriteNode(texture: playButtonTexture)
         playButton.position = CGPointMake(self.frame.midX, self.frame.midY)
         self.addChild(playButton)
@@ -34,6 +35,11 @@ class MenuScene: SKScene {
         exitButton = SKSpriteNode(texture: exitButtonTexture)
         exitButton.position = CGPointMake(self.frame.midX, creditsButton.position.y - 100)
         self.addChild(exitButton)
+        
+        highScoreLabel.text = "HIGH SCORE: \(highscore)"
+        highScoreLabel.fontColor = UIColor.redColor()
+        highScoreLabel.position = CGPointMake(self.frame.midX, playButton.position.y + 140)
+        self.addChild(highScoreLabel)
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
