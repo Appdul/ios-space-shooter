@@ -89,7 +89,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func spawnFallingItems() {
         
         var meteor:SKSpriteNode = SKSpriteNode(imageNamed: "1")
-        meteor.xScale = 0.7
+        meteor.xScale = 0.7 //TODO: make proportional to screen frame
         meteor.yScale = 0.7
         meteor.physicsBody = SKPhysicsBody(circleOfRadius: meteor.size.width/4)
         meteor.physicsBody?.dynamic = true
