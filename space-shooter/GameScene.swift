@@ -35,6 +35,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let moveLeftTexture2 = SKTexture(imageNamed: "redfighter0003")
     let moveLeftTexture3 = SKTexture(imageNamed: "redfighter0002")
     let moveLeftTexture4 = SKTexture(imageNamed: "redfighter0001")
+    var orbSound:SKAction?
 
     
     
@@ -77,6 +78,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.physicsWorld.gravity = CGVectorMake(0, 0)
         self.physicsWorld.contactDelegate = self
         var orbTimer = NSTimer.scheduledTimerWithTimeInterval(orbSpawnTime, target: self, selector: Selector("addOrb"), userInfo: nil, repeats: true)
+        orbSound = SKAction.playSoundFileNamed("orb.mp3", waitForCompletion: false)
 
 
     }
@@ -239,7 +241,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     func collidedWithAnOrb(orb: SKSpriteNode) {
         
-        self.runAction(SKAction.playSoundFileNamed("orb.mp3", waitForCompletion: false))
+        self.runAction(orbSound!)//SKAction.playSoundFileNamed("orb.mp3", waitForCompletion: false))
         
         orb.removeFromParent()
         score++
