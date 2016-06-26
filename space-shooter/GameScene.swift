@@ -70,7 +70,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         player = SKSpriteNode(texture: redFighterTexture )
         player.position = CGPointMake(self.frame.size.width/2, scene!.frame.size.height/6)
-        let playerScale = scene!.frame.size.width/1240
+        let playerScale = scene!.frame.size.width/1200
         player.xScale = playerScale
         player.yScale = playerScale
         
