@@ -19,7 +19,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var meteorCategory:UInt32 = 0x1 << 1 // 2
     var playerCategory:UInt32 = 0x1 << 0 // 1
     var orbCategory:UInt32 = 0x1 << 2 // 3
-    var scoreLabel = SKLabelNode()
+    var scoreLabel = SKLabelNode(fontNamed: "TimeBurner-Bold")
     var highScoreLabel = SKLabelNode()
     let scoreLabelName = "scoreLabel"
     var score:Int = 0
@@ -51,15 +51,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             highscore = 0
         }
         
-        
-        scoreLabel.text = String(score)
-        scoreLabel.fontSize = 30
-        scoreLabel.position = CGPoint(x: 30, y:CGRectGetHeight(self.frame) - 50)
+        let orbColor = UIColor.init(red: 212/255, green: 175/255, blue: 55/255 , alpha: 1)
+        scoreLabel.text = "SCORE: \(score)"
+        scoreLabel.fontSize = 25
+        scoreLabel.fontColor = orbColor
+        scoreLabel.position = CGPoint(x: 60, y:CGRectGetHeight(self.frame) - 50)
         highScoreLabel.text = String(highscore!)
         highScoreLabel.fontSize = 30
         highScoreLabel.position = CGPoint(x: CGRectGetWidth(self.frame) - 30, y:CGRectGetHeight(self.frame) - 50)
         self.addChild(scoreLabel)
-        self.addChild(highScoreLabel)
+        //self.addChild(highScoreLabel)
     }
     
     override init(size: CGSize) {
@@ -255,7 +256,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         orb.removeFromParent()
         score++
-        scoreLabel.text = String(score)
+        scoreLabel.text = "SCORE: \(score)"
         difficultyCheck()
     }
     
