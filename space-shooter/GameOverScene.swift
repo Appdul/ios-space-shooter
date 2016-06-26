@@ -11,9 +11,8 @@ import SpriteKit
 
 class GameOverScene: SKScene {
     
-    init(size: CGSize, score: Int, highScore: Int) {
+    init(size: CGSize, score: Int) {
         super.init(size: size)
-        //self.backgroundColor = SKColor.blackColor()
         animateBackground()
         let scoreLabel = SKLabelNode(fontNamed: "TimeBurner-Bold")
         scoreLabel.text = "YOUR SCORE: " + String(score)
@@ -22,7 +21,7 @@ class GameOverScene: SKScene {
         self.addChild(scoreLabel)
         
         let highScoreLabel = SKLabelNode(fontNamed: "TimeBurner-Bold")
-        highScoreLabel.text = "HIGH SCORE: " + String(highScore)
+        highScoreLabel.text = "HIGH SCORE: " + String(highscore!)
         highScoreLabel.fontColor = SKColor.redColor()
         highScoreLabel.position = CGPointMake(self.frame.midX, scoreLabel.position.y - 100)
         self.addChild(highScoreLabel)

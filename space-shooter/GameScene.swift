@@ -13,6 +13,7 @@ import CoreData
 
 public let userDefaults = NSUserDefaults.standardUserDefaults()
 public var highscore: Int?
+public var orbCount:Int = 0
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
@@ -28,7 +29,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var highScoreLabel = SKLabelNode()
     let scoreLabelName = "scoreLabel"
     var score:Int = 0
-    var orbCount:Int = 0
     let redFighterTexture = SKTexture(imageNamed: "redfighter")
     let moveRightTexture1 = SKTexture(imageNamed: "redfighter0006")
     let moveRightTexture2 = SKTexture(imageNamed: "redfighter0007")
@@ -45,15 +45,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
     override func didMoveToView(view: SKView) {
-        
-        if userDefaults.valueForKey("highscore") != nil {
-            highscore = userDefaults.valueForKey("highscore") as? Int
-        }
-        else {
-            // no highscore exists
-            highscore = 0
-        }
-        
         styleLabels()
 
         self.addChild(scoreLabel)
@@ -292,7 +283,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         let transition:SKTransition = SKTransition.flipHorizontalWithDuration(0.5)
-        let gameOverScene:SKScene = GameOverScene(size: self.size, score: score, highScore: highscore!)
+        let gameOverScene:SKScene = GameOverScene(size: self.size, score: score)
         self.view?.presentScene(gameOverScene, transition: transition)
     }
     
