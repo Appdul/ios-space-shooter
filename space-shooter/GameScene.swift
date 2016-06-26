@@ -90,8 +90,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func spawnFallingItems() {
-        
-        var meteor:SKSpriteNode = SKSpriteNode(imageNamed: "1")
+        let randomMeteor = arc4random_uniform(UInt32(3)) + 1
+        print(randomMeteor)
+        var meteor:SKSpriteNode = SKSpriteNode(imageNamed: "greymeteor\(randomMeteor)")
         let meteorScale = scene!.frame.size.width/600
         meteor.xScale = meteorScale
         meteor.yScale = meteorScale
@@ -120,7 +121,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         let rotateAction = SKAction.rotateByAngle(CGFloat(M_PI), duration:1)
         meteor.runAction(SKAction.repeatActionForever(rotateAction))
-        print(duration)
     
     }
     
@@ -142,7 +142,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         orb.yScale = orbScale
         orb.physicsBody = SKPhysicsBody(circleOfRadius: orb.size.width/2)
         orb.physicsBody?.dynamic = true
-        orb.physicsBody?.categoryBitMask = orbCategory //3
+        orb.physicsBody?.categoryBitMask = orbCategory
         orb.physicsBody?.contactTestBitMask = playerCategory
         orb.physicsBody!.collisionBitMask = 0
         let minX = orb.size.width * 2
