@@ -36,6 +36,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let moveLeftTexture3 = SKTexture(imageNamed: "redfighter0002")
     let moveLeftTexture4 = SKTexture(imageNamed: "redfighter0001")
     var orbSound:SKAction?
+    var maxMeteorDuration = 3.0
+    var minMeteorDuration = 2.0
 
     
     
@@ -43,7 +45,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if userDefaults.valueForKey("highscore") != nil {
             highscore = userDefaults.valueForKey("highscore") as? Int
-            print(highscore)
         }
         else {
             // no highscore exists
@@ -110,8 +111,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         self.addChild(meteor)
 
-        let maxDuration = 3
-        let duration = arc4random_uniform(UInt32(maxDuration)) + 2
+        let duration = Double(arc4random_uniform(UInt32(maxMeteorDuration))) + minMeteorDuration
         
         let actionArray:NSMutableArray = NSMutableArray()
         actionArray.addObject(SKAction.moveTo(CGPointMake(meteorPositionInX, -meteor.size.height), duration: NSTimeInterval(duration)))
@@ -120,9 +120,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         let rotateAction = SKAction.rotateByAngle(CGFloat(M_PI), duration:1)
         meteor.runAction(SKAction.repeatActionForever(rotateAction))
-        print("the meteor is \(meteor.size) and the player is \(player.size)")
+        print(duration)
     
     }
+    
+    func difficultyCheck(){
+        if score % 10 == 0 {
+            if minMeteorDuration >= 0.8{
+                maxMeteorDuration -= 0.15
+                minMeteorDuration -= 0.15
+            }
+        }
+    }
+
     
     
     func addOrb(){
@@ -186,7 +196,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let currentLocationOfShip:CGPoint = player.position
             let displacmentVector:CGPoint = subtractVectors(newLocation, b: currentLocationOfShip)
             let displacment = vectorLength(displacmentVector)
-            print(normalizeVector(displacmentVector))
             let time:NSTimeInterval = NSTimeInterval(displacment / CGFloat(velocity))
             let moveTo = SKAction.moveTo(newLocation, duration: time)
             //print(displacmentVector)
@@ -248,6 +257,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         orb.removeFromParent()
         score++
         scoreLabel.text = String(score)
+        difficultyCheck()
     }
     
     func collidedWithAMeteor(meteor: SKSpriteNode){
