@@ -14,13 +14,13 @@ class GameOverScene: SKScene {
     init(size: CGSize, score: Int) {
         super.init(size: size)
         animateBackground()
-        let scoreLabel = SKLabelNode(fontNamed: "TimeBurner-Bold")
+        let scoreLabel = SKLabelNode(fontNamed: "TimeBurner")
         scoreLabel.text = "YOUR SCORE: " + String(score)
         scoreLabel.fontColor = SKColor.redColor()
         scoreLabel.position = CGPointMake(self.frame.midX, self.frame.maxY - 200)
         self.addChild(scoreLabel)
         
-        let highScoreLabel = SKLabelNode(fontNamed: "TimeBurner-Bold")
+        let highScoreLabel = SKLabelNode(fontNamed: "TimeBurner")
         highScoreLabel.text = "HIGH SCORE: " + String(highscore!)
         highScoreLabel.fontColor = SKColor.redColor()
         highScoreLabel.position = CGPointMake(self.frame.midX, scoreLabel.position.y - 100)

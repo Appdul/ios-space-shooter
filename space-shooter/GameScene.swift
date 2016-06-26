@@ -23,8 +23,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var meteorCategory:UInt32 = 0x1 << 1 // 2
     var playerCategory:UInt32 = 0x1 << 0 // 1
     var orbCategory:UInt32 = 0x1 << 2 // 3
-    var scoreLabel = SKLabelNode(fontNamed: "TimeBurner-Bold")
-    var orbCountLabel = SKLabelNode(fontNamed: "TimeBurner-Bold")
+    var scoreLabel = SKLabelNode(fontNamed: "TimeBurner")
+    var orbCountLabel = SKLabelNode(fontNamed: "TimeBurner")
     let orbImage = SKSpriteNode(imageNamed: "litOrb")
     var highScoreLabel = SKLabelNode()
     let scoreLabelName = "scoreLabel"
