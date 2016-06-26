@@ -74,12 +74,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let playerScale = scene!.frame.size.width/1200
         player.xScale = playerScale
         player.yScale = playerScale
-        
-        let orbSpawnTime:NSTimeInterval = 2
         self.addChild(player)
         self.physicsWorld.gravity = CGVectorMake(0, 0)
         self.physicsWorld.contactDelegate = self
-        var orbTimer = NSTimer.scheduledTimerWithTimeInterval(orbSpawnTime, target: self, selector: Selector("addOrb"), userInfo: nil, repeats: true)
+        let wait = SKAction.waitForDuration(2)
+        let spawnOrb = SKAction.runBlock {
+            self.addOrb()
+        }
+        self.runAction(SKAction.sequence([wait, spawnOrb]))
+        
+        self.runAction(SKAction.repeatActionForever(SKAction.sequence([wait, spawnOrb])))
         orbSound = SKAction.playSoundFileNamed("orb.mp3", waitForCompletion: false)
 
 
