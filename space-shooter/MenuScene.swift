@@ -24,8 +24,17 @@ class MenuScene: SKScene {
     }
     
     override func didMoveToView(view: SKView) {
+        
+        if userDefaults.valueForKey("highscore") != nil {
+            highscore = userDefaults.valueForKey("highscore") as? Int
+        }
+        else {
+            // no highscore exists
+            highscore = 0
+        }
+        
         animateBackground()
-        let highscore = 0
+//        let highscore = 0
         playButton = SKSpriteNode(texture: playButtonTexture)
         playButton.position = CGPointMake(self.frame.midX, self.frame.midY)
         self.addChild(playButton)
@@ -36,7 +45,7 @@ class MenuScene: SKScene {
         exitButton.position = CGPointMake(self.frame.midX, creditsButton.position.y - 100)
         self.addChild(exitButton)
         
-        highScoreLabel.text = "HIGH SCORE: \(highscore)"
+        highScoreLabel.text = "HIGH SCORE: \(highscore!)"
         highScoreLabel.fontColor = UIColor.redColor()
         highScoreLabel.position = CGPointMake(self.frame.midX, playButton.position.y + 140)
         self.addChild(highScoreLabel)

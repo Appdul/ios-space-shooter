@@ -11,6 +11,9 @@ import Foundation
 import AVFoundation
 import CoreData
 
+public let userDefaults = NSUserDefaults.standardUserDefaults()
+public var highscore: Int?
+
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var player: SKSpriteNode = SKSpriteNode()
@@ -26,8 +29,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let scoreLabelName = "scoreLabel"
     var score:Int = 0
     var orbCount:Int = 0
-    var highscore: Int?
-    let userDefaults = NSUserDefaults.standardUserDefaults()
     let redFighterTexture = SKTexture(imageNamed: "redfighter")
     let moveRightTexture1 = SKTexture(imageNamed: "redfighter0006")
     let moveRightTexture2 = SKTexture(imageNamed: "redfighter0007")
