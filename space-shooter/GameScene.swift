@@ -91,9 +91,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func spawnFallingItems() {
         let randomMeteor = arc4random_uniform(UInt32(3)) + 1
-        print(randomMeteor)
         var meteor:SKSpriteNode = SKSpriteNode(imageNamed: "greymeteor\(randomMeteor)")
-        let meteorScale = scene!.frame.size.width/600
+        let scaleFactor = ( 100 * CGFloat(arc4random_uniform(UInt32(3)) + 3) )
+        let meteorScale = scene!.frame.size.width / scaleFactor
         meteor.xScale = meteorScale
         meteor.yScale = meteorScale
         meteor.physicsBody = SKPhysicsBody(circleOfRadius: meteor.size.width/4)
@@ -198,7 +198,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let displacment = vectorLength(displacmentVector)
             let time:NSTimeInterval = NSTimeInterval(displacment / CGFloat(velocity))
             let moveTo = SKAction.moveTo(newLocation, duration: time)
-            //print(displacmentVector)
             
             //Ship is moving straight
             if displacmentVector.x <= 10 && displacmentVector.x >= -10 {
