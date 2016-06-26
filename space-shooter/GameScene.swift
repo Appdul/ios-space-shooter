@@ -189,10 +189,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         /* Called when a touch begins */
-        
-        for touch in (touches ) {
+            player.physicsBody = SKPhysicsBody(circleOfRadius: player.size.width/3)
+            player.physicsBody!.dynamic = true
+            player.physicsBody!.categoryBitMask = playerCategory
+            player.physicsBody!.contactTestBitMask = meteorCategory
+            player.physicsBody!.collisionBitMask = 0
+            player.physicsBody!.usesPreciseCollisionDetection = true
+            
+            player.physicsBody!.contactTestBitMask = meteorCategory
+            player.physicsBody!.collisionBitMask = 0
+    }
+    
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        for touch in (touches) {
             let newLocation = touch.locationInNode(self)
-            //self.player.position = newLocation
             let velocity = 570
             let currentLocationOfShip:CGPoint = player.position
             let displacmentVector:CGPoint = subtractVectors(newLocation, b: currentLocationOfShip)
@@ -204,35 +214,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if displacmentVector.x <= 10 && displacmentVector.x >= -10 {
                 self.player.runAction(moveTo)
             }
-            //ship is moving to the right
+                //ship is moving to the right
             else if newLocation.x > currentLocationOfShip.x {
                 let moveRightAnimation = SKAction.animateWithTextures([moveRightTexture1,moveRightTexture2,moveRightTexture3,moveRightTexture4,redFighterTexture], timePerFrame: 0.08)
                 self.player.runAction(moveRightAnimation)
                 self.player.runAction(moveTo)
             }
-            //ship is moving to the left
+                //ship is moving to the left
             else if newLocation.x < currentLocationOfShip.x {
                 let moveLeftAnimation = SKAction.animateWithTextures([moveLeftTexture1,moveLeftTexture2,moveLeftTexture3,moveLeftTexture4,redFighterTexture], timePerFrame: 0.08)
                 self.player.runAction(moveLeftAnimation)
                 self.player.runAction(moveTo)
             }
-            
-            player.physicsBody = SKPhysicsBody(circleOfRadius: player.size.width/3)
-            player.physicsBody!.dynamic = true
-            player.physicsBody!.categoryBitMask = playerCategory
-            player.physicsBody!.contactTestBitMask = meteorCategory
-            player.physicsBody!.collisionBitMask = 0
-            player.physicsBody!.usesPreciseCollisionDetection = true
-            
-            player.physicsBody!.contactTestBitMask = meteorCategory
-            player.physicsBody!.collisionBitMask = 0
-            
-    
+
         }
-    }
-    
-    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        
     }
     
     
