@@ -24,14 +24,8 @@ class MenuScene: SKScene {
     }
     
     override func didMoveToView(view: SKView) {
-        
-        if userDefaults.valueForKey("highscore") != nil {
-            highscore = userDefaults.valueForKey("highscore") as? Int
-        }
-        else {
-            // no highscore exists
-            highscore = 0
-        }
+        highscore = userDefaults.valueForKey("highscore") != nil ? userDefaults.valueForKey("highscore") as? Int : 0
+        orbCount = userDefaults.valueForKey("orbs") != nil ? userDefaults.valueForKey("orbs") as? Int : 0
         
         animateBackground()
 //        let highscore = 0

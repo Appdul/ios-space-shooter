@@ -13,7 +13,7 @@ import CoreData
 
 public let userDefaults = NSUserDefaults.standardUserDefaults()
 public var highscore: Int?
-public var orbCount:Int = 0
+public var orbCount: Int?
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
@@ -60,17 +60,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreLabel.text = "SCORE: \(score)"
         scoreLabel.fontSize = 25
         scoreLabel.fontColor = orbColor
-        scoreLabel.position = CGPoint(x: CGRectGetWidth(self.frame) - 70, y:CGRectGetHeight(self.frame) - 50)
+        scoreLabel.position = CGPoint(x: 55, y:CGRectGetHeight(self.frame) - 50)
         
         highScoreLabel.text = String(highscore!)
         highScoreLabel.fontSize = 30
         highScoreLabel.position = CGPoint(x: CGRectGetWidth(self.frame) - 30, y:CGRectGetHeight(self.frame) - 50)
         
-        orbCountLabel.text = String(orbCount)
+        orbCountLabel.text = String(orbCount!)
         orbCountLabel.fontSize = 26
         orbCountLabel.fontColor = orbColor
-        orbCountLabel.position = CGPoint(x: 60, y:CGRectGetHeight(self.frame) - 50)
-        orbImage.position = CGPoint(x: orbCountLabel.position.x - 30, y: orbCountLabel.position.y + 14)
+        orbCountLabel.position = CGPoint(x: CGRectGetWidth(self.frame) - 60, y:CGRectGetHeight(self.frame) - 50)
+        orbImage.position = CGPoint(x: orbCountLabel.position.x + 40, y: orbCountLabel.position.y + 14)
         orbImage.xScale = orbScale
         orbImage.yScale = orbScale
         
@@ -268,10 +268,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         orb.removeFromParent()
         score++
-        orbCount++
+        orbCount!++
         scoreLabel.text = "SCORE: \(score)"
-        orbCountLabel.text = String(orbCount)
+        orbCountLabel.text = String(orbCount!)
         difficultyCheck()
+        userDefaults.setValue(orbCount, forKey: "orbs")
+        userDefaults.synchronize()
     }
     
     func collidedWithAMeteor(meteor: SKSpriteNode){
