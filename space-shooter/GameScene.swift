@@ -20,10 +20,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var playerCategory:UInt32 = 0x1 << 0 // 1
     var orbCategory:UInt32 = 0x1 << 2 // 3
     var scoreLabel = SKLabelNode(fontNamed: "TimeBurner-Bold")
+    var orbCountLabel = SKLabelNode(fontNamed: "TimeBurner-Bold")
+    let orbImage = SKSpriteNode(imageNamed: "litOrb")
     var highScoreLabel = SKLabelNode()
     let scoreLabelName = "scoreLabel"
     var score:Int = 0
-    var pauseButton = SKLabelNode()
+    var orbCount:Int = 0
     var highscore: Int?
     let userDefaults = NSUserDefaults.standardUserDefaults()
     let redFighterTexture = SKTexture(imageNamed: "redfighter")
@@ -51,16 +53,35 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             highscore = 0
         }
         
+        styleLabels()
+
+        self.addChild(scoreLabel)
+        self.addChild(orbCountLabel)
+        self.addChild(orbImage)
+        //self.addChild(highScoreLabel)
+    }
+    
+    func styleLabels(){
         let orbColor = UIColor.init(red: 212/255, green: 175/255, blue: 55/255 , alpha: 1)
+        let orbScale = scene!.frame.size.width/620
+        
         scoreLabel.text = "SCORE: \(score)"
         scoreLabel.fontSize = 25
         scoreLabel.fontColor = orbColor
-        scoreLabel.position = CGPoint(x: 60, y:CGRectGetHeight(self.frame) - 50)
+        scoreLabel.position = CGPoint(x: CGRectGetWidth(self.frame) - 70, y:CGRectGetHeight(self.frame) - 50)
+        
         highScoreLabel.text = String(highscore!)
         highScoreLabel.fontSize = 30
         highScoreLabel.position = CGPoint(x: CGRectGetWidth(self.frame) - 30, y:CGRectGetHeight(self.frame) - 50)
-        self.addChild(scoreLabel)
-        //self.addChild(highScoreLabel)
+        
+        orbCountLabel.text = String(orbCount)
+        orbCountLabel.fontSize = 26
+        orbCountLabel.fontColor = orbColor
+        orbCountLabel.position = CGPoint(x: 60, y:CGRectGetHeight(self.frame) - 50)
+        orbImage.position = CGPoint(x: orbCountLabel.position.x - 30, y: orbCountLabel.position.y + 14)
+        orbImage.xScale = orbScale
+        orbImage.yScale = orbScale
+        
     }
     
     override init(size: CGSize) {
@@ -255,7 +276,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         orb.removeFromParent()
         score++
+        orbCount++
         scoreLabel.text = "SCORE: \(score)"
+        orbCountLabel.text = String(orbCount)
         difficultyCheck()
     }
     
