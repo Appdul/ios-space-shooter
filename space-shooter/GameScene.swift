@@ -69,7 +69,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         player = SKSpriteNode(texture: redFighterTexture )
         player.position = CGPointMake(self.frame.size.width/2, scene!.frame.size.height/6)
-        let playerScale = scene!.frame.size.width/1200
+        let playerScale = scene!.frame.size.width/1240
         player.xScale = playerScale
         player.yScale = playerScale
         
@@ -91,8 +91,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func spawnFallingItems() {
         
         var meteor:SKSpriteNode = SKSpriteNode(imageNamed: "1")
-        meteor.xScale = 0.7 //TODO: make proportional to screen frame
-        meteor.yScale = 0.7
+        let meteorScale = scene!.frame.size.width/600
+        meteor.xScale = meteorScale
+        meteor.yScale = meteorScale
         meteor.physicsBody = SKPhysicsBody(circleOfRadius: meteor.size.width/4)
         meteor.physicsBody?.dynamic = true
         meteor.physicsBody?.categoryBitMask = meteorCategory
@@ -119,15 +120,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         let rotateAction = SKAction.rotateByAngle(CGFloat(M_PI), duration:1)
         meteor.runAction(SKAction.repeatActionForever(rotateAction))
-        
+        print("the meteor is \(meteor.size) and the player is \(player.size)")
     
     }
     
     
     func addOrb(){
         let orb:SKSpriteNode = SKSpriteNode(imageNamed: "litOrb")
-        orb.xScale = 0.6
-        orb.yScale = 0.6
+        let orbScale = scene!.frame.size.width/650
+        orb.xScale = orbScale
+        orb.yScale = orbScale
         orb.physicsBody = SKPhysicsBody(circleOfRadius: orb.size.width/2)
         orb.physicsBody?.dynamic = true
         orb.physicsBody?.categoryBitMask = orbCategory //3
