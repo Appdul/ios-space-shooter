@@ -297,7 +297,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let randomBackground = "dark"
         let bgTexture = SKTexture(imageNamed: "bg\(randomBackground).jpg")
         
-        let movebg = SKAction.moveByX(0, y: -bgTexture.size().height, duration: 9)
+        let movebg = SKAction.moveByX(0, y: -bgTexture.size().height, duration: minMeteorDuration*4)
         let replacebg = SKAction.moveByX(0, y: bgTexture.size().height, duration: 0)
         let movebgForever = SKAction.repeatActionForever(SKAction.sequence([movebg, replacebg]))
         
