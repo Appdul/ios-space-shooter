@@ -17,6 +17,7 @@ public var exitButton = SKSpriteNode()
 public let exitButtonTexture = SKTexture(imageNamed: "exit")
 public let highScoreLabel = SKLabelNode(fontNamed: "TimeBurner")
 
+
 class MenuScene: SKScene {
     
     override init(size: CGSize) {
@@ -26,15 +27,15 @@ class MenuScene: SKScene {
     override func didMoveToView(view: SKView) {
         highscore = userDefaults.valueForKey("highscore") != nil ? userDefaults.valueForKey("highscore") as? Int : 0
         orbCount = userDefaults.valueForKey("orbs") != nil ? userDefaults.valueForKey("orbs") as? Int : 0
-        
         animateBackground()
-//        let highscore = 0
         playButton = SKSpriteNode(texture: playButtonTexture)
         playButton.position = CGPointMake(self.frame.midX, self.frame.midY)
         self.addChild(playButton)
+        
         creditsButton = SKSpriteNode(texture: creditsButtonTexture)
         creditsButton.position = CGPointMake(self.frame.midX, playButton.position.y - 100)
         self.addChild(creditsButton)
+        
         exitButton = SKSpriteNode(texture: exitButtonTexture)
         exitButton.position = CGPointMake(self.frame.midX, creditsButton.position.y - 100)
         self.addChild(exitButton)
@@ -70,9 +71,12 @@ class MenuScene: SKScene {
         let movebg = SKAction.moveByX(0, y: -bgTexture.size().height, duration: 9)
         let replacebg = SKAction.moveByX(0, y: bgTexture.size().height, duration: 0)
         let movebgForever = SKAction.repeatActionForever(SKAction.sequence([movebg, replacebg]))
+        let changeColorAction = SKAction.colorizeWithColor(SKColor.orangeColor(), colorBlendFactor: 1.0, duration: 0.5)
         
         for var i:CGFloat=0; i<3; i++ {
             let bg = SKSpriteNode(texture: bgTexture)
+            bg.runAction(changeColorAction)
+
             bg.position = CGPoint(x: CGRectGetMidX(self.frame), y: bgTexture.size().height/2 + bgTexture.size().height * i)
             bg.size.height = self.frame.height
             bg.runAction(movebgForever)
