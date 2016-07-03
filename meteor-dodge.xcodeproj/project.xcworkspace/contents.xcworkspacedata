@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:space-shooter.xcodeproj">
+      location = "self:/Users/Abdul/myApps/space-shooter/space-shooter/meteor-dodge.xcodeproj">
    </FileRef>
 </Workspace>
