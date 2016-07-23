@@ -50,6 +50,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(scoreLabel)
         self.addChild(orbCountLabel)
         self.addChild(orbImage)
+        highscore = userDefaults.valueForKey("highscore") != nil ? userDefaults.valueForKey("highscore") as? Int : 0
         //self.addChild(highScoreLabel)
     }
     
