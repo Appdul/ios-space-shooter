@@ -42,10 +42,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var orbSound:SKAction?
     var maxMeteorDuration = 3.0
     var minMeteorDuration = 2.0
-    var revivePromptLabel = SKLabelNode(fontNamed: "TimeBurner")
-    var yesLabel = SKLabelNode(fontNamed: "TimeBurner")
-    var noLabel = SKLabelNode(fontNamed: "TimeBurner")
-    var modal = SKShapeNode(rectOfSize: CGSize(width: 300, height: 250))
+    var revivePromptLabel = SKLabelNode(fontNamed: "TimeBurner-Bold")
+    var yesLabel = SKLabelNode(fontNamed: "TimeBurner-Bold")
+    var noLabel = SKLabelNode(fontNamed: "TimeBurner-Bold")
+//    var modal = SKShapeNode(rectOfSize: CGSize(width: 320, height: 230))
+    var modal = SKShapeNode(path: CGPathCreateWithRoundedRect(CGRectMake(-160, -75, 320, 150), 40, 40, nil))
+    
+    //= CGPathCreateWithRoundedRect(CGRectMake(-15, -15, 30, 30), 4, 4, nil)
+//    modal.strokeColor = tile.fillColor = UIColor(red: 0.0 / 255.0, green: 128.0 / 255.0, blue: 255.0 / 255.0, alpha: 1.0)
 
     
     
@@ -80,23 +84,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         orbImage.xScale = orbScale
         orbImage.yScale = orbScale
         
-        revivePromptLabel.text = "Use \(reviveCost) orbs to keep going?"
-        revivePromptLabel.fontSize = 25
+        revivePromptLabel.text = "Spend \(reviveCost) orbs to keep going?"
+        revivePromptLabel.fontSize = 22
         revivePromptLabel.fontColor = orbColor
-        revivePromptLabel.position = CGPointMake(self.frame.midX, self.frame.midY)
+        revivePromptLabel.position = CGPointMake(self.frame.midX, self.frame.midY + 80)
         
         yesLabel.text = "Yes!"
         yesLabel.fontSize = 25
         yesLabel.fontColor = SKColor.greenColor()
-        yesLabel.position = CGPointMake(self.frame.midX - 100, self.frame.midY - 100)
+        yesLabel.position = CGPointMake(self.frame.midX - 100, self.frame.midY)
         
         noLabel.text = "Nah"
         noLabel.fontSize = 25
         noLabel.fontColor = SKColor.redColor()
-        noLabel.position = CGPointMake(self.frame.midX + 100, self.frame.midY - 100)
+        noLabel.position = CGPointMake(self.frame.midX + 100, self.frame.midY)
         
         modal.fillColor = SKColor.whiteColor()
-        modal.position = CGPointMake(self.frame.midX, self.frame.midY)
+        modal.position = CGPointMake(self.frame.midX, self.frame.midY + 60)
         modal.alpha = 0.3
         
     }
@@ -135,6 +139,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func spawnFallingItems() {
         let randomMeteor = arc4random_uniform(UInt32(3)) + 1
         var meteor:SKSpriteNode = SKSpriteNode(imageNamed: "greymeteor\(randomMeteor)")
+        meteor.name = "meteor"
         let scaleFactor = ( 100 * CGFloat(arc4random_uniform(UInt32(3)) + 3) )
         let meteorScale = scene!.frame.size.width / scaleFactor
         meteor.xScale = meteorScale
@@ -251,6 +256,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let displacment = vectorLength(displacmentVector)
             let time:NSTimeInterval = NSTimeInterval(displacment / CGFloat(velocity))
             let moveTo = SKAction.moveTo(newLocation, duration: time)
+            let node = self.nodeAtPoint(newLocation)
             
             //Ship is moving straight
             if displacmentVector.x <= 10 && displacmentVector.x >= -10 {
@@ -267,6 +273,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 let moveLeftAnimation = SKAction.animateWithTextures([moveLeftTexture1,moveLeftTexture2,moveLeftTexture3,moveLeftTexture4,redFighterTexture], timePerFrame: 0.08)
                 self.player.runAction(moveLeftAnimation)
                 self.player.runAction(moveTo)
+            }
+            
+            // User has agreed to spend orbs to be revived
+            if node == yesLabel {
+                orbCount! -= reviveCost
+                userDefaults.setValue(orbCount, forKey: "orbs")
+                userDefaults.synchronize()
+                orbCountLabel.text = String(orbCount!)
+                clearScreenAfterRevivePrompt()
+                self.scene!.view?.paused = false
+                
+            }
+            if node == noLabel {
+                endGame()
+                self.removeChildrenInArray([modal,revivePromptLabel,yesLabel,noLabel])
+                self.scene!.view?.paused = false
             }
 
         }
@@ -302,18 +324,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func collidedWithAMeteor(meteor: SKSpriteNode){
-        self.scene!.view?.paused = true
-        promptUserToRevive()
         
-        if score > highscore {
-            userDefaults.setValue(score, forKey: "highscore")
-            userDefaults.synchronize()
-            //print("collided: score > highscore so new highscore is \(score)")
+        // If the user can't afford to revive dont prompt them to
+        if !userCanRevive() {
+            endGame()
+        }
+        else {
+            self.scene!.view?.paused = true
+            promptUserToRevive()
         }
         
-        let transition:SKTransition = SKTransition.flipHorizontalWithDuration(0.5)
-        let gameOverScene:SKScene = GameOverScene(size: self.size, score: score)
-        self.view?.presentScene(gameOverScene, transition: transition)
     }
     
     func addVectors(a:CGPoint,b:CGPoint) -> CGPoint{
@@ -355,21 +375,37 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func userCanRevive() -> Bool{
-        
-        if (orbCount! > reviveCost) {
-            orbCount! -= reviveCost
-            userDefaults.setValue(orbCount, forKey: "orbs")
-            userDefaults.synchronize()
-            return true
-        }
-        return false
+        return orbCount! > reviveCost ? true : false
     }
+
+    
     
     func promptUserToRevive() {
         self.addChild(modal)
         self.addChild(revivePromptLabel)
         self.addChild(yesLabel)
         self.addChild(noLabel)
+    }
+    
+    func clearScreenAfterRevivePrompt() {
+        self.removeChildrenInArray([modal,revivePromptLabel,yesLabel,noLabel])
+        
+        self.enumerateChildNodesWithName("meteor"){ node , stop in
+            
+            node.removeFromParent()
+        }
+    }
+    
+    func endGame() {
+        if score > highscore {
+            userDefaults.setValue(score, forKey: "highscore")
+            userDefaults.synchronize()
+            //print("collided: score > highscore so new highscore is \(score)")
+        }
+        
+        let transition:SKTransition = SKTransition.flipHorizontalWithDuration(0.5)
+        let gameOverScene:SKScene = GameOverScene(size: self.size, score: score)
+        self.view?.presentScene(gameOverScene, transition: transition)
     }
 //
 //    override func update(currentTime: CFTimeInterval) {
