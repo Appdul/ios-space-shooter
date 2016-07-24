@@ -14,6 +14,7 @@ import CoreData
 public let userDefaults = NSUserDefaults.standardUserDefaults()
 public var highscore: Int?
 public var orbCount: Int?
+public let reviveCost = 5
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
@@ -41,6 +42,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var orbSound:SKAction?
     var maxMeteorDuration = 3.0
     var minMeteorDuration = 2.0
+    var revivePromptLabel = SKLabelNode(fontNamed: "TimeBurner")
+    var yesLabel = SKLabelNode(fontNamed: "TimeBurner")
+    var noLabel = SKLabelNode(fontNamed: "TimeBurner")
+    var modal = SKShapeNode(rectOfSize: CGSize(width: 300, height: 250))
 
     
     
@@ -74,6 +79,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         orbImage.position = CGPoint(x: orbCountLabel.position.x + 40, y: orbCountLabel.position.y + 14)
         orbImage.xScale = orbScale
         orbImage.yScale = orbScale
+        
+        revivePromptLabel.text = "Use \(reviveCost) orbs to keep going?"
+        revivePromptLabel.fontSize = 25
+        revivePromptLabel.fontColor = orbColor
+        revivePromptLabel.position = CGPointMake(self.frame.midX, self.frame.midY)
+        
+        yesLabel.text = "Yes!"
+        yesLabel.fontSize = 25
+        yesLabel.fontColor = SKColor.greenColor()
+        yesLabel.position = CGPointMake(self.frame.midX - 100, self.frame.midY - 100)
+        
+        noLabel.text = "Nah"
+        noLabel.fontSize = 25
+        noLabel.fontColor = SKColor.redColor()
+        noLabel.position = CGPointMake(self.frame.midX + 100, self.frame.midY - 100)
+        
+        modal.fillColor = SKColor.whiteColor()
+        modal.position = CGPointMake(self.frame.midX, self.frame.midY)
+        modal.alpha = 0.3
         
     }
     
@@ -278,6 +302,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func collidedWithAMeteor(meteor: SKSpriteNode){
+        self.scene!.view?.paused = true
+        promptUserToRevive()
         
         if score > highscore {
             userDefaults.setValue(score, forKey: "highscore")
@@ -328,6 +354,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
     }
     
+    func userCanRevive() -> Bool{
+        
+        if (orbCount! > reviveCost) {
+            orbCount! -= reviveCost
+            userDefaults.setValue(orbCount, forKey: "orbs")
+            userDefaults.synchronize()
+            return true
+        }
+        return false
+    }
+    
+    func promptUserToRevive() {
+        self.addChild(modal)
+        self.addChild(revivePromptLabel)
+        self.addChild(yesLabel)
+        self.addChild(noLabel)
+    }
 //
 //    override func update(currentTime: CFTimeInterval) {
 //        /* Called before each frame is rendered */
