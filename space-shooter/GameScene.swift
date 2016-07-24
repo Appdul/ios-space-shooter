@@ -241,7 +241,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         for touch in (touches) {
-            let newLocation = touch.locationInNode(self)
+            var newLocation = touch.locationInNode(self)
             let velocity = 570
             let currentLocationOfShip:CGPoint = player.position
             let displacmentVector:CGPoint = subtractVectors(newLocation, b: currentLocationOfShip)
@@ -249,6 +249,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let time:NSTimeInterval = NSTimeInterval(displacment / CGFloat(velocity))
             let moveTo = SKAction.moveTo(newLocation, duration: time)
             let node = self.nodeAtPoint(newLocation)
+            
+            // User has agreed to spend orbs to be revived
+            if node == yesLabel {
+                orbCount! -= reviveCost
+                userDefaults.setValue(orbCount, forKey: "orbs")
+                userDefaults.synchronize()
+                orbCountLabel.text = String(orbCount!)
+                clearScreenAfterRevivePrompt()
+                newLocation = player.position
+                self.scene!.view?.paused = false
+                
+            }
+            if node == noLabel {
+                endGame()
+                self.removeChildrenInArray([modal,revivePromptLabel,yesLabel,noLabel])
+                self.scene!.view?.paused = false
+            }
             
             //Ship is moving straight
             if displacmentVector.x <= 10 && displacmentVector.x >= -10 {
@@ -267,21 +284,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 self.player.runAction(moveTo)
             }
             
-            // User has agreed to spend orbs to be revived
-            if node == yesLabel {
-                orbCount! -= reviveCost
-                userDefaults.setValue(orbCount, forKey: "orbs")
-                userDefaults.synchronize()
-                orbCountLabel.text = String(orbCount!)
-                clearScreenAfterRevivePrompt()
-                self.scene!.view?.paused = false
-                
-            }
-            if node == noLabel {
-                endGame()
-                self.removeChildrenInArray([modal,revivePromptLabel,yesLabel,noLabel])
-                self.scene!.view?.paused = false
-            }
 
         }
     }
