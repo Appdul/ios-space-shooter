@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		96011CD01CF12B1B000971F7 /* litOrb@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96011CCF1CF12B1B000971F7 /* litOrb@2x.png */; };
+		962279FD1D4551750083C800 /* Red Explosion in Resources */ = {isa = PBXBuildFile; fileRef = 962279FC1D4551750083C800 /* Red Explosion */; };
+		962279FF1D45517E0083C800 /* Blue Effects in Resources */ = {isa = PBXBuildFile; fileRef = 962279FE1D45517E0083C800 /* Blue Effects */; };
+		96227A011D45541D0083C800 /* Textures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96227A001D45541D0083C800 /* Textures.swift */; };
 		962FC4CA1D1238B900F6E7B4 /* credits@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 962FC4C81D1238B900F6E7B4 /* credits@2x.png */; };
 		962FC4CB1D1238B900F6E7B4 /* exit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 962FC4C91D1238B900F6E7B4 /* exit@2x.png */; };
 		962FC4D01D123D7600F6E7B4 /* timeburnerbold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 962FC4CE1D123C5E00F6E7B4 /* timeburnerbold.ttf */; };
@@ -68,6 +71,9 @@
 
 /* Begin PBXFileReference section */
 		96011CCF1CF12B1B000971F7 /* litOrb@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "litOrb@2x.png"; sourceTree = "<group>"; };
+		962279FC1D4551750083C800 /* Red Explosion */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Red Explosion"; sourceTree = "<group>"; };
+		962279FE1D45517E0083C800 /* Blue Effects */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Blue Effects"; sourceTree = "<group>"; };
+		96227A001D45541D0083C800 /* Textures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Textures.swift; sourceTree = "<group>"; };
 		962FC4C81D1238B900F6E7B4 /* credits@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "credits@2x.png"; sourceTree = "<group>"; };
 		962FC4C91D1238B900F6E7B4 /* exit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "exit@2x.png"; sourceTree = "<group>"; };
 		962FC4CE1D123C5E00F6E7B4 /* timeburnerbold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = timeburnerbold.ttf; sourceTree = "<group>"; };
@@ -138,6 +144,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		962279FB1D4550B90083C800 /* particles */ = {
+			isa = PBXGroup;
+			children = (
+				962279FE1D45517E0083C800 /* Blue Effects */,
+				962279FC1D4551750083C800 /* Red Explosion */,
+			);
+			name = particles;
+			sourceTree = "<group>";
+		};
 		962FC4C71D12382700F6E7B4 /* menu */ = {
 			isa = PBXGroup;
 			children = (
@@ -206,6 +221,7 @@
 			isa = PBXGroup;
 			children = (
 				962FC4CC1D123C2700F6E7B4 /* Resources */,
+				96227A001D45541D0083C800 /* Textures.swift */,
 				968E0FE01CE7E98A001DA997 /* AppDelegate.swift */,
 				96B86E701D0F4347007BAB53 /* MenuScene.sks */,
 				968E0FE21CE7E98B001DA997 /* GameScene.sks */,
@@ -250,6 +266,7 @@
 		968E10041CE80A9F001DA997 /* sprites.atlas */ = {
 			isa = PBXGroup;
 			children = (
+				962279FB1D4550B90083C800 /* particles */,
 				96D4D76B1D1F93CF00B27A3C /* meteors */,
 				96D4D76A1D1F93A200B27A3C /* red fighter */,
 				969AE0821CEBF56900C813EA /* space-meteors */,
@@ -408,6 +425,7 @@
 				96B86E7B1D0F5DCE007BAB53 /* bgdark@2x.jpg in Resources */,
 				96AE74EE1CFB8C48002F5C6C /* lose.mp3 in Resources */,
 				9632B1B21D04BE8100A62724 /* redfighter0006.png in Resources */,
+				962279FD1D4551750083C800 /* Red Explosion in Resources */,
 				963590111CF81C9C00853AD8 /* bg1@2x.jpg in Resources */,
 				968E0FEC1CE7E98B001DA997 /* Images.xcassets in Resources */,
 				96B86E711D0F4347007BAB53 /* MenuScene.sks in Resources */,
@@ -415,6 +433,7 @@
 				963590151CF81C9C00853AD8 /* bg5@2x.jpg in Resources */,
 				96B86E791D0F5CBA007BAB53 /* bg2test@2x.jpg in Resources */,
 				968E0FE31CE7E98B001DA997 /* GameScene.sks in Resources */,
+				962279FF1D45517E0083C800 /* Blue Effects in Resources */,
 				9632B1B01D04BE8100A62724 /* redfighter0003.png in Resources */,
 				962FC4CB1D1238B900F6E7B4 /* exit@2x.png in Resources */,
 				969AE0831CEBF56900C813EA /* space-meteors in Resources */,
@@ -439,6 +458,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96227A011D45541D0083C800 /* Textures.swift in Sources */,
 				968E0FE51CE7E98B001DA997 /* GameScene.swift in Sources */,
 				96AE74FA1CFBBC71002F5C6C /* DataController.swift in Sources */,
 				968E0FE71CE7E98B001DA997 /* GameViewController.swift in Sources */,

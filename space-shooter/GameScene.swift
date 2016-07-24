@@ -30,26 +30,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var highScoreLabel = SKLabelNode()
     let scoreLabelName = "scoreLabel"
     var score:Int = 0
-    let redFighterTexture = SKTexture(imageNamed: "redfighter")
-    let moveRightTexture1 = SKTexture(imageNamed: "redfighter0006")
-    let moveRightTexture2 = SKTexture(imageNamed: "redfighter0007")
-    let moveRightTexture3 = SKTexture(imageNamed: "redfighter0008")
-    let moveRightTexture4 = SKTexture(imageNamed: "redfighter0009")
-    let moveLeftTexture1 = SKTexture(imageNamed: "redfighter0004")
-    let moveLeftTexture2 = SKTexture(imageNamed: "redfighter0003")
-    let moveLeftTexture3 = SKTexture(imageNamed: "redfighter0002")
-    let moveLeftTexture4 = SKTexture(imageNamed: "redfighter0001")
     var orbSound:SKAction?
     var maxMeteorDuration = 3.0
     var minMeteorDuration = 2.0
     var revivePromptLabel = SKLabelNode(fontNamed: "TimeBurner-Bold")
     var yesLabel = SKLabelNode(fontNamed: "TimeBurner-Bold")
     var noLabel = SKLabelNode(fontNamed: "TimeBurner-Bold")
-//    var modal = SKShapeNode(rectOfSize: CGSize(width: 320, height: 230))
     var modal = SKShapeNode(path: CGPathCreateWithRoundedRect(CGRectMake(-160, -75, 320, 150), 40, 40, nil))
-    
-    //= CGPathCreateWithRoundedRect(CGRectMake(-15, -15, 30, 30), 4, 4, nil)
-//    modal.strokeColor = tile.fillColor = UIColor(red: 0.0 / 255.0, green: 128.0 / 255.0, blue: 255.0 / 255.0, alpha: 1.0)
+//    let redExplosion1 = SKTextureAtlas
+//    let destroyAnimation = SKAction.animateWithTextures([moveRightTexture1,moveRightTexture2,moveRightTexture3,moveRightTexture4,redFighterTexture], timePerFrame: 0.08)
 
     
     
