@@ -101,6 +101,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         
         player = SKSpriteNode(texture: redFighterTexture )
+        player.name = "player"
         player.position = CGPointMake(self.frame.size.width/2, scene!.frame.size.height/6)
         let playerScale = scene!.frame.size.width/1200
         player.xScale = playerScale
@@ -116,8 +117,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         self.runAction(SKAction.repeatActionForever(SKAction.sequence([wait, spawnOrb])))
         orbSound = SKAction.playSoundFileNamed("orb.mp3", waitForCompletion: false)
-
-
+        
+        
+        
+        
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -364,7 +367,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func userCanRevive() -> Bool{
-        return orbCount! > reviveCost ? true : false
+        return orbCount! >= reviveCost ? true : false
     }
 
     
@@ -381,21 +384,46 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         self.enumerateChildNodesWithName("meteor"){ node , stop in
             
-            node.removeFromParent()
+            self.destroyNode(node)
         }
     }
     
     func endGame() {
+        let transition:SKTransition = SKTransition.flipHorizontalWithDuration(0.5)
+        let gameOverScene:SKScene = GameOverScene(size: self.size, score: score)
+        let waitForAnimation = SKAction.waitForDuration(0.5)
+        
         if score > highscore {
             userDefaults.setValue(score, forKey: "highscore")
             userDefaults.synchronize()
             //print("collided: score > highscore so new highscore is \(score)")
         }
         
-        let transition:SKTransition = SKTransition.flipHorizontalWithDuration(0.5)
-        let gameOverScene:SKScene = GameOverScene(size: self.size, score: score)
-        self.view?.presentScene(gameOverScene, transition: transition)
+        destroyNode(player)
+        self.runAction(waitForAnimation) { 
+            self.view?.presentScene(gameOverScene, transition: transition)
+        }
+        
+        
+        
     }
+    
+    func destroyNode(nodeToDestroy: SKNode) {
+        let remove = SKAction.removeFromParent()
+        nodeToDestroy.runAction(remove)
+        explosion(nodeToDestroy.position)
+    }
+    
+    func explosion(pos: CGPoint) {
+        var emitterNode = SKEmitterNode(fileNamed: "explosion.sks")
+        emitterNode!.particlePosition = pos
+        self.addChild(emitterNode!)
+        // Don't forget to remove the emitter node after the explosion
+        self.runAction(SKAction.waitForDuration(2), completion: { emitterNode!.removeFromParent() })
+        
+    }
+
+    
 //
 //    override func update(currentTime: CFTimeInterval) {
 //        /* Called before each frame is rendered */
