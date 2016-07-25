@@ -13,6 +13,7 @@
 		96227A011D45541D0083C800 /* Textures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96227A001D45541D0083C800 /* Textures.swift */; };
 		96227A041D4571670083C800 /* explosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = 96227A021D4571670083C800 /* explosion.sks */; };
 		96227A051D4571670083C800 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 96227A031D4571670083C800 /* spark.png */; };
+		96227A071D457C9B0083C800 /* rocketfire.sks in Resources */ = {isa = PBXBuildFile; fileRef = 96227A061D457C9B0083C800 /* rocketfire.sks */; };
 		962FC4CA1D1238B900F6E7B4 /* credits@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 962FC4C81D1238B900F6E7B4 /* credits@2x.png */; };
 		962FC4CB1D1238B900F6E7B4 /* exit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 962FC4C91D1238B900F6E7B4 /* exit@2x.png */; };
 		962FC4D01D123D7600F6E7B4 /* timeburnerbold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 962FC4CE1D123C5E00F6E7B4 /* timeburnerbold.ttf */; };
@@ -78,6 +79,7 @@
 		96227A001D45541D0083C800 /* Textures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Textures.swift; sourceTree = "<group>"; };
 		96227A021D4571670083C800 /* explosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = explosion.sks; sourceTree = "<group>"; };
 		96227A031D4571670083C800 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
+		96227A061D457C9B0083C800 /* rocketfire.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = rocketfire.sks; sourceTree = "<group>"; };
 		962FC4C81D1238B900F6E7B4 /* credits@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "credits@2x.png"; sourceTree = "<group>"; };
 		962FC4C91D1238B900F6E7B4 /* exit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "exit@2x.png"; sourceTree = "<group>"; };
 		962FC4CE1D123C5E00F6E7B4 /* timeburnerbold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = timeburnerbold.ttf; sourceTree = "<group>"; };
@@ -240,6 +242,7 @@
 				968E0FDE1CE7E98A001DA997 /* Supporting Files */,
 				96227A021D4571670083C800 /* explosion.sks */,
 				96227A031D4571670083C800 /* spark.png */,
+				96227A061D457C9B0083C800 /* rocketfire.sks */,
 			);
 			path = "space-shooter";
 			sourceTree = "<group>";
@@ -427,6 +430,7 @@
 				96227A041D4571670083C800 /* explosion.sks in Resources */,
 				9632B1B41D04BE8100A62724 /* redfighter0008.png in Resources */,
 				968E0FEF1CE7E98B001DA997 /* LaunchScreen.xib in Resources */,
+				96227A071D457C9B0083C800 /* rocketfire.sks in Resources */,
 				968E100E1CE80B52001DA997 /* bgmusic.mp3 in Resources */,
 				96D4D76D1D1F95B700B27A3C /* greymeteor2@2x.png in Resources */,
 				96B86E7B1D0F5DCE007BAB53 /* bgdark@2x.jpg in Resources */,

@@ -37,19 +37,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var yesLabel = SKLabelNode(fontNamed: "TimeBurner-Bold")
     var noLabel = SKLabelNode(fontNamed: "TimeBurner-Bold")
     var modal = SKShapeNode(path: CGPathCreateWithRoundedRect(CGRectMake(-160, -75, 320, 150), 40, 40, nil))
-//    let redExplosion1 = SKTextureAtlas
-//    let destroyAnimation = SKAction.animateWithTextures([moveRightTexture1,moveRightTexture2,moveRightTexture3,moveRightTexture4,redFighterTexture], timePerFrame: 0.08)
 
     
     
     override func didMoveToView(view: SKView) {
         styleLabels()
-
         self.addChild(scoreLabel)
         self.addChild(orbCountLabel)
         self.addChild(orbImage)
         highscore = userDefaults.valueForKey("highscore") != nil ? userDefaults.valueForKey("highscore") as? Int : 0
-        //self.addChild(highScoreLabel)
+        
     }
     
     func styleLabels(){
@@ -97,9 +94,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override init(size: CGSize) {
         super.init(size: size)
         
-        animateBackground()
-        
-        
+        //animateBackground()
         player = SKSpriteNode(texture: redFighterTexture )
         player.name = "player"
         player.position = CGPointMake(self.frame.size.width/2, scene!.frame.size.height/6)
@@ -107,6 +102,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         player.xScale = playerScale
         player.yScale = playerScale
         self.addChild(player)
+        addShipTrailEffect()
+        
         self.physicsWorld.gravity = CGVectorMake(0, 0)
         self.physicsWorld.contactDelegate = self
         let wait = SKAction.waitForDuration(2)
@@ -118,7 +115,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.runAction(SKAction.repeatActionForever(SKAction.sequence([wait, spawnOrb])))
         orbSound = SKAction.playSoundFileNamed("orb.mp3", waitForCompletion: false)
         
-        
+        //emitterNode!.position = CGPointMake(0, -180.0)
+        //the particle systems is too small, let‘s double its size
+//        rockettrail.xScale = 2.0
+//        rockettrail.yScale = 2.0
+        //changing the targetnode from spaceship to scene so that it gets influenced by movement
+//        emitterNode!.targetNode = self.scene
+//        player.addChild(emitterNode!)
         
         
     }
@@ -237,6 +240,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             player.physicsBody!.contactTestBitMask = meteorCategory
             player.physicsBody!.collisionBitMask = 0
+        
+        
     }
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -283,7 +288,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 self.player.runAction(moveLeftAnimation)
                 self.player.runAction(moveTo)
             }
-            
 
         }
     }
@@ -363,6 +367,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             bg.position = CGPoint(x: CGRectGetMidX(self.frame), y: bgTexture.size().height/2 + bgTexture.size().height * i)
             bg.size.height = self.frame.height
             bg.runAction(movebgForever)
+            print(bg.zPosition)
             self.addChild(bg)
         }
         
@@ -417,13 +422,26 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func explosion(pos: CGPoint) {
-        var emitterNode = SKEmitterNode(fileNamed: "explosion.sks")
-        emitterNode!.particlePosition = pos
-        self.addChild(emitterNode!)
+        var explosionNode = SKEmitterNode(fileNamed: "explosion.sks")
+        explosionNode!.particlePosition = pos
+        self.addChild(explosionNode!)
         // Don't forget to remove the emitter node after the explosion
-        self.runAction(SKAction.waitForDuration(2), completion: { emitterNode!.removeFromParent() })
+        self.runAction(SKAction.waitForDuration(2), completion: { explosionNode!.removeFromParent() })
         
     }
+    
+    func addShipTrailEffect() {
+        print("began trailing effect")
+        var emitterNode = SKEmitterNode(fileNamed: "rocketfire.sks")
+        emitterNode!.targetNode = scene
+        emitterNode!.position = CGPointMake(0, -180.0)
+        emitterNode!.zPosition = 100
+        //emitterNode!.particlePosition = player.position
+        //emitterNode!.pos
+        self.player.addChild(emitterNode!)
+    }
+    
+
 
     
 //
