@@ -14,7 +14,7 @@ import CoreData
 public let userDefaults = NSUserDefaults.standardUserDefaults()
 public var highscore: Int?
 public var orbCount: Int?
-public let reviveCost = 5
+public let reviveCost = 50
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
