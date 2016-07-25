@@ -93,7 +93,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override init(size: CGSize) {
         super.init(size: size)
-        
+        spawnBackgroundStars()
         //animateBackground()
         player = SKSpriteNode(texture: redFighterTexture )
         player.name = "player"
@@ -439,6 +439,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //emitterNode!.particlePosition = player.position
         //emitterNode!.pos
         self.player.addChild(emitterNode!)
+    }
+    
+    func spawnBackgroundStars() {
+        self.backgroundColor = UIColor.blackColor()
+        var starsNode = SKEmitterNode(fileNamed: "background.sks")
+        starsNode?.position = CGPointMake(self.frame.size.width/2, self.frame.size.height)
+        self.addChild(starsNode!)
     }
     
 
