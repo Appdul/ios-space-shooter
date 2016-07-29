@@ -39,6 +39,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var modal = SKShapeNode(path: CGPathCreateWithRoundedRect(CGRectMake(-160, -75, 320, 150), 40, 40, nil))
     var userHasStarted = false
     var isUsersFirstTap = true
+    let instructions = SKLabelNode(fontNamed: "TimeBurner-Bold")
+    let instructionsPart2 = SKLabelNode(fontNamed: "TimeBurner-Bold")
 
     
     
@@ -72,7 +74,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         orbImage.xScale = orbScale
         orbImage.yScale = orbScale
         
-        revivePromptLabel.text = "Spend \(reviveCost) orbs to keep going?"
+        revivePromptLabel.text = "Use \(reviveCost) orbs to keep going?"
         revivePromptLabel.fontSize = 22
         revivePromptLabel.fontColor = orbColor
         revivePromptLabel.position = CGPointMake(self.frame.midX, self.frame.midY + 80)
@@ -90,6 +92,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         modal.fillColor = SKColor.whiteColor()
         modal.position = CGPointMake(self.frame.midX, self.frame.midY + 60)
         modal.alpha = 0.3
+        
+        instructions.text = "Tap anywhere on the screen"
+        instructions.fontSize = 24
+        instructions.position = modal.position
+        instructions.fontColor = SKColor.whiteColor()
+        self.addChild(instructions)
+        
+        instructionsPart2.text = "to make the spaceship go there!"
+        instructionsPart2.fontSize = instructions.fontSize
+        instructionsPart2.position = CGPointMake(self.frame.midX, self.frame.midY + 30)
+        instructionsPart2.fontColor = SKColor.whiteColor()
+        self.addChild(instructionsPart2)
+        
         
     }
     
@@ -109,16 +124,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.physicsWorld.gravity = CGVectorMake(0, 0)
         self.physicsWorld.contactDelegate = self
         orbSound = SKAction.playSoundFileNamed("orb.mp3", waitForCompletion: false)
-        
-        //emitterNode!.position = CGPointMake(0, -180.0)
-        //the particle systems is too small, let‘s double its size
-//        rockettrail.xScale = 2.0
-//        rockettrail.yScale = 2.0
-        //changing the targetnode from spaceship to scene so that it gets influenced by movement
-//        emitterNode!.targetNode = self.scene
-//        player.addChild(emitterNode!)
-        
-        
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -151,7 +156,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(meteor)
 
         let duration = Double(arc4random_uniform(UInt32(maxMeteorDuration))) + minMeteorDuration
-        print("meteor falls all the way in: \(duration) seconds")
+        //print("meteor falls all the way in: \(duration) seconds")
         let actionArray:NSMutableArray = NSMutableArray()
         actionArray.addObject(SKAction.moveTo(CGPointMake(meteorPositionInX, -meteor.size.height), duration: NSTimeInterval(duration)))
         actionArray.addObject(SKAction.removeFromParent())
@@ -357,31 +362,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         return CGPointMake(a.x / length, a.y/length)
     }
     
-    func animateBackground() {
-        let randomBackground = "dark"
-        let bgTexture = SKTexture(imageNamed: "bg\(randomBackground).jpg")
-        
-        let movebg = SKAction.moveByX(0, y: -bgTexture.size().height, duration: minMeteorDuration*4)
-        let replacebg = SKAction.moveByX(0, y: bgTexture.size().height, duration: 0)
-        let movebgForever = SKAction.repeatActionForever(SKAction.sequence([movebg, replacebg]))
-        
-        for var i:CGFloat=0; i<3; i++ {
-            let bg = SKSpriteNode(texture: bgTexture)
-            bg.position = CGPoint(x: CGRectGetMidX(self.frame), y: bgTexture.size().height/2 + bgTexture.size().height * i)
-            bg.size.height = self.frame.height
-            bg.runAction(movebgForever)
-            print(bg.zPosition)
-            self.addChild(bg)
-        }
-        
-    }
-    
     func userCanRevive() -> Bool{
         return orbCount! >= reviveCost ? true : false
     }
 
-    
-    
     func promptUserToRevive() {
         self.addChild(modal)
         self.addChild(revivePromptLabel)
@@ -434,13 +418,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func addShipTrailEffect() {
-        print("began trailing effect")
         var emitterNode = SKEmitterNode(fileNamed: "rocketfire.sks")
         emitterNode!.targetNode = scene
         emitterNode!.position = CGPointMake(0, -180.0)
         emitterNode!.zPosition = 100
-        //emitterNode!.particlePosition = player.position
-        //emitterNode!.pos
         self.player.addChild(emitterNode!)
     }
     
@@ -453,6 +434,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func startGame() {
         //spawn orbs
+        instructions.removeFromParent()
+        instructionsPart2.removeFromParent()
         let wait = SKAction.waitForDuration(2)
         let spawnOrb = SKAction.runBlock {
             self.addOrb()
