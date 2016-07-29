@@ -111,7 +111,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override init(size: CGSize) {
         super.init(size: size)
         spawnBackgroundStars()
-        //animateBackground()
         player = SKSpriteNode(texture: redFighterTexture )
         player.name = "player"
         player.position = CGPointMake(self.frame.midX, self.frame.minY + 200)
@@ -383,7 +382,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func endGame() {
-        let transition:SKTransition = SKTransition.flipHorizontalWithDuration(0.5)
+        let transition:SKTransition = SKTransition.crossFadeWithDuration(0.5)
         let gameOverScene:SKScene = GameOverScene(size: self.size, score: score)
         let waitForAnimation = SKAction.waitForDuration(0.7)
         
