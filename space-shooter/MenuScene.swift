@@ -65,7 +65,7 @@ class MenuScene: SKScene {
     }
     
     func spawnBackgroundStars() {
-        self.backgroundColor = UIColor.blackColor()
+        self.backgroundColor = blueBg
         var starsNode = SKEmitterNode(fileNamed: "background.sks")
         starsNode?.position = CGPointMake(self.frame.size.width/2, self.frame.size.height)
         self.addChild(starsNode!)

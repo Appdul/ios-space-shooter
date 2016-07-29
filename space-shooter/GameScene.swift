@@ -15,7 +15,7 @@ public let userDefaults = NSUserDefaults.standardUserDefaults()
 public var highscore: Int?
 public var orbCount: Int?
 public let reviveCost = 50
-
+public let blueBg = UIColor(red: 5/255, green: 5/255, blue: 21/255, alpha: 1.0)
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var player: SKSpriteNode = SKSpriteNode()
@@ -31,8 +31,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let scoreLabelName = "scoreLabel"
     var score:Int = 0
     var orbSound:SKAction?
-    var maxMeteorDuration = 3.0
-    var minMeteorDuration = 3.0 
+    var maxMeteorDuration = 3.15
+    var minMeteorDuration = 2.15
     var revivePromptLabel = SKLabelNode(fontNamed: "TimeBurner-Bold")
     var yesLabel = SKLabelNode(fontNamed: "TimeBurner-Bold")
     var noLabel = SKLabelNode(fontNamed: "TimeBurner-Bold")
@@ -169,7 +169,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func difficultyCheck(){
         if score % 10 == 0 {
-            if minMeteorDuration >= 0.8{
+            if minMeteorDuration >= 0.9{
                 maxMeteorDuration -= 0.15
                 minMeteorDuration -= 0.15
             }
@@ -442,7 +442,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func spawnBackgroundStars() {
-        self.backgroundColor = UIColor.blackColor()
+        self.backgroundColor = blueBg//UIColor.blackColor()
         var starsNode = SKEmitterNode(fileNamed: "background.sks")
         starsNode?.position = CGPointMake(self.frame.size.width/2, self.frame.size.height)
         self.addChild(starsNode!)
