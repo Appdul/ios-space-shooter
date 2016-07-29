@@ -114,7 +114,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //animateBackground()
         player = SKSpriteNode(texture: redFighterTexture )
         player.name = "player"
-        player.position = CGPointMake(self.frame.size.width/2, scene!.frame.size.height/6)
+        player.position = CGPointMake(self.frame.midX, self.frame.minY + 200)
         let playerScale = scene!.frame.size.width/1200
         player.xScale = playerScale
         player.yScale = playerScale
