@@ -37,6 +37,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var yesLabel = SKLabelNode(fontNamed: "TimeBurner-Bold")
     var noLabel = SKLabelNode(fontNamed: "TimeBurner-Bold")
     var modal = SKShapeNode(path: CGPathCreateWithRoundedRect(CGRectMake(-160, -75, 320, 150), 40, 40, nil))
+    var userHasStarted = false
+    var isUsersFirstTap = true
 
     
     
@@ -106,13 +108,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         self.physicsWorld.gravity = CGVectorMake(0, 0)
         self.physicsWorld.contactDelegate = self
-        let wait = SKAction.waitForDuration(2)
-        let spawnOrb = SKAction.runBlock {
-            self.addOrb()
-        }
-        self.runAction(SKAction.sequence([wait, spawnOrb]))
-        
-        self.runAction(SKAction.repeatActionForever(SKAction.sequence([wait, spawnOrb])))
         orbSound = SKAction.playSoundFileNamed("orb.mp3", waitForCompletion: false)
         
         //emitterNode!.position = CGPointMake(0, -180.0)
@@ -213,7 +208,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         lastYieldTimeInterval += timeSinceLastUpdate
         if (lastYieldTimeInterval > 1) {
             lastYieldTimeInterval = 0
-            spawnFallingItems()
+            if userHasStarted {
+                spawnFallingItems()
+            }
+            
         }
     }
     
@@ -240,6 +238,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             player.physicsBody!.contactTestBitMask = meteorCategory
             player.physicsBody!.collisionBitMask = 0
+        
+        if isUsersFirstTap {
+            isUsersFirstTap = false
+            startGame()
+        }
         
         
     }
@@ -398,7 +401,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func endGame() {
         let transition:SKTransition = SKTransition.flipHorizontalWithDuration(0.5)
         let gameOverScene:SKScene = GameOverScene(size: self.size, score: score)
-        let waitForAnimation = SKAction.waitForDuration(0.5)
+        let waitForAnimation = SKAction.waitForDuration(0.7)
         
         if score > highscore {
             userDefaults.setValue(score, forKey: "highscore")
@@ -448,11 +451,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(starsNode!)
     }
     
+    func startGame() {
+        //spawn orbs
+        let wait = SKAction.waitForDuration(2)
+        let spawnOrb = SKAction.runBlock {
+            self.addOrb()
+        }
+        self.runAction(SKAction.sequence([wait, spawnOrb]))
+        
+        self.runAction(SKAction.repeatActionForever(SKAction.sequence([wait, spawnOrb])))
+        userHasStarted = true
+    }
 
-
-    
-//
-//    override func update(currentTime: CFTimeInterval) {
-//        /* Called before each frame is rendered */
-//    }
 }
