@@ -13,7 +13,7 @@ class GameOverScene: SKScene {
     
     init(size: CGSize, score: Int) {
         super.init(size: size)
-        animateBackground()
+        spawnBackgroundStars()
         let scoreLabel = SKLabelNode(fontNamed: "TimeBurner")
         scoreLabel.text = "YOUR SCORE: " + String(score)
         scoreLabel.fontColor = SKColor.redColor()
@@ -71,22 +71,11 @@ class GameOverScene: SKScene {
         
     }
     
-    func animateBackground() {
-        let randomBackground = "dark"
-        let bgTexture = SKTexture(imageNamed: "bg\(randomBackground).jpg")
-        
-        let movebg = SKAction.moveByX(0, y: -bgTexture.size().height, duration: 9)
-        let replacebg = SKAction.moveByX(0, y: bgTexture.size().height, duration: 0)
-        let movebgForever = SKAction.repeatActionForever(SKAction.sequence([movebg, replacebg]))
-        
-        for var i:CGFloat=0; i<3; i++ {
-            let bg = SKSpriteNode(texture: bgTexture)
-            bg.position = CGPoint(x: CGRectGetMidX(self.frame), y: bgTexture.size().height/2 + bgTexture.size().height * i)
-            bg.size.height = self.frame.height
-            bg.runAction(movebgForever)
-            self.addChild(bg)
-        }
-        
+    func spawnBackgroundStars() {
+        self.backgroundColor = UIColor.blackColor()
+        var starsNode = SKEmitterNode(fileNamed: "background.sks")
+        starsNode?.position = CGPointMake(self.frame.size.width/2, self.frame.size.height)
+        self.addChild(starsNode!)
     }
     
     required init?(coder aDecoder: NSCoder) {
