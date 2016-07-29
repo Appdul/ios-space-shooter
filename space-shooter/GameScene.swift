@@ -94,7 +94,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         modal.alpha = 0.3
         
         instructions.text = "Tap anywhere on the screen"
-        instructions.fontSize = 24
+        instructions.fontSize = 20
         instructions.position = modal.position
         instructions.fontColor = SKColor.whiteColor()
         self.addChild(instructions)

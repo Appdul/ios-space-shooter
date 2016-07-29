@@ -27,7 +27,7 @@ class GameOverScene: SKScene {
         self.addChild(highScoreLabel)
         
         playButton = SKSpriteNode(texture: playButtonTexture)
-        playButton.position = CGPointMake(self.frame.midX - 100, self.frame.midY - 100)
+        playButton.position = CGPointMake(self.frame.midX, self.frame.midY - 100)
         self.addChild(playButton)
         
         
