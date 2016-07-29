@@ -32,7 +32,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var score:Int = 0
     var orbSound:SKAction?
     var maxMeteorDuration = 3.0
-    var minMeteorDuration = 2.0
+    var minMeteorDuration = 3.0 
     var revivePromptLabel = SKLabelNode(fontNamed: "TimeBurner-Bold")
     var yesLabel = SKLabelNode(fontNamed: "TimeBurner-Bold")
     var noLabel = SKLabelNode(fontNamed: "TimeBurner-Bold")
@@ -156,7 +156,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(meteor)
 
         let duration = Double(arc4random_uniform(UInt32(maxMeteorDuration))) + minMeteorDuration
-        
+        print("meteor falls all the way in: \(duration) seconds")
         let actionArray:NSMutableArray = NSMutableArray()
         actionArray.addObject(SKAction.moveTo(CGPointMake(meteorPositionInX, -meteor.size.height), duration: NSTimeInterval(duration)))
         actionArray.addObject(SKAction.removeFromParent())
