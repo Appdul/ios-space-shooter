@@ -397,8 +397,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.view?.presentScene(gameOverScene, transition: transition)
         }
         
-        
-        
     }
     
     func destroyNode(nodeToDestroy: SKNode) {

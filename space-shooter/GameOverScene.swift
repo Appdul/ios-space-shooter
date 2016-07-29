@@ -29,10 +29,6 @@ class GameOverScene: SKScene {
         playButton = SKSpriteNode(texture: playButtonTexture)
         playButton.position = CGPointMake(self.frame.midX - 100, self.frame.midY - 100)
         self.addChild(playButton)
-
-        exitButton = SKSpriteNode(texture: exitButtonTexture)
-        exitButton.position = CGPointMake(self.frame.midX + 100, self.frame.midY - 100)
-        self.addChild(exitButton)
         
         
 //      self.runAction(SKAction.sequence([SKAction.waitForDuration(2.0),
@@ -62,10 +58,7 @@ class GameOverScene: SKScene {
                 scene.scaleMode = SKSceneScaleMode.AspectFill
                 skView.presentScene(scene)
             }
-            
-            if node == exitButton {
-                //TODO: quit the app
-            }
+
         }
         
         

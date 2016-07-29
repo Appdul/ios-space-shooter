@@ -13,12 +13,13 @@ public var playButton = SKSpriteNode()
 public let playButtonTexture = SKTexture(imageNamed: "play")
 public var creditsButton = SKSpriteNode()
 public let creditsButtonTexture = SKTexture(imageNamed: "credits")
-public var exitButton = SKSpriteNode()
-public let exitButtonTexture = SKTexture(imageNamed: "exit")
 public let highScoreLabel = SKLabelNode(fontNamed: "TimeBurner")
 
 
 class MenuScene: SKScene {
+    let title = SKLabelNode(fontNamed: "TimeBurner")
+    let litOrbTexture = SKTexture(imageNamed: "litOrb")
+    var player: SKSpriteNode = SKSpriteNode()
     
     override init(size: CGSize) {
         super.init(size: size)
@@ -29,21 +30,39 @@ class MenuScene: SKScene {
         orbCount = userDefaults.valueForKey("orbs") != nil ? userDefaults.valueForKey("orbs") as? Int : 0
         spawnBackgroundStars()
         playButton = SKSpriteNode(texture: playButtonTexture)
-        playButton.position = CGPointMake(self.frame.midX, self.frame.midY)
+        playButton.position = CGPointMake(self.frame.midX, self.frame.minY + 100)
         self.addChild(playButton)
         
-        creditsButton = SKSpriteNode(texture: creditsButtonTexture)
-        creditsButton.position = CGPointMake(self.frame.midX, playButton.position.y - 100)
-        self.addChild(creditsButton)
+//        creditsButton = SKSpriteNode(texture: creditsButtonTexture)
+//        creditsButton.position = CGPointMake(self.frame.midX, playButton.position.y - 100)
+//        self.addChild(creditsButton)
         
-        exitButton = SKSpriteNode(texture: exitButtonTexture)
-        exitButton.position = CGPointMake(self.frame.midX, creditsButton.position.y - 100)
-        self.addChild(exitButton)
+//        highScoreLabel.text = "HIGH SCORE: \(highscore!)"
+//        highScoreLabel.fontColor = UIColor.redColor()
+//        highScoreLabel.position = CGPointMake(self.frame.midX, playButton.position.y + 140)
+//        self.addChild(highScoreLabel)
         
-        highScoreLabel.text = "HIGH SCORE: \(highscore!)"
-        highScoreLabel.fontColor = UIColor.redColor()
-        highScoreLabel.position = CGPointMake(self.frame.midX, playButton.position.y + 140)
-        self.addChild(highScoreLabel)
+        title.text = "SP      RBS"
+        title.fontColor = UIColor.redColor()
+        title.fontSize = 45
+        title.position =  CGPointMake(self.frame.midX, self.frame.maxY - 100)
+        self.addChild(title)
+        
+        let letterOrb = SKSpriteNode(texture: litOrbTexture)
+        letterOrb.position = CGPointMake(title.position.x - 13, title.position.y + 15)
+        letterOrb.xScale = 0.8
+        letterOrb.yScale = 0.8
+        self.addChild(letterOrb)
+        
+        player = SKSpriteNode(texture: redFighterTexture )
+        player.name = "player"
+        player.position = CGPointMake(self.frame.midX, self.frame.midY)
+        let playerScale = scene!.frame.size.width/1200
+        player.xScale = playerScale
+        player.yScale = playerScale
+        self.addChild(player)
+        addShipTrailEffect()
+
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -75,6 +94,14 @@ class MenuScene: SKScene {
 //        super.init(coder: aDecoder)
         fatalError("init(coder:) has not been implemented")
 
+    }
+    
+    func addShipTrailEffect() {
+        var emitterNode = SKEmitterNode(fileNamed: "rocketfire.sks")
+        emitterNode!.targetNode = scene
+        emitterNode!.position = CGPointMake(0, -180.0)
+        emitterNode!.zPosition = 100
+        self.player.addChild(emitterNode!)
     }
     
 }
