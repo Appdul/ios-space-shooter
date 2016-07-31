@@ -14,7 +14,6 @@ import CoreData
 public let userDefaults = NSUserDefaults.standardUserDefaults()
 public var highscore: Int?
 public var orbCount: Int?
-public let reviveCost = 1
 public let blueBg = UIColor(red: 5/255, green: 5/255, blue: 21/255, alpha: 1.0)
 public var muted = false
 class GameScene: SKScene, SKPhysicsContactDelegate {
@@ -47,6 +46,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var userHasJustRevived = false
     var nonGamePlayTouch = false
     var startPosition: CGPoint?
+    var reviveCost = 50
 
     
     
@@ -80,7 +80,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         orbImage.xScale = orbScale
         orbImage.yScale = orbScale
         
-        revivePromptLabel.text = "Use \(reviveCost) orbs to keep going?"
         revivePromptLabel.fontSize = 22
         revivePromptLabel.fontColor = orbColor
         revivePromptLabel.position = CGPointMake(self.frame.midX, self.frame.midY + 80)
@@ -280,6 +279,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 if node == yesLabel {
                     userHasJustRevived = true
                     orbCount! -= reviveCost
+                    reviveCost = reviveCost*2
                     userDefaults.setValue(orbCount, forKey: "orbs")
                     userDefaults.synchronize()
                     orbCountLabel.text = String(orbCount!)
@@ -399,6 +399,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
 
     func promptUserToRevive() {
+        revivePromptLabel.text = "Use \(reviveCost) orbs to keep going?"
         self.addChild(modal)
         self.addChild(revivePromptLabel)
         self.addChild(yesLabel)
