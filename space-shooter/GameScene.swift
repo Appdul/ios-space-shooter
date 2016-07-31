@@ -14,7 +14,7 @@ import CoreData
 public let userDefaults = NSUserDefaults.standardUserDefaults()
 public var highscore: Int?
 public var orbCount: Int?
-public let reviveCost = 50
+public let reviveCost = 1
 public let blueBg = UIColor(red: 5/255, green: 5/255, blue: 21/255, alpha: 1.0)
 public var muted = false
 class GameScene: SKScene, SKPhysicsContactDelegate {
@@ -43,6 +43,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var isUsersFirstTap = true
     let instructions = SKLabelNode(fontNamed: "TimeBurner-Bold")
     let instructionsPart2 = SKLabelNode(fontNamed: "TimeBurner-Bold")
+    let waitForAnimation = SKAction.waitForDuration(0.7)
 
     
     
@@ -278,6 +279,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 clearScreenAfterRevivePrompt()
                 newLocation = player.position
                 self.scene!.view?.paused = false
+                respawnPlayer()
                 
             }
             if node == noLabel {
@@ -342,8 +344,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             endGame()
         }
         else {
-            self.scene!.view?.paused = true
-            promptUserToRevive()
+            destroyNode(player)
+            player.removeAllChildren()
+            self.runAction(waitForAnimation) {
+                self.scene!.view?.paused = true
+                self.promptUserToRevive()
+            }
         }
         
     }
@@ -391,7 +397,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func endGame() {
         let transition:SKTransition = SKTransition.crossFadeWithDuration(0.5)
         let gameOverScene:SKScene = GameOverScene(size: self.size, score: score)
-        let waitForAnimation = SKAction.waitForDuration(0.7)
+        
         
         if score > highscore {
             userDefaults.setValue(score, forKey: "highscore")
@@ -413,6 +419,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if !muted {
             self.runAction(boomSound!)
         }
+    }
+    func respawnPlayer() {
+        player.position = CGPointMake(self.frame.midX, self.frame.minY + 200)
+        self.addChild(player)
+        addShipTrailEffect()
     }
     
     func explosion(pos: CGPoint) {
