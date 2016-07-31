@@ -38,6 +38,7 @@
 		963590181CF81C9C00853AD8 /* bg8@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 963590101CF81C9C00853AD8 /* bg8@2x.jpg */; };
 		963A105E1D4B024200D5BB4D /* destination.sks in Resources */ = {isa = PBXBuildFile; fileRef = 963A105D1D4B024200D5BB4D /* destination.sks */; };
 		963D79461D45B7D300593787 /* background.sks in Resources */ = {isa = PBXBuildFile; fileRef = 963D79451D45B7D300593787 /* background.sks */; };
+		9662A1161D4DC084005C9C15 /* boom.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9662A1151D4DC084005C9C15 /* boom.mp3 */; };
 		968E0FE11CE7E98A001DA997 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968E0FE01CE7E98A001DA997 /* AppDelegate.swift */; };
 		968E0FE31CE7E98B001DA997 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 968E0FE21CE7E98B001DA997 /* GameScene.sks */; };
 		968E0FE51CE7E98B001DA997 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968E0FE41CE7E98B001DA997 /* GameScene.swift */; };
@@ -107,6 +108,7 @@
 		963590101CF81C9C00853AD8 /* bg8@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bg8@2x.jpg"; sourceTree = "<group>"; };
 		963A105D1D4B024200D5BB4D /* destination.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = destination.sks; sourceTree = "<group>"; };
 		963D79451D45B7D300593787 /* background.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = background.sks; sourceTree = "<group>"; };
+		9662A1151D4DC084005C9C15 /* boom.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = boom.mp3; sourceTree = "<group>"; };
 		968E0FDB1CE7E98A001DA997 /* meteor-dodge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "meteor-dodge.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		968E0FDF1CE7E98A001DA997 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		968E0FE01CE7E98A001DA997 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -300,6 +302,7 @@
 			children = (
 				96AE74EC1CFB8C48002F5C6C /* lose.mp3 */,
 				96AE74ED1CFB8C48002F5C6C /* orb.mp3 */,
+				9662A1151D4DC084005C9C15 /* boom.mp3 */,
 				968E100C1CE80B52001DA997 /* bgmusic.mp3 */,
 				968E100D1CE80B52001DA997 /* torpedo.mp3 */,
 			);
@@ -455,6 +458,7 @@
 				963590161CF81C9C00853AD8 /* bg6@2x.jpg in Resources */,
 				963590151CF81C9C00853AD8 /* bg5@2x.jpg in Resources */,
 				96227A051D4571670083C800 /* spark.png in Resources */,
+				9662A1161D4DC084005C9C15 /* boom.mp3 in Resources */,
 				96B86E791D0F5CBA007BAB53 /* bg2test@2x.jpg in Resources */,
 				968E0FE31CE7E98B001DA997 /* GameScene.sks in Resources */,
 				962279FF1D45517E0083C800 /* Blue Effects in Resources */,

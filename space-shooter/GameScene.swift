@@ -16,6 +16,7 @@ public var highscore: Int?
 public var orbCount: Int?
 public let reviveCost = 50
 public let blueBg = UIColor(red: 5/255, green: 5/255, blue: 21/255, alpha: 1.0)
+public var muted = false
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var player: SKSpriteNode = SKSpriteNode()
@@ -31,6 +32,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let scoreLabelName = "scoreLabel"
     var score:Int = 0
     var orbSound:SKAction?
+    var boomSound:SKAction?
     var maxMeteorDuration = 3.15
     var minMeteorDuration = 2.15
     var revivePromptLabel = SKLabelNode(fontNamed: "TimeBurner-Bold")
@@ -123,6 +125,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.physicsWorld.gravity = CGVectorMake(0, 0)
         self.physicsWorld.contactDelegate = self
         orbSound = SKAction.playSoundFileNamed("orb.mp3", waitForCompletion: false)
+        boomSound = SKAction.playSoundFileNamed("boom.mp3", waitForCompletion: false)
+        
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -316,8 +320,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     func collidedWithAnOrb(orb: SKSpriteNode) {
         
-        self.runAction(orbSound!)//SKAction.playSoundFileNamed("orb.mp3", waitForCompletion: false))
-        
+        self.runAction(orbSound!)
         orb.removeFromParent()
         score++
         orbCount!++
@@ -403,6 +406,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let remove = SKAction.removeFromParent()
         nodeToDestroy.runAction(remove)
         explosion(nodeToDestroy.position)
+        if !muted {
+            self.runAction(boomSound!)
+        }
     }
     
     func explosion(pos: CGPoint) {

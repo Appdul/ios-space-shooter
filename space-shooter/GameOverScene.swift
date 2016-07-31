@@ -58,10 +58,7 @@ class GameOverScene: SKScene {
                 scene.scaleMode = SKSceneScaleMode.AspectFill
                 skView.presentScene(scene)
             }
-
         }
-        
-        
     }
     
     func spawnBackgroundStars() {
