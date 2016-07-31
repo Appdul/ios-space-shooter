@@ -14,6 +14,7 @@ public let playButtonTexture = SKTexture(imageNamed: "play")
 public var creditsButton = SKSpriteNode()
 public let creditsButtonTexture = SKTexture(imageNamed: "credits")
 public let highScoreLabel = SKLabelNode(fontNamed: "TimeBurner")
+public let muteLabel = SKLabelNode()
 
 
 class MenuScene: SKScene {

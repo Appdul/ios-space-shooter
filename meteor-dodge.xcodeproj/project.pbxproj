@@ -39,6 +39,8 @@
 		963A105E1D4B024200D5BB4D /* destination.sks in Resources */ = {isa = PBXBuildFile; fileRef = 963A105D1D4B024200D5BB4D /* destination.sks */; };
 		963D79461D45B7D300593787 /* background.sks in Resources */ = {isa = PBXBuildFile; fileRef = 963D79451D45B7D300593787 /* background.sks */; };
 		9662A1161D4DC084005C9C15 /* boom.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9662A1151D4DC084005C9C15 /* boom.mp3 */; };
+		9662A1181D4DC728005C9C15 /* play_buttons_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 9662A1171D4DC728005C9C15 /* play_buttons_pressed.png */; };
+		9662A11A1D4DCBDA005C9C15 /* mute.png in Resources */ = {isa = PBXBuildFile; fileRef = 9662A1191D4DCBDA005C9C15 /* mute.png */; };
 		968E0FE11CE7E98A001DA997 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968E0FE01CE7E98A001DA997 /* AppDelegate.swift */; };
 		968E0FE31CE7E98B001DA997 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 968E0FE21CE7E98B001DA997 /* GameScene.sks */; };
 		968E0FE51CE7E98B001DA997 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968E0FE41CE7E98B001DA997 /* GameScene.swift */; };
@@ -109,6 +111,8 @@
 		963A105D1D4B024200D5BB4D /* destination.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = destination.sks; sourceTree = "<group>"; };
 		963D79451D45B7D300593787 /* background.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = background.sks; sourceTree = "<group>"; };
 		9662A1151D4DC084005C9C15 /* boom.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = boom.mp3; sourceTree = "<group>"; };
+		9662A1171D4DC728005C9C15 /* play_buttons_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play_buttons_pressed.png; sourceTree = "<group>"; };
+		9662A1191D4DCBDA005C9C15 /* mute.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mute.png; sourceTree = "<group>"; };
 		968E0FDB1CE7E98A001DA997 /* meteor-dodge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "meteor-dodge.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		968E0FDF1CE7E98A001DA997 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		968E0FE01CE7E98A001DA997 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -172,6 +176,7 @@
 			children = (
 				962FC4C81D1238B900F6E7B4 /* credits@2x.png */,
 				962FC4C91D1238B900F6E7B4 /* exit@2x.png */,
+				9662A1171D4DC728005C9C15 /* play_buttons_pressed.png */,
 				96B86E761D0F4B1B007BAB53 /* play@2x.png */,
 			);
 			name = menu;
@@ -293,6 +298,7 @@
 				962FC4C71D12382700F6E7B4 /* menu */,
 				964DBDDB1D04E2E2008CA0AA /* backgrounds */,
 				96011CCF1CF12B1B000971F7 /* litOrb@2x.png */,
+				9662A1191D4DCBDA005C9C15 /* mute.png */,
 			);
 			name = sprites.atlas;
 			sourceTree = "<group>";
@@ -437,9 +443,11 @@
 				9632B1AE1D04BE8100A62724 /* redfighter0001.png in Resources */,
 				9632B1AF1D04BE8100A62724 /* redfighter0002.png in Resources */,
 				963590141CF81C9C00853AD8 /* bg4@2x.jpg in Resources */,
+				9662A11A1D4DCBDA005C9C15 /* mute.png in Resources */,
 				963590131CF81C9C00853AD8 /* bg3@2x.jpg in Resources */,
 				963590121CF81C9C00853AD8 /* bg2@2x.jpg in Resources */,
 				96227A041D4571670083C800 /* explosion.sks in Resources */,
+				9662A1181D4DC728005C9C15 /* play_buttons_pressed.png in Resources */,
 				9632B1B41D04BE8100A62724 /* redfighter0008.png in Resources */,
 				968E0FEF1CE7E98B001DA997 /* LaunchScreen.xib in Resources */,
 				96227A071D457C9B0083C800 /* rocketfire.sks in Resources */,

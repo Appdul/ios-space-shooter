@@ -319,8 +319,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     }
     func collidedWithAnOrb(orb: SKSpriteNode) {
-        
-        self.runAction(orbSound!)
+        if !muted {
+            self.runAction(orbSound!)
+        }
         orb.removeFromParent()
         score++
         orbCount!++

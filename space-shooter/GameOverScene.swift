@@ -30,6 +30,11 @@ class GameOverScene: SKScene {
         playButton.position = CGPointMake(self.frame.midX, self.frame.midY - 100)
         self.addChild(playButton)
         
+        //let muteLabel = S
+        muteLabel.text = muted ? "🔇" : "🔈"
+        muteLabel.position = CGPointMake(self.frame.maxX - 40, self.frame.maxY - 50)
+        self.addChild(muteLabel)
+        
         
 //      self.runAction(SKAction.sequence([SKAction.waitForDuration(2.0),
 //          SKAction.runBlock({
@@ -40,10 +45,6 @@ class GameOverScene: SKScene {
 //           })
 //      ]))
     }
-    
-//    override func didMoveToView(view: SKView) {
-//        animateBackground()
-//    }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         
@@ -57,6 +58,16 @@ class GameOverScene: SKScene {
                 let scene = GameScene(size: skView.bounds.size)
                 scene.scaleMode = SKSceneScaleMode.AspectFill
                 skView.presentScene(scene)
+            }
+            else if node == muteLabel {
+                if muteLabel.text == "🔇" {
+                    muteLabel.text = "🔈"
+                    muted = false
+                }
+                else {
+                    muteLabel.text = "🔇"
+                    muted = true
+                }
             }
         }
     }
