@@ -31,27 +31,10 @@ class GameOverScene: SKScene {
         playButton.position = CGPointMake(self.frame.midX, self.frame.midY - 100)
         self.addChild(playButton)
         
-        
-        
-        
-        // TODO: FIX CRASH AT CGPOINtMAKE ABOVE
-        
-        
-//      self.runAction(SKAction.sequence([SKAction.waitForDuration(2.0),
-//          SKAction.runBlock({
-//                let transition:SKTransition = SKTransition.flipHorizontalWithDuration(0.5)
-//                let scene:SKScene = GameScene(size: self.size)
-//                self.view?.presentScene(scene, transition: transition)
-//      
-//           })
-//      ]))
     }
     
     override func didMoveToView(view: SKView) {
         muteLabel.text = muted ? "🔇" : "🔈"
-        //muteLabel.position = CGPointMake(self.frame.maxX - 40, self.frame.maxY - 50)
-        //muteLabel.position = CGPointMake(300, 350)
-        //muteLabel.horizontalAlignmentMode = .Right
         muteLabel.position = CGPoint(x:self.size.width - 20, y:self.size.height - 50)
         self.addChild(muteLabel)
     }
@@ -84,7 +67,7 @@ class GameOverScene: SKScene {
     
     func spawnBackgroundStars() {
         self.backgroundColor = blueBg
-        var starsNode = SKEmitterNode(fileNamed: "background.sks")
+        let starsNode = SKEmitterNode(fileNamed: "background.sks")
         starsNode?.position = CGPointMake(self.frame.size.width/2, self.frame.size.height)
         self.addChild(starsNode!)
     }
