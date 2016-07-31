@@ -45,6 +45,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let instructionsPart2 = SKLabelNode(fontNamed: "TimeBurner-Bold")
     let waitForAnimation = SKAction.waitForDuration(0.7)
     var userHasJustRevived = false
+    var nonGamePlayTouch = false
+    var startPosition: CGPoint?
 
     
     
@@ -117,7 +119,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         spawnBackgroundStars()
         player = SKSpriteNode(texture: redFighterTexture )
         player.name = "player"
-        player.position = CGPointMake(self.frame.midX, self.frame.minY + 200)
+        startPosition = CGPointMake(self.frame.midX, self.frame.minY + 200)
+        player.position = startPosition!
         let playerScale = scene!.frame.size.width/1200
         player.xScale = playerScale
         player.yScale = playerScale
@@ -262,6 +265,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         for touch in (touches) {
+            
             var newLocation = touch.locationInNode(self)
             let velocity = 570
             let currentLocationOfShip:CGPoint = player.position
@@ -271,44 +275,54 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let moveTo = SKAction.moveTo(newLocation, duration: time)
             let node = self.nodeAtPoint(newLocation)
             
-            // User has agreed to spend orbs to be revived
-            if node == yesLabel {
-                userHasJustRevived = true
-                orbCount! -= reviveCost
-                userDefaults.setValue(orbCount, forKey: "orbs")
-                userDefaults.synchronize()
-                orbCountLabel.text = String(orbCount!)
-                clearScreenAfterRevivePrompt()
-                newLocation = player.position
-                self.scene!.view?.paused = false
-                respawnPlayer()
-                self.runAction(waitForAnimation, completion: { 
-                    self.userHasJustRevived = false
-                })
+            if nonGamePlayTouch {
+                // User has agreed to spend orbs to be revived
+                if node == yesLabel {
+                    userHasJustRevived = true
+                    orbCount! -= reviveCost
+                    userDefaults.setValue(orbCount, forKey: "orbs")
+                    userDefaults.synchronize()
+                    orbCountLabel.text = String(orbCount!)
+                    clearScreenAfterRevivePrompt()
+                    newLocation = startPosition!
+                    self.scene!.view?.paused = false
+                    respawnPlayer()
+                    self.runAction(waitForAnimation, completion: {
+                        self.userHasJustRevived = false
+                    })
+                    nonGamePlayTouch = false
+                    
+                    
+                    
+                }
+                if node == noLabel {
+                    endGame()
+                    self.removeChildrenInArray([modal,revivePromptLabel,yesLabel,noLabel])
+                    self.scene!.view?.paused = false
+                    nonGamePlayTouch = false
+                }
                 
-                
-            }
-            if node == noLabel {
-                endGame()
-                self.removeChildrenInArray([modal,revivePromptLabel,yesLabel,noLabel])
-                self.scene!.view?.paused = false
             }
             
-            //Ship is moving straight
-            if displacmentVector.x <= 10 && displacmentVector.x >= -10 {
-                self.player.runAction(moveTo)
-            }
-                //ship is moving to the right
-            else if newLocation.x > currentLocationOfShip.x {
-                let moveRightAnimation = SKAction.animateWithTextures([moveRightTexture1,moveRightTexture2,moveRightTexture3,moveRightTexture4,redFighterTexture], timePerFrame: 0.08)
-                self.player.runAction(moveRightAnimation)
-                self.player.runAction(moveTo)
-            }
-                //ship is moving to the left
-            else if newLocation.x < currentLocationOfShip.x {
-                let moveLeftAnimation = SKAction.animateWithTextures([moveLeftTexture1,moveLeftTexture2,moveLeftTexture3,moveLeftTexture4,redFighterTexture], timePerFrame: 0.08)
-                self.player.runAction(moveLeftAnimation)
-                self.player.runAction(moveTo)
+            // Handle gameplay taps
+            else {
+                //Ship is moving straight
+                if displacmentVector.x <= 10 && displacmentVector.x >= -10 {
+                    self.player.runAction(moveTo)
+                }
+                    //ship is moving to the right
+                else if newLocation.x > currentLocationOfShip.x {
+                    let moveRightAnimation = SKAction.animateWithTextures([moveRightTexture1,moveRightTexture2,moveRightTexture3,moveRightTexture4,redFighterTexture], timePerFrame: 0.08)
+                    self.player.runAction(moveRightAnimation)
+                    self.player.runAction(moveTo)
+                }
+                    //ship is moving to the left
+                else if newLocation.x < currentLocationOfShip.x {
+                    let moveLeftAnimation = SKAction.animateWithTextures([moveLeftTexture1,moveLeftTexture2,moveLeftTexture3,moveLeftTexture4,redFighterTexture], timePerFrame: 0.08)
+                    self.player.runAction(moveLeftAnimation)
+                    self.player.runAction(moveTo)
+                }
+
             }
 
         }
@@ -389,6 +403,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(revivePromptLabel)
         self.addChild(yesLabel)
         self.addChild(noLabel)
+        nonGamePlayTouch = true
     }
     
     func clearScreenAfterRevivePrompt() {
@@ -427,7 +442,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     func respawnPlayer() {
-        player.position = CGPointMake(self.frame.midX, self.frame.minY + 200)
+        player.position = startPosition!
         self.addChild(player)
         addShipTrailEffect()
     }
