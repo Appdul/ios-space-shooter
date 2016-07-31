@@ -10,6 +10,7 @@ import Foundation
 import SpriteKit
 
 class GameOverScene: SKScene {
+    let muteLabel = SKLabelNode()
     
     init(size: CGSize, score: Int) {
         super.init(size: size)
@@ -30,10 +31,10 @@ class GameOverScene: SKScene {
         playButton.position = CGPointMake(self.frame.midX, self.frame.midY - 100)
         self.addChild(playButton)
         
-        //let muteLabel = S
-        muteLabel.text = muted ? "🔇" : "🔈"
-        muteLabel.position = CGPointMake(self.frame.maxX - 40, self.frame.maxY - 50)
-        self.addChild(muteLabel)
+        
+        
+        
+        // TODO: FIX CRASH AT CGPOINtMAKE ABOVE
         
         
 //      self.runAction(SKAction.sequence([SKAction.waitForDuration(2.0),
@@ -44,6 +45,15 @@ class GameOverScene: SKScene {
 //      
 //           })
 //      ]))
+    }
+    
+    override func didMoveToView(view: SKView) {
+        muteLabel.text = muted ? "🔇" : "🔈"
+        //muteLabel.position = CGPointMake(self.frame.maxX - 40, self.frame.maxY - 50)
+        //muteLabel.position = CGPointMake(300, 350)
+        //muteLabel.horizontalAlignmentMode = .Right
+        muteLabel.position = CGPoint(x:self.size.width - 20, y:self.size.height - 50)
+        self.addChild(muteLabel)
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {

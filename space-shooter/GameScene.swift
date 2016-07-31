@@ -124,8 +124,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         self.physicsWorld.gravity = CGVectorMake(0, 0)
         self.physicsWorld.contactDelegate = self
-        orbSound = SKAction.playSoundFileNamed("orb.mp3", waitForCompletion: false)
-        boomSound = SKAction.playSoundFileNamed("boom.mp3", waitForCompletion: false)
+        
+        if !muted {
+            orbSound = SKAction.playSoundFileNamed("orb.mp3", waitForCompletion: false)
+            boomSound = SKAction.playSoundFileNamed("boom.mp3", waitForCompletion: false)
+        }
         
     }
 
