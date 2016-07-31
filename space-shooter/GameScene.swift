@@ -44,6 +44,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let instructions = SKLabelNode(fontNamed: "TimeBurner-Bold")
     let instructionsPart2 = SKLabelNode(fontNamed: "TimeBurner-Bold")
     let waitForAnimation = SKAction.waitForDuration(0.7)
+    var userHasJustRevived = false
 
     
     
@@ -220,7 +221,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         lastYieldTimeInterval += timeSinceLastUpdate
         if (lastYieldTimeInterval > 1) {
             lastYieldTimeInterval = 0
-            if userHasStarted {
+            if userHasStarted && !userHasJustRevived {
                 spawnFallingItems()
             }
             
@@ -272,6 +273,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             // User has agreed to spend orbs to be revived
             if node == yesLabel {
+                userHasJustRevived = true
                 orbCount! -= reviveCost
                 userDefaults.setValue(orbCount, forKey: "orbs")
                 userDefaults.synchronize()
@@ -280,6 +282,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 newLocation = player.position
                 self.scene!.view?.paused = false
                 respawnPlayer()
+                self.runAction(waitForAnimation, completion: { 
+                    self.userHasJustRevived = false
+                })
+                
                 
             }
             if node == noLabel {
