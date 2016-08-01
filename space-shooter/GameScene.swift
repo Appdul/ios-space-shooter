@@ -115,6 +115,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override init(size: CGSize) {
         super.init(size: size)
+        //orbCount = 58
         spawnBackgroundStars()
         player = SKSpriteNode(texture: redFighterTexture )
         player.name = "player"
@@ -361,6 +362,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // If the user can't afford to revive dont prompt them to
         if !userCanRevive() {
+            destroyNode(player)
             endGame()
         }
         else {
@@ -427,7 +429,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             //print("collided: score > highscore so new highscore is \(score)")
         }
         
-        destroyNode(player)
         self.runAction(waitForAnimation) { 
             self.view?.presentScene(gameOverScene, transition: transition)
         }

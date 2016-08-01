@@ -16,8 +16,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "968E0FDA1CE7E98A001DA997"
                BuildableName = "meteor-dodge.app"
-               BlueprintName = "meteor-dodge"
-               ReferencedContainer = "container:meteor-dodge.xcodeproj">
+               BlueprintName = "Space Orbs"
+               ReferencedContainer = "container:Space Orbs.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "968E0FF31CE7E98B001DA997"
-               BuildableName = "meteor-dodge.xctest"
-               BlueprintName = "meteor-dodgeTests"
-               ReferencedContainer = "container:meteor-dodge.xcodeproj">
+               BuildableName = "Space Orbs.xctest"
+               BlueprintName = "Space OrbsTests"
+               ReferencedContainer = "container:Space Orbs.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -47,9 +47,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "968E0FF31CE7E98B001DA997"
-               BuildableName = "meteor-dodge.xctest"
-               BlueprintName = "meteor-dodgeTests"
-               ReferencedContainer = "container:meteor-dodge.xcodeproj">
+               BuildableName = "Space Orbs.xctest"
+               BlueprintName = "Space OrbsTests"
+               ReferencedContainer = "container:Space Orbs.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -58,8 +58,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "968E0FDA1CE7E98A001DA997"
             BuildableName = "meteor-dodge.app"
-            BlueprintName = "meteor-dodge"
-            ReferencedContainer = "container:meteor-dodge.xcodeproj">
+            BlueprintName = "Space Orbs"
+            ReferencedContainer = "container:Space Orbs.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -81,8 +81,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "968E0FDA1CE7E98A001DA997"
             BuildableName = "meteor-dodge.app"
-            BlueprintName = "meteor-dodge"
-            ReferencedContainer = "container:meteor-dodge.xcodeproj">
+            BlueprintName = "Space Orbs"
+            ReferencedContainer = "container:Space Orbs.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -105,8 +105,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "968E0FDA1CE7E98A001DA997"
             BuildableName = "meteor-dodge.app"
-            BlueprintName = "meteor-dodge"
-            ReferencedContainer = "container:meteor-dodge.xcodeproj">
+            BlueprintName = "Space Orbs"
+            ReferencedContainer = "container:Space Orbs.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

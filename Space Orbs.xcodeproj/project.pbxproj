@@ -113,7 +113,7 @@
 		9662A1151D4DC084005C9C15 /* boom.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = boom.mp3; sourceTree = "<group>"; };
 		9662A1171D4DC728005C9C15 /* play_buttons_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play_buttons_pressed.png; sourceTree = "<group>"; };
 		9662A1191D4DCBDA005C9C15 /* mute.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mute.png; sourceTree = "<group>"; };
-		968E0FDB1CE7E98A001DA997 /* meteor-dodge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "meteor-dodge.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		968E0FDB1CE7E98A001DA997 /* Space Orbs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Space Orbs.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		968E0FDF1CE7E98A001DA997 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		968E0FE01CE7E98A001DA997 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		968E0FE21CE7E98B001DA997 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -122,7 +122,7 @@
 		968E0FE91CE7E98B001DA997 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		968E0FEB1CE7E98B001DA997 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		968E0FEE1CE7E98B001DA997 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		968E0FF41CE7E98B001DA997 /* meteor-dodge.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "meteor-dodge.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		968E0FF41CE7E98B001DA997 /* Space Orbs.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Space Orbs.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		968E0FF91CE7E98B001DA997 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		968E0FFA1CE7E98B001DA997 /* space_shooterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = space_shooterTests.swift; sourceTree = "<group>"; };
 		968E100C1CE80B52001DA997 /* bgmusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bgmusic.mp3; sourceTree = "<group>"; };
@@ -230,8 +230,8 @@
 		968E0FDC1CE7E98A001DA997 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				968E0FDB1CE7E98A001DA997 /* meteor-dodge.app */,
-				968E0FF41CE7E98B001DA997 /* meteor-dodge.xctest */,
+				968E0FDB1CE7E98A001DA997 /* Space Orbs.app */,
+				968E0FF41CE7E98B001DA997 /* Space Orbs.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -346,9 +346,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		968E0FDA1CE7E98A001DA997 /* meteor-dodge */ = {
+		968E0FDA1CE7E98A001DA997 /* Space Orbs */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 968E0FFE1CE7E98B001DA997 /* Build configuration list for PBXNativeTarget "meteor-dodge" */;
+			buildConfigurationList = 968E0FFE1CE7E98B001DA997 /* Build configuration list for PBXNativeTarget "Space Orbs" */;
 			buildPhases = (
 				968E0FD71CE7E98A001DA997 /* Sources */,
 				968E0FD81CE7E98A001DA997 /* Frameworks */,
@@ -358,14 +358,14 @@
 			);
 			dependencies = (
 			);
-			name = "meteor-dodge";
+			name = "Space Orbs";
 			productName = "space-shooter";
-			productReference = 968E0FDB1CE7E98A001DA997 /* meteor-dodge.app */;
+			productReference = 968E0FDB1CE7E98A001DA997 /* Space Orbs.app */;
 			productType = "com.apple.product-type.application";
 		};
-		968E0FF31CE7E98B001DA997 /* meteor-dodgeTests */ = {
+		968E0FF31CE7E98B001DA997 /* Space OrbsTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 968E10011CE7E98B001DA997 /* Build configuration list for PBXNativeTarget "meteor-dodgeTests" */;
+			buildConfigurationList = 968E10011CE7E98B001DA997 /* Build configuration list for PBXNativeTarget "Space OrbsTests" */;
 			buildPhases = (
 				968E0FF01CE7E98B001DA997 /* Sources */,
 				968E0FF11CE7E98B001DA997 /* Frameworks */,
@@ -376,9 +376,9 @@
 			dependencies = (
 				968E0FF61CE7E98B001DA997 /* PBXTargetDependency */,
 			);
-			name = "meteor-dodgeTests";
+			name = "Space OrbsTests";
 			productName = "space-shooterTests";
-			productReference = 968E0FF41CE7E98B001DA997 /* meteor-dodge.xctest */;
+			productReference = 968E0FF41CE7E98B001DA997 /* Space Orbs.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -402,7 +402,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 968E0FD61CE7E98A001DA997 /* Build configuration list for PBXProject "meteor-dodge" */;
+			buildConfigurationList = 968E0FD61CE7E98A001DA997 /* Build configuration list for PBXProject "Space Orbs" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -415,8 +415,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				968E0FDA1CE7E98A001DA997 /* meteor-dodge */,
-				968E0FF31CE7E98B001DA997 /* meteor-dodgeTests */,
+				968E0FDA1CE7E98A001DA997 /* Space Orbs */,
+				968E0FF31CE7E98B001DA997 /* Space OrbsTests */,
 			);
 		};
 /* End PBXProject section */
@@ -517,7 +517,7 @@
 /* Begin PBXTargetDependency section */
 		968E0FF61CE7E98B001DA997 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 968E0FDA1CE7E98A001DA997 /* meteor-dodge */;
+			target = 968E0FDA1CE7E98A001DA997 /* Space Orbs */;
 			targetProxy = 968E0FF51CE7E98B001DA997 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -635,7 +635,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.abdulrahman.sporbs;
-				PRODUCT_NAME = "meteor-dodge";
+				PRODUCT_NAME = "Space Orbs";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -651,7 +651,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.abdulrahman.sporbs;
-				PRODUCT_NAME = "meteor-dodge";
+				PRODUCT_NAME = "Space Orbs";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -671,8 +671,8 @@
 				);
 				INFOPLIST_FILE = "space-shooterTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "meteor-dodge";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/meteor-dodge.app/meteor-dodge";
+				PRODUCT_NAME = "Space Orbs";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Space Orbs.app/Space Orbs";
 			};
 			name = Debug;
 		};
@@ -686,15 +686,15 @@
 				);
 				INFOPLIST_FILE = "space-shooterTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "meteor-dodge";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/meteor-dodge.app/meteor-dodge";
+				PRODUCT_NAME = "Space Orbs";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Space Orbs.app/Space Orbs";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		968E0FD61CE7E98A001DA997 /* Build configuration list for PBXProject "meteor-dodge" */ = {
+		968E0FD61CE7E98A001DA997 /* Build configuration list for PBXProject "Space Orbs" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				968E0FFC1CE7E98B001DA997 /* Debug */,
@@ -703,7 +703,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		968E0FFE1CE7E98B001DA997 /* Build configuration list for PBXNativeTarget "meteor-dodge" */ = {
+		968E0FFE1CE7E98B001DA997 /* Build configuration list for PBXNativeTarget "Space Orbs" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				968E0FFF1CE7E98B001DA997 /* Debug */,
@@ -712,7 +712,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		968E10011CE7E98B001DA997 /* Build configuration list for PBXNativeTarget "meteor-dodgeTests" */ = {
+		968E10011CE7E98B001DA997 /* Build configuration list for PBXNativeTarget "Space OrbsTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				968E10021CE7E98B001DA997 /* Debug */,
