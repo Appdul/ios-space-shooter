@@ -37,7 +37,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var revivePromptLabel = SKLabelNode(fontNamed: "TimeBurner-Bold")
     var yesLabel = SKLabelNode(fontNamed: "TimeBurner-Bold")
     var noLabel = SKLabelNode(fontNamed: "TimeBurner-Bold")
-    var modal = SKShapeNode(path: CGPathCreateWithRoundedRect(CGRectMake(-160, -75, 320, 150), 40, 40, nil))
+    var modal = SKShapeNode(path: CGPathCreateWithRoundedRect(CGRectMake(-150, -75, 300, 150), 40, 40, nil))
     var userHasStarted = false
     var isUsersFirstTap = true
     let instructions = SKLabelNode(fontNamed: "TimeBurner-Bold")
@@ -80,7 +80,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         orbImage.xScale = orbScale
         orbImage.yScale = orbScale
         
-        revivePromptLabel.fontSize = 22
+        revivePromptLabel.fontSize = 21
         revivePromptLabel.fontColor = orbColor
         revivePromptLabel.position = CGPointMake(self.frame.midX, self.frame.midY + 80)
         
