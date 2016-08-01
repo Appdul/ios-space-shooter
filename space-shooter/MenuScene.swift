@@ -18,6 +18,7 @@ public let highScoreLabel = SKLabelNode(fontNamed: "TimeBurner")
 
 class MenuScene: SKScene {
     let title = SKLabelNode(fontNamed: "TimeBurner")
+    let titleSecondPart = SKLabelNode(fontNamed: "TimeBurner")
     let litOrbTexture = SKTexture(imageNamed: "litOrb")
     var player: SKSpriteNode = SKSpriteNode()
     
@@ -42,16 +43,22 @@ class MenuScene: SKScene {
 //        highScoreLabel.position = CGPointMake(self.frame.midX, playButton.position.y + 140)
 //        self.addChild(highScoreLabel)
         
-        title.text = "SP      RBS"
+        title.text = "S P A C E"
         title.fontColor = UIColor.redColor()
-        title.fontSize = 45
+        title.fontSize = 48
         title.position =  CGPointMake(self.frame.midX, self.frame.maxY - 100)
         self.addChild(title)
         
+        titleSecondPart.text = "R B S"
+        titleSecondPart.fontColor = UIColor.redColor()
+        titleSecondPart.fontSize = 48
+        titleSecondPart.position =  CGPointMake(self.frame.midX + 25, title.position.y - 60)
+        self.addChild(titleSecondPart)
+        
         let letterOrb = SKSpriteNode(texture: litOrbTexture)
-        letterOrb.position = CGPointMake(title.position.x - 13, title.position.y + 15)
-        letterOrb.xScale = 0.8
-        letterOrb.yScale = 0.8
+        letterOrb.position = CGPointMake(titleSecondPart.position.x - 80, titleSecondPart.position.y + 17)
+        letterOrb.xScale = 0.85
+        letterOrb.yScale = 0.85
         self.addChild(letterOrb)
         
         player = SKSpriteNode(texture: redFighterTexture )
