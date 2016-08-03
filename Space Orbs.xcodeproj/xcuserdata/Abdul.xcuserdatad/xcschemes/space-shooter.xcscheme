@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "968E0FDA1CE7E98A001DA997"
-               BuildableName = "meteor-dodge.app"
+               BuildableName = "Space Orbs.app"
                BlueprintName = "Space Orbs"
                ReferencedContainer = "container:Space Orbs.xcodeproj">
             </BuildableReference>
@@ -57,7 +57,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "968E0FDA1CE7E98A001DA997"
-            BuildableName = "meteor-dodge.app"
+            BuildableName = "Space Orbs.app"
             BlueprintName = "Space Orbs"
             ReferencedContainer = "container:Space Orbs.xcodeproj">
          </BuildableReference>
@@ -80,7 +80,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "968E0FDA1CE7E98A001DA997"
-            BuildableName = "meteor-dodge.app"
+            BuildableName = "Space Orbs.app"
             BlueprintName = "Space Orbs"
             ReferencedContainer = "container:Space Orbs.xcodeproj">
          </BuildableReference>
@@ -104,7 +104,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "968E0FDA1CE7E98A001DA997"
-            BuildableName = "meteor-dodge.app"
+            BuildableName = "Space Orbs.app"
             BlueprintName = "Space Orbs"
             ReferencedContainer = "container:Space Orbs.xcodeproj">
          </BuildableReference>

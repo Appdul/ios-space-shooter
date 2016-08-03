@@ -115,7 +115,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override init(size: CGSize) {
         super.init(size: size)
-        //orbCount = 58
         spawnBackgroundStars()
         player = SKSpriteNode(texture: redFighterTexture )
         player.name = "player"
@@ -267,7 +266,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         for touch in (touches) {
             
             var newLocation = touch.locationInNode(self)
-            let velocity = 570
+            let velocity = 800
             let currentLocationOfShip:CGPoint = player.position
             let displacmentVector:CGPoint = subtractVectors(newLocation, b: currentLocationOfShip)
             let displacment = vectorLength(displacmentVector)
