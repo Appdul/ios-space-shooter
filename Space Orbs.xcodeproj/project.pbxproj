@@ -394,7 +394,7 @@
 				TargetAttributes = {
 					968E0FDA1CE7E98A001DA997 = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = UK69PE77ZC;
+						DevelopmentTeam = 6298NJ9QH6;
 					};
 					968E0FF31CE7E98B001DA997 = {
 						CreatedOnToolsVersion = 6.4;
@@ -634,10 +634,10 @@
 				INFOPLIST_FILE = "space-shooter/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.abdulrahman.sporbs;
+				PRODUCT_BUNDLE_IDENTIFIER = com.abdulrahman.meteor.dodge;
 				PRODUCT_NAME = "Space Orbs";
-				PROVISIONING_PROFILE = "";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				PROVISIONING_PROFILE = "a98c5899-29a4-4973-ad93-afc6bdf38861";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -650,10 +650,10 @@
 				INFOPLIST_FILE = "space-shooter/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.abdulrahman.sporbs;
+				PRODUCT_BUNDLE_IDENTIFIER = com.abdulrahman.meteor.dodge;
 				PRODUCT_NAME = "Space Orbs";
-				PROVISIONING_PROFILE = "";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				PROVISIONING_PROFILE = "38365428-a97a-4730-980f-bdb8bd5ce351";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
