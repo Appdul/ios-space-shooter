@@ -201,6 +201,47 @@
 			name = Fonts;
 			sourceTree = "<group>";
 		};
+		964BCE281D985E31001D474E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				96B86E741D0F441A007BAB53 /* MenuScene.swift */,
+				968E0FE41CE7E98B001DA997 /* GameScene.swift */,
+				96E2C0831CF3DDBD009BDBC5 /* GameOverScene.swift */,
+				96227A001D45541D0083C800 /* Textures.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		964BCE291D985E51001D474E /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				96B86E701D0F4347007BAB53 /* MenuScene.sks */,
+				968E0FE21CE7E98B001DA997 /* GameScene.sks */,
+				963D79451D45B7D300593787 /* background.sks */,
+				96227A061D457C9B0083C800 /* rocketfire.sks */,
+				963A105D1D4B024200D5BB4D /* destination.sks */,
+				96227A021D4571670083C800 /* explosion.sks */,
+			);
+			name = Scenes;
+			sourceTree = "<group>";
+		};
+		964BCE2A1D985E96001D474E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				968E0FE61CE7E98B001DA997 /* GameViewController.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		964BCE2B1D985EB4001D474E /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				968E0FE81CE7E98B001DA997 /* Main.storyboard */,
+				968E0FED1CE7E98B001DA997 /* LaunchScreen.xib */,
+			);
+			name = Storyboards;
+			sourceTree = "<group>";
+		};
 		964DBDDB1D04E2E2008CA0AA /* backgrounds */ = {
 			isa = PBXGroup;
 			children = (
@@ -239,26 +280,15 @@
 		968E0FDD1CE7E98A001DA997 /* space-shooter */ = {
 			isa = PBXGroup;
 			children = (
+				964BCE2B1D985EB4001D474E /* Storyboards */,
+				964BCE2A1D985E96001D474E /* Views */,
+				964BCE291D985E51001D474E /* Scenes */,
+				964BCE281D985E31001D474E /* Models */,
 				962FC4CC1D123C2700F6E7B4 /* Resources */,
-				96227A001D45541D0083C800 /* Textures.swift */,
 				968E0FE01CE7E98A001DA997 /* AppDelegate.swift */,
-				96B86E701D0F4347007BAB53 /* MenuScene.sks */,
-				968E0FE21CE7E98B001DA997 /* GameScene.sks */,
-				96E2C0831CF3DDBD009BDBC5 /* GameOverScene.swift */,
-				96B86E741D0F441A007BAB53 /* MenuScene.swift */,
-				968E0FE41CE7E98B001DA997 /* GameScene.swift */,
-				968E0FE61CE7E98B001DA997 /* GameViewController.swift */,
-				968E0FE81CE7E98B001DA997 /* Main.storyboard */,
 				968E0FEB1CE7E98B001DA997 /* Images.xcassets */,
-				968E0FED1CE7E98B001DA997 /* LaunchScreen.xib */,
 				96AE74F91CFBBC71002F5C6C /* DataController.swift */,
 				968E0FDE1CE7E98A001DA997 /* Supporting Files */,
-				96227A021D4571670083C800 /* explosion.sks */,
-				96227A031D4571670083C800 /* spark.png */,
-				96227A061D457C9B0083C800 /* rocketfire.sks */,
-				96227A091D45B05C0083C800 /* star.png */,
-				963D79451D45B7D300593787 /* background.sks */,
-				963A105D1D4B024200D5BB4D /* destination.sks */,
 			);
 			path = "space-shooter";
 			sourceTree = "<group>";
@@ -291,6 +321,8 @@
 		968E10041CE80A9F001DA997 /* sprites.atlas */ = {
 			isa = PBXGroup;
 			children = (
+				96227A091D45B05C0083C800 /* star.png */,
+				96227A031D4571670083C800 /* spark.png */,
 				962279FB1D4550B90083C800 /* particles */,
 				96D4D76B1D1F93CF00B27A3C /* meteors */,
 				96D4D76A1D1F93A200B27A3C /* red fighter */,
